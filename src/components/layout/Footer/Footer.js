@@ -44,7 +44,7 @@ const Footer = () => {
                 <h3>Social Media</h3>
                 <ul>
                   <a href="https://web.telegram.org/z/#-1837824968"><li>Telegram </li></a>
-                  <a href="https://twitter.com/traccyag"><li>Twitter  </li></a>
+                  <a href="https://twitter.com/traccy_official?s=11&t=_z6GdVt91PmJiJmxDvd8sA"><li>Twitter  </li></a>
                   <a href="https://www.instagram.com/traccy_official/"><li>Instagram</li></a>
                   <a href="https://www.linkedin.com/company/traccy-ag/?viewAsMember=true"><li>Linkedin </li></a>
                 </ul>
@@ -54,7 +54,7 @@ const Footer = () => {
           <Col lg='1'></Col>
           <Col lg='4' className="subscribe-col">
             <h3>Connect your Wallet </h3>
-            <p>Connect you wallet to participate in STO  </p>
+            <p>Connect your wallet to participate in STO  </p>
             <Button type="primary" onClick={handleClick} id="footer-wallet">Connect Wallet</Button>
           </Col>
         </Row>
@@ -67,7 +67,7 @@ const Footer = () => {
           </Col>
           <Col lg='4'>
             <div className='social-icon-list'>
-              <a href="https://twitter.com/traccyag">
+              <a href="https://twitter.com/traccy_official?s=11&t=_z6GdVt91PmJiJmxDvd8sA">
                 <SvgIcon name='twitter' viewbox='0 0 36 29.239' />
               </a>
               <a href="https://web.telegram.org/z/#-1837824968">

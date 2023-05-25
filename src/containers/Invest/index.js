@@ -50,7 +50,7 @@ const Invest = () => {
             </div>
             <div className='leftbar'>
                 <div className='social-icon-list'>
-                    <a href="https://twitter.com/traccyag">
+                    <a href="https://twitter.com/traccy_official?s=11&t=_z6GdVt91PmJiJmxDvd8sA">
                         <SvgIcon name='twitter' viewbox='0 0 36 29.239' />
                     </a>
                     <a href="https://web.telegram.org/z/#-1837824968">
