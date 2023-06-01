@@ -397,16 +397,16 @@ const AboutUs = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div>
+                                    {/* <div>
                                         <div className='slider-card'>
                                             <div className='slider-left'>
                                                 <h3>Andrea Bello </h3>
                                                 <div className='designation'><Divider /> COO & CTO</div>
                                                 <p>{t("about_us:andrea")}</p>
                                                 <div className='social-icons'>
-                                                    {/* <SvgIcon name='twitter' viewbox='0 0 36 29.239' />
+                                                    <SvgIcon name='twitter' viewbox='0 0 36 29.239' />
                                                     <SvgIcon name='telegram' viewbox='0 0 34.875 34.664' />
-                                                    <SvgIcon name='instagram' viewbox='0 0 32.999 32.999' /> */}
+                                                    <SvgIcon name='instagram' viewbox='0 0 32.999 32.999' />
                                                     <a href="https://www.linkedin.com/in/bello-andrea-380572b4" target="_blank" rel="noreferrer">
                                                         <SvgIcon name='linkedin' viewbox='0 0 32.001 32.001' />
                                                     </a>
@@ -433,7 +433,7 @@ const AboutUs = () => {
                                                 <img src="/about-us/ika.png" alt='ika' />
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </Slider>
                             </div>
                         </Col>
