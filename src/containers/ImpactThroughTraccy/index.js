@@ -449,7 +449,7 @@ export const Sliders = [
       application: "Incubation",
       application_number: 0,
       month: 3,
-      world: 1,
+      world: 0,
       banner: "/impact/stage-banner.png",
       projects: [
          // {

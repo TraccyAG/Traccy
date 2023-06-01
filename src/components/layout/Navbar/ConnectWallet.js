@@ -101,9 +101,9 @@ export default function ConnectWallet() {
                   {wallet.name}
                 </span>
               </div>
-              {index < all.length - 1 &&
+              {/* {index < all.length - 1 && */}
                 <div className="wallet-item-splitter" />
-              }
+              {/* } */}
             </React.Fragment>
           ))}
         </div>
