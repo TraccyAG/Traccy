@@ -304,36 +304,36 @@ const ImpactThroughTraccy = () => {
                               <div className='project-center'>
                                  {index === 0 &&
                                     <>
-                                       <div className='points point-1' onClick={() => router.push("/impact-through-traccy-details/lynx")}>
+                                       {/* <div className='points point-1' onClick={() => router.push("/impact-through-traccy-details/lynx")}>
                                           <span></span>
                                           <div>01</div>
                                        </div>
                                        <div className='points point-2' onClick={() => router.push("/impact-through-traccy-details/green-protocol")}>
                                           <span></span>
                                           <div>02</div>
-                                       </div>
+                                       </div> */}
                                        <div className='points point-3' onClick={() => router.push("/impact-through-traccy-details/traccy-solar")}>
                                           <span></span>
-                                          <div>03</div>
+                                          <div>01</div>
                                        </div>
                                        <div className='points point-4' onClick={() => router.push("/impact-through-traccy-details/traccy-lab")}>
                                           <span></span>
-                                          <div>04</div>
+                                          <div>02</div>
                                        </div>
                                        <div className='points point-5' onClick={() => router.push("/impact-through-traccy-details/traccy-farm")}>
                                           <span></span>
-                                          <div>05</div>
+                                          <div>03</div>
                                        </div>
                                     </>
                                  }
-                                 {index === 1 &&
+                                 {/* {index === 1 &&
                                     <>
                                        <div className='points point-6' onClick={() => router.push("/impact-through-traccy-details/flyout")}>
                                           <span></span>
                                           <div>01</div>
                                        </div>
                                     </>
-                                 }
+                                 } */}
                                  {index === 2 &&
                                     <>
                                        <div className='points point-7' onClick={() => router.push("/impact-through-traccy-details/traccy-connect")}>
@@ -350,16 +350,16 @@ const ImpactThroughTraccy = () => {
                               <ul>
                                  {index === 0 &&
                                     <>
-                                       <li className="right-1" onClick={() => router.push("/impact-through-traccy-details/lynx")}>01</li>
-                                       <li className="right-2" onClick={() => router.push("/impact-through-traccy-details/green-protocol")}>02</li>
-                                       <li className="right-3" onClick={() => router.push("/impact-through-traccy-details/traccy-solar")} >03</li>
-                                       <li className="right-4" onClick={() => router.push("/impact-through-traccy-details/traccy-lab")}>04</li>
-                                       <li className="right-5" onClick={() => router.push("/impact-through-traccy-details/traccy-farm")}>05</li>
+                                       {/* <li className="right-1" onClick={() => router.push("/impact-through-traccy-details/lynx")}>01</li>
+                                       <li className="right-2" onClick={() => router.push("/impact-through-traccy-details/green-protocol")}>02</li> */}
+                                       <li className="right-3" onClick={() => router.push("/impact-through-traccy-details/traccy-solar")} >01</li>
+                                       <li className="right-4" onClick={() => router.push("/impact-through-traccy-details/traccy-lab")}>02</li>
+                                       <li className="right-5" onClick={() => router.push("/impact-through-traccy-details/traccy-farm")}>03</li>
                                     </>
                                  }
-                                 {index === 1 &&
+                                 {/* {index === 1 &&
                                     <li className="right-6" onClick={() => router.push("/impact-through-traccy-details/flyout")} >01</li>
-                                 }
+                                 } */}
                                  {index === 2 &&
                                     <li className="right-7" onClick={() => router.push("/impact-through-traccy-details/traccy-connect")}>01</li>
                                  }
@@ -406,23 +406,23 @@ export const Sliders = [
       stage: "Selection",
       desc: "We are selecting new Projects",
       application: "Application",
-      application_number: 5,
+      application_number: 3,
       month: 1,
       world: 3,
       banner: "/impact/stage-banner.png",
       projects: [
-         {
-            number: "Lynx Vr",
-            desc: "LynxVr is a cognitive therapist using Blockchain for increase privacy and clients confidential aboutmedical and therapist section",
-            image: "/impact/side-menu/lynx.png",
-            route: "lynx"
-         },
-         {
-            number: "Green Protocol",
-            desc: "NFT tokenisation of green assets like renewable energy, agriculture, recycling and more. Crowdfunding modelling and co-ownership of real world asset for change the climatic changes.",
-            image: "/impact/side-menu/green-protocol.png",
-            route: "green-protocol"
-         },
+         // {
+         //    number: "Lynx Vr",
+         //    desc: "LynxVr is a cognitive therapist using Blockchain for increase privacy and clients confidential aboutmedical and therapist section",
+         //    image: "/impact/side-menu/lynx.png",
+         //    route: "lynx"
+         // },
+         // {
+         //    number: "Green Protocol",
+         //    desc: "NFT tokenisation of green assets like renewable energy, agriculture, recycling and more. Crowdfunding modelling and co-ownership of real world asset for change the climatic changes.",
+         //    image: "/impact/side-menu/green-protocol.png",
+         //    route: "green-protocol"
+         // },
          {
             number: "Traccy Lab",
             desc: "Creating a automated ecosystem in real world whereall the population is 100% independent to external sources, likeWater purification, Food and plant production, oil creation, energy production and green mobilitation",
@@ -447,17 +447,17 @@ export const Sliders = [
       stage: "Incubation",
       desc: "We are incubating new Project",
       application: "Incubation",
-      application_number: 1,
+      application_number: 0,
       month: 3,
       world: 1,
       banner: "/impact/stage-banner.png",
       projects: [
-         {
-            number: "FlyOut",
-            desc: "A mosquito solution system based on organicproduct reducing the mosquito population",
-            image: "/impact/side-menu/flyout.png",
-            route: "flyout"
-         }
+         // {
+         //    number: "FlyOut",
+         //    desc: "A mosquito solution system based on organicproduct reducing the mosquito population",
+         //    image: "/impact/side-menu/flyout.png",
+         //    route: "flyout"
+         // }
       ]
    },
    {

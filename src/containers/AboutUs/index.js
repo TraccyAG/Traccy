@@ -16,6 +16,7 @@ import TeamThumb3 from '../../assets/images/team-thumb-3.png';
 import TeamThumb4 from '../../assets/images/team-thumb-4.png';
 import TeamThumb5 from '../../assets/images/team-thumb-5.png';
 import TeamThumb6 from '../../assets/images/team-thumb-6.png';
+import TeamThumb7 from '../../assets/images/team-thumb-7.jpg';
 import LeftHexa from '../../assets/images/left-hexa-small.svg';
 import HeaderBg1 from '../../assets/images/title-bg1.svg';
 import HeaderBg2 from '../../assets/images/title-bg2.svg';
@@ -72,7 +73,7 @@ const AboutUs = () => {
                 {i === 0 &&
                     <div className='thumb-col'>
                         <div className='image-circle'>
-                            <img src={TeamThumb4} alt='Mick Misamu' />
+                            <img src={TeamThumb7} alt='Joas Fischer' />
                         </div>
                         <div className='thumb-bottom'>Joas Fischer</div>
                         <div className='thumb-designation'>
@@ -93,7 +94,7 @@ const AboutUs = () => {
                 {i === 2 &&
                     <div className='thumb-col'>
                         <div className='image-circle'>
-                            <img src={TeamThumb2} alt='Mick Misamu' />
+                            <img src={TeamThumb2} alt='Farrah Mettler<' />
                         </div>
                         <div className='thumb-bottom'>Farrah Mettler</div>
                         <div className='thumb-designation'>
@@ -103,14 +104,14 @@ const AboutUs = () => {
                 {i === 3 &&
                     <div className='thumb-col'>
                         <div className='image-circle'>
-                            <img src={TeamThumb3} alt='Mick Misamu' />
+                            <img src={TeamThumb3} alt='Dedry  Misamu' />
                         </div>
                         <div className='thumb-bottom'>Dedry  Misamu</div>
                         <div className='thumb-designation'>
                             <span></span> CFO
                         </div>
                     </div>}
-                {i === 4 &&
+                {/* {i === 4 &&
                     <div className='thumb-col'>
                         <div className='image-circle'>
                             <img src={TeamThumb5} alt='Andrea Bello' />
@@ -129,7 +130,7 @@ const AboutUs = () => {
                         <div className='thumb-designation'>
                             <span></span> CBDO
                         </div>
-                    </div>}
+                    </div>} */}
             </div>
         )
     };
