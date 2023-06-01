@@ -115,7 +115,7 @@ const BecomePart = () => {
                                     Chaltenbodenstrasse 6a, <br />
                                     8834 Schindellegi  <br />
                                     info@traccy.ch <br />
-                                    +41 44 045 45 45
+                                    +41 43 810 29 51
                                 </p>
                             </div>
                             <div className='bottom-link'>

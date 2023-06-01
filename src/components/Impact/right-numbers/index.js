@@ -5,7 +5,7 @@ const RightNumbers = ({ showContent }) => {
   const router = useHistory();
   return (
     <>
-      {showContent === 0 &&
+      {/* {showContent === 0 &&
         <div className='bottom-left-details details1'>
           <div className='numbers'>
             <div className='color-bar'></div>
@@ -24,7 +24,7 @@ const RightNumbers = ({ showContent }) => {
             <h4>02 Green Protocol</h4>
           </div>
         </div>
-      }
+      } */}
       {showContent === 2 &&
         <div className='bottom-left-details details3'>
           <div className='numbers'>
@@ -57,25 +57,25 @@ const RightNumbers = ({ showContent }) => {
       }
       <div className='right-numbers'>
         <ul>
-          <li className={showContent === 0 ? 'selected' : ''} onClick={() => router.push("/impact-through-traccy-details/lynx")}>
+          {/* <li className={showContent === 0 ? 'selected' : ''} onClick={() => router.push("/impact-through-traccy-details/lynx")}>
             01 <span>LYNXVR<br />JAKARTA, INDONESIA</span>
           </li>
           <li className={showContent === 1 ? 'selected' : ''}
             onClick={() => router.push("/impact-through-traccy-details/green-protocol")}>
             02 <span>GREEN PROTOCOL<br />JAKARTA, INDONESIA</span>
-          </li>
+          </li> */}
           <li className={showContent === 2 ? 'selected' : ''}
             onClick={() => router.push("/impact-through-traccy-details/traccy-solar")}>
-            03 <span>TRACCY SOLAR<br />DR CONGO</span>
+            01 <span>TRACCY SOLAR<br />DR CONGO</span>
           </li>
           <li className={showContent === 3 ? 'selected' : ''}
             onClick={() => router.push("/impact-through-traccy-details/traccy-lab")}>
-            04 <span>TRACCY LAB<br />ZURICH, SWITZERLAN</span>
+            02 <span>TRACCY LAB<br />ZURICH, SWITZERLAN</span>
           </li>
           <li className={showContent === 4 ? 'selected' : ''}
             onClick={() => router.push("/impact-through-traccy-details/traccy-farm")}
           >
-            05 <span>TRACCY FARM<br /> DR CONGO</span>
+            03 <span>TRACCY FARM<br /> DR CONGO</span>
           </li>
         </ul>
       </div>
