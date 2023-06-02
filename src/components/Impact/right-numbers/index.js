@@ -31,7 +31,7 @@ const RightNumbers = ({ showContent }) => {
             <div className='color-bar'></div>
           </div>
           <div className='right-content'>
-            <h4>03 Traccy Solar</h4>
+            <h4>01 Traccy Solar</h4>
           </div>
         </div>
       }
@@ -41,7 +41,7 @@ const RightNumbers = ({ showContent }) => {
             <div className='color-bar'></div>
           </div>
           <div className='right-content'>
-            <h4>04 Traccy Lab</h4>
+            <h4>02 Traccy Lab</h4>
           </div>
         </div>
       }
@@ -51,7 +51,7 @@ const RightNumbers = ({ showContent }) => {
             <div className='color-bar'></div>
           </div>
           <div className='right-content'>
-            <h4>05 Traccy Farm</h4>
+            <h4>03 Traccy Farm</h4>
           </div>
         </div>
       }
