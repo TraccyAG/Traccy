@@ -146,7 +146,7 @@ const ImpactThroughTraccy = () => {
                            <div className="page-1-left">
                               <h1>Impact Through Traccy</h1>
                               <p>
-                                 At Traccy, it is all about creating impact. We have built an ecosystem that enables changemakers to invest quickly and securely in sustainable innovations, while also providing qualified project owners with the financing they need. In doing so, we're bridging the gap between funds seeking projects and projects ready to be funded on a global scale.
+                                 At Traccy, it is all about creating impact. We build an ecosystem that enables changemakers to invest quickly and securely in sustainable innovations, while also providing qualified project owners with the financing they need. In doing so, we're bridging the gap between funds seeking projects and projects ready to be funded on a global scale.
                               </p>
                            </div>
                            <div className="page-1-right">
