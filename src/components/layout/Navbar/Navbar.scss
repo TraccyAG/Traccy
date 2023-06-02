@@ -235,12 +235,9 @@
             }
             .impact-menu {
               display: flex;
-              background: linear-gradient(
-                187deg,
-                #540d56 0%,
-                #220925 24%,
-                #080510 100%
-              );
+              background: #0a090980;
+              -webkit-backdrop-filter: blur(20px);
+              backdrop-filter: blur(20px);
               flex-direction: column;
 
               a {
