@@ -10,7 +10,7 @@ import { useTronLink } from "../../../contexts/tronLink"
 import { toast } from "react-toastify"
 import { SvgIcon } from '../../common';
 
-const ChainSelector = () => {
+const ChainSelector = (props) => {
   const state = useTrackedState();
   const dispatch = useDispatch();
   const keplr = useKeplrWallet();
@@ -55,7 +55,7 @@ const ChainSelector = () => {
         try {
           await ethereum.request({
             method: "wallet_switchEthereumChain",
-            params: [{ chainId: CHAINS_CONFIG[chain].chainId }],
+            params: [{ chainId: `0x${CHAINS_CONFIG[chain].chainId.toString(16)}` }],
           });
         } catch (switchError) {
           if (switchError.code === 4902) {
@@ -64,13 +64,15 @@ const ChainSelector = () => {
                 method: "wallet_addEthereumChain",
                 params: [
                   {
-                    chainId: CHAINS_CONFIG[chain].chainId,
+                    chainId: `0x${CHAINS_CONFIG[chain].chainId.toString(16)}`,
                     chainName: CHAINS_CONFIG[chain].chainName,
                     rpcUrls: [CHAINS_CONFIG[chain].rpc] /* ... */,
+                    nativeCurrency: CHAINS_CONFIG[chain].nativeCurrency
                   },
                 ],
               });
             } catch (addError) {
+              console.log(addError);
               toast("Can't switch to " + chain.toUpperCase(), ERROR_OPTION);
             }
           }
@@ -103,8 +105,8 @@ const ChainSelector = () => {
   }, [tokenItems]);
 
   const handleTokenSelect = (index) => {
-    console.log(token_list, index)
-    setTokenKey(index)
+    setTokenKey(index);
+    props.setPaymentOption(token_list[index].name); // set selected payment option for wrapper component
     dispatch({ type: "setInvestToken", payload: token_list[index].name });
   };
 
@@ -137,10 +139,10 @@ const ChainSelector = () => {
             value={token_list.length>tokenKey ? token_list[tokenKey].name : ""}
           />
           <Select
-            defaultValue={"trcyc"}
+            defaultValue={"trcyn"}
             suffixIcon={<SvgIcon name='select-arrow' viewbox='0 0 9.42 7.186' />}
             popupClassName="select-drop"
-            options={[{value: "trcyc", label: "TRCYC"}]}
+            options={[{value: "trcyn", label: "TRCYN"}]}
           />
         </Form.Item>
       </div>
