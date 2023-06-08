@@ -2,11 +2,11 @@
 import SvgSprite from "./utility/SvgSpriteLoader";
 import { rotues } from "./routes";
 import React, { useEffect } from "react";
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import history from "./common/history";
 import AOS from "aos";
-import 'antd/dist/reset.css';
-import 'aos/dist/aos.css';
+import "antd/dist/reset.css";
+import "aos/dist/aos.css";
 
 //Svg Sprite
 import svgFile from "./assets/images/svg/svg-sprite.svg";
@@ -15,7 +15,20 @@ import "./i18nextConf";
 function App() {
   useEffect(() => {
     AOS.init({});
-    }, [])
+
+    const script = document.createElement("script");
+
+    script.src =
+      "https://cdn-cookieyes.com/client_data/1b7c674bcbaaf1584d6c4676/script.js";
+
+    script.id = "cookieyes";
+
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
   return (
     <>
       <SvgSprite url={svgFile} />
