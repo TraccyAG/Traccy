@@ -53,8 +53,9 @@
   .leftbar {
     width: 140px;
     padding-top: 80px;
-
+    z-index: 1;
     text-align: center;
+    
     @media screen and (max-width: 1600px) {
       width: 110px;
     }
