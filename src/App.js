@@ -16,34 +16,34 @@ function App() {
   useEffect(() => {
     AOS.init({});
 
-    initCookieyes();
+    // initCookieyes();
 
-    return () => {
-      destroyCookieyes();
-    };
+    // return () => {
+    //   destroyCookieyes();
+    // };
   }, []);
 
-  const initCookieyes = () => {
-    const scriptCookieyes = document.getElementById("cookieyes");
+  // const initCookieyes = () => {
+  //   const scriptCookieyes = document.getElementById("cookieyes");
 
-    if (!scriptCookieyes) {
-      const script = document.createElement("script");
-      script.src =
-        "https://cdn-cookieyes.com/client_data/ac0bb6960675dd563b0b5339/script.js";
-      script.id = "cookieyes";
-      document.body.appendChild(script);
-      console.log('Cookieyes init')
-    }
-  };
+  //   if (!scriptCookieyes) {
+  //     const script = document.createElement("script");
+  //     script.src =
+  //       "https://cdn-cookieyes.com/client_data/ac0bb6960675dd563b0b5339/script.js";
+  //     script.id = "cookieyes";
+  //     document.body.appendChild(script);
+  //     console.log('Cookieyes init')
+  //   }
+  // };
 
-  const destroyCookieyes = () => {
-    const scriptCookieyes = document.getElementById("cookieyes");
+  // const destroyCookieyes = () => {
+  //   const scriptCookieyes = document.getElementById("cookieyes");
 
-    if (scriptCookieyes) {
-      document.body.removeChild(scriptCookieyes);
-      console.log('Cookieyes destroy')
-    }
-  };
+  //   if (scriptCookieyes) {
+  //     document.body.removeChild(scriptCookieyes);
+  //     console.log('Cookieyes destroy')
+  //   }
+  // };
 
   return (
     <>
