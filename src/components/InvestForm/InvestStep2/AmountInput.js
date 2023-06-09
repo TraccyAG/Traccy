@@ -29,7 +29,7 @@ const TokenSelector = (props) => {
     const provider = new ethers.providers.JsonRpcProvider(CHAINS_CONFIG.avalanche.rpc, CHAINS_CONFIG.avalanche.chainId);
     const saleContract = new Contract(PHASEABLE_SALE_CONTRACT_ADDRESS, saleAbi.abi, provider);
     saleContract.phaseCounter().then(
-      counter => saleContract.phaseInfo(counter-1).then(
+      counter => saleContract.phaseInfo(counter-1 > 0 ? counter-1: 0).then(
         res => { 
           setPrice(ethers.utils.formatUnits(res.priceUsd, 6));
           const phaseTokenomics = {total: ethers.utils.formatEther(res.amountTotal), available: ethers.utils.formatEther(res.amountTotal.sub(res.amountSold))};

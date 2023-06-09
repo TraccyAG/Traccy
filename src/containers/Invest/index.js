@@ -24,21 +24,21 @@ const Invest = () => {
 
     const steps = [
         {
-            title: `Purchase Agreement`,
-            content: <InvestStep1 onNext={next} />,
-        },
-        // {
-        //     title: t("buy:fill"),
-        //     content: <InvestStep3 onNext={next} onPrev={prev} />,
-        // },
-        // {
-        //     title: t("buy:confirmation"),
-        //     content: <InvestStep4 onPrev={prev} />,
-        // },
-        {
             title: t("buy:choose"),
             content: <InvestStep2 onNext={next} onPrev={prev} />,
         },
+        {
+            title: `Purchase Agreement`,
+            content: <InvestStep1 onNext={next} />,
+        },
+        {
+            title: t("buy:fill"),
+            content: <InvestStep3 onNext={next} onPrev={prev} />,
+        },
+        {
+            title: t("buy:confirmation"),
+            content: <InvestStep4 onPrev={prev} />,
+        }
     ];
 
     const items = steps.map((item) => ({ key: item.title, title: item.title }));

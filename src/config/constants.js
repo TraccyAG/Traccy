@@ -4,7 +4,7 @@ export const REQUEST_ENDPOINT =
 
 export const PAYMENT_CONTRACT_ADDRESS = "0xDB4Eb8a105A20B9070ba292AD897d2d81483CD07"
 
-export const PHASEABLE_SALE_CONTRACT_ADDRESS = "0xD5ac451B0c50B9476107823Af206eD814a2e2580" // phaseable sale on avalance
+export const PHASEABLE_SALE_CONTRACT_ADDRESS = "0xf606A0Cb6405DBEE4d143D73536D990B87a02e24" // phaseable sale on avalance
 
 export const WEFUND_JUNO_ADDRESS = " ";
 export const WEFUND_BSC_ADDRESS = "0xeD0C3d4d42EFFb4BbabB8155f6D16A4698e0Ddf1";
@@ -253,8 +253,7 @@ export const CHAINS_CONFIG = {
     //chainId: "0xa86a",
     chainId: 43114,
     chainName: "Avalanche C-Chain",
-    //rpc: "https://api.avax.network/ext/bc/C/rpc",
-    rpc: "http://localhost:8545",
+    rpc: "https://api.avax.network/ext/bc/C/rpc",
     nativeCurrency: {
       name: "AVAX",
       symbol: "AVAX",
