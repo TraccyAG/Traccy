@@ -16,19 +16,33 @@ function App() {
   useEffect(() => {
     AOS.init({});
 
-    const script = document.createElement("script");
-
-    script.src =
-      "https://cdn-cookieyes.com/client_data/ac0bb6960675dd563b0b5339/script.js";
-
-    script.id = "cookieyes";
-
-    document.body.appendChild(script);
+    initCookieyes();
 
     return () => {
-      document.body.removeChild(script);
+      destroyCookieyes();
     };
   }, []);
+
+  const initCookieyes = () => {
+    const scriptCookieyes = document.getElementById("cookieyes");
+
+    if (!scriptCookieyes) {
+      const script = document.createElement("script");
+      script.src =
+        "https://cdn-cookieyes.com/client_data/ac0bb6960675dd563b0b5339/script.js";
+      script.id = "cookieyes";
+      document.body.appendChild(script);
+    }
+  };
+
+  const destroyCookieyes = () => {
+    const scriptCookieyes = document.getElementById("cookieyes");
+
+    if (scriptCookieyes) {
+      document.body.removeChild(scriptCookieyes);
+    }
+  };
+
   return (
     <>
       <SvgSprite url={svgFile} />
