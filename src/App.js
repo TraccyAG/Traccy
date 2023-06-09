@@ -32,6 +32,7 @@ function App() {
         "https://cdn-cookieyes.com/client_data/ac0bb6960675dd563b0b5339/script.js";
       script.id = "cookieyes";
       document.body.appendChild(script);
+      console.log('Cookieyes init')
     }
   };
 
@@ -40,6 +41,7 @@ function App() {
 
     if (scriptCookieyes) {
       document.body.removeChild(scriptCookieyes);
+      console.log('Cookieyes destroy')
     }
   };
 
