@@ -20,35 +20,30 @@ const InvestStep2 = ({onPrev, onNext}) => {
   const wallet = useWallet();
 
   const [investAmount, setInvestAmount] = useState(0);
-  const [paymentOption, setPaymentOption] = useState("USDC");
+  const [paymentOption, setPaymentOption] = useState(null); // set by chainSelector, object schema is {name, decimals, address}
 
   const handleNext = async () => {
-    console.log(`payment option: ${paymentOption}`);
-    console.log(`amount: ${investAmount}`);
 
-    if(wallet && wallet.initialized) {
-      console.log(wallet)
+    if(wallet && wallet.initialized && paymentOption != null) {
       const saleContract = new Contract(PHASEABLE_SALE_CONTRACT_ADDRESS, saleAbi.abi, wallet.signer.provider);
-      if (paymentOption === "USDC"){
-        const usdc = new Contract("0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E", erc20Abi.abi, wallet.signer.provider);
-        const txAllowance = await usdc.connect(wallet.signer).approve(saleContract.address, ethers.utils.parseUnits(investAmount.toString(), 6));
-        toast("Once the approval transaction has been performed, you will be asked to confirm the purchase in an additional transaction.");
-        await txAllowance.wait();
-        const txPurchase = await saleContract.connect(wallet.signer).purchaseUsdc(ethers.utils.parseUnits(investAmount.toString(), 6));
-        toast("Thank you for your purchase, you will be notified once your tokens are available in your wallet.");
-        await txPurchase.wait();
-        toast("Your new tokens are now available in your wallet.");
+      const paymentContract = new Contract(paymentOption.address, erc20Abi.abi, wallet.signer.provider);
+
+      // step 1 - allowance
+      const txAllowance = await paymentContract.connect(wallet.signer).approve(saleContract.address, ethers.utils.parseUnits(investAmount.toString(), paymentOption.decimals));
+      toast("Once the approval transaction has been performed, you will be asked to confirm the purchase in an additional transaction.");
+      await txAllowance.wait();
+
+      // step 2 - actual purchase
+      let txPurchase;
+      if (paymentOption.name === "USDC"){
+        txPurchase = await saleContract.connect(wallet.signer).purchaseUsdc(ethers.utils.parseUnits(investAmount.toString(), paymentOption.decimals));
       }
-      if (paymentOption === "USDT"){
-        const usdt = new Contract("0x9702230A8Ea53601f5cD2dc00fDBc13d4dF4A8c7", erc20Abi.abi, wallet.signer.provider);
-        const txAllowance = await usdt.connect(wallet.signer).approve(saleContract.address, ethers.utils.parseUnits(investAmount.toString(), 6));
-        toast("Once the approval transaction has been performed, you will be asked to confirm the purchase in an additional transaction.");
-        await txAllowance.wait();
-        const txPurchase = await saleContract.connect(wallet.signer).purchaseUsdt(ethers.utils.parseUnits(investAmount.toString(), 6));
-        toast("Thank you for your purchase, you will be notified once your tokens are available in your wallet.");
-        await txPurchase.wait();
-        toast("Your new tokens are now available in your wallet.");
+      if (paymentOption.name === "USDT"){
+        txPurchase = await saleContract.connect(wallet.signer).purchaseUsdt(ethers.utils.parseUnits(investAmount.toString(), paymentOption.decimals));
       }
+      toast("Thank you for your purchase, you will be notified once your tokens are available in your wallet.");
+      await txPurchase.wait();
+      toast("Your new tokens are now available in your wallet.");
     }
 
     // -- note: this is the old flow with verifcation before the actual purchase, this needs to be readjusted --

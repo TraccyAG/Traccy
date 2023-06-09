@@ -19,28 +19,29 @@ const TokenSelector = (props) => {
       if(wallet && wallet.initialized && tokenInfo){
         const balance = await wallet.getTokenBalance(tokenInfo);
         dispatch({type: "setBalance", payload: balance});
-
-        // connect with sales contract - with waller provider
-        // const saleContract = new Contract("0xD5ac451B0c50B9476107823Af206eD814a2e2580", saleAbi.abi, wallet.signer.provider);
-        // saleContract.phaseCounter().then(res => console.log(`phase counter: ${res}`));
-        // saleContract.phaseInfo(0).then(res => console.log(ethers.utils.formatUnits(res.priceUsd, 6)));
       }
     }
     getBalance();
   }, [dispatch, state.investChain, state.investToken, wallet]);
 
   useEffect(() => {
-    // read token price of current phase and store it in state variable `price`
+    // read phase info of current phase and store it in state variable `price` and `phaseVolume`
     const provider = new ethers.providers.JsonRpcProvider(CHAINS_CONFIG.avalanche.rpc, CHAINS_CONFIG.avalanche.chainId);
     const saleContract = new Contract(PHASEABLE_SALE_CONTRACT_ADDRESS, saleAbi.abi, provider);
     saleContract.phaseCounter().then(
       counter => saleContract.phaseInfo(counter-1).then(
-        res => setPrice(ethers.utils.formatUnits(res.priceUsd, 6))
+        res => { 
+          setPrice(ethers.utils.formatUnits(res.priceUsd, 6));
+          const phaseTokenomics = {total: ethers.utils.formatEther(res.amountTotal), available: ethers.utils.formatEther(res.amountTotal.sub(res.amountSold))};
+          setPhaseVolume(phaseTokenomics);
+        }
       )
     );
+
   }, []);
 
   const [price, setPrice] = useState(0);
+  const [phaseVolume, setPhaseVolume] = useState({total:"0", available:"0"});
 
   const token = "TRCYCN";
 
@@ -59,7 +60,7 @@ const TokenSelector = (props) => {
             {state.investToken}
           </span>
         </div>
-        <span className="balance">balance : {state.balance}</span>
+        <span className="balance">your balance : {state.balance}</span>
       </div>
       <div className="input-card">
         <span>TRCYN tokens you will receive</span>
@@ -69,6 +70,7 @@ const TokenSelector = (props) => {
             {token}
           </span>
         </div>
+        <span className="balance">{`available in this phase : ${parseInt(phaseVolume.available)} / ${parseInt(phaseVolume.total)}`}</span>
       </div>
     </div>
   )

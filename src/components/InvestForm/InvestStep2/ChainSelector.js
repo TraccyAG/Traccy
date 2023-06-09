@@ -106,7 +106,7 @@ const ChainSelector = (props) => {
 
   const handleTokenSelect = (index) => {
     setTokenKey(index);
-    props.setPaymentOption(token_list[index].name); // set selected payment option for wrapper component
+    props.setPaymentOption(token_list[index]); // set selected payment option for wrapper component
     dispatch({ type: "setInvestToken", payload: token_list[index].name });
   };
 
