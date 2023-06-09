@@ -19,7 +19,7 @@ function App() {
     const script = document.createElement("script");
 
     script.src =
-      "https://cdn-cookieyes.com/client_data/1b7c674bcbaaf1584d6c4676/script.js";
+      "https://cdn-cookieyes.com/client_data/ac0bb6960675dd563b0b5339/script.js";
 
     script.id = "cookieyes";
 
