@@ -19,7 +19,7 @@ const InvestStep1 = ({ onNext }) => {
   return (
     <InvestWrapper>
       <div className="invest-step1-body0">
-        <span>{t("buy:saft")}&nbsp;{t("buy:form")}</span>
+        <span>Purchase Agreement</span>
         <span>{t("buy:terms")}</span>
 
         <div className="invest-document">
