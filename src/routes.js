@@ -18,6 +18,7 @@ import GreenProtocol from "./containers/ImpactThroughTraccyDetails/GreenProtocol
 import TraccySolar from "./containers/ImpactThroughTraccyDetails/TraccySolar";
 import TraccyLab from "./containers/ImpactThroughTraccyDetails/TraccyLab";
 import TraccyFarm from "./containers/ImpactThroughTraccyDetails/TraccyFarm";
+import ResetPassword from "./containers/resetPassword/ResetPassword";
 
 // Route Views
 
@@ -63,6 +64,11 @@ export const rotues = [
     path: "/contact",
     layout: authLayout,
     component: () => <BecomePart />
+  },
+  {
+    path: "/reset-password/:token",
+    layout: defaultLayout,
+    component: () => <ResetPassword />,
   },
   // {
   //   path: "/impact-through-traccy",

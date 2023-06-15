@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Link, useLocation} from 'react-router-dom';
-import {Button, Steps} from 'antd';
+import {Steps} from 'antd';
 import {SvgIcon} from '../../components/common';
 import InvestStep1 from './InvestStep1';
 import InvestStep2 from './InvestStep2';
@@ -9,24 +8,40 @@ import InvestStep4 from './InvestStep4';
 import './index.scss';
 
 import {useTranslation} from 'react-i18next';
+import {userService} from "../../service/user.service";
 
 const Invest = () => {
     const {t} = useTranslation();
     const [current, setCurrent] = useState(0);
-    const location = useLocation();
-    const searchParams = new URLSearchParams(location.search);
 
-    // Get the value of a specific query parameter
-    const jwt = searchParams.get('jwt');
-    const localJwt = localStorage.getItem('jwt')
+    const [user, setUser] = useState(null); // State to store the user data
+    const [loading, setLoading] = useState(false); // State for loading
+
+    const [payments, setPayments] = useState(null);
+    const [investAmount, setInvestAmount] = useState(0);
+    const [paymentOption, setPaymentOption] = useState(null); // set by chainSelector, object schema is {name, decimals, address}
+
+    const handlePayments = (payments) => {
+        setPayments(payments);
+    };
+
+    const userId = localStorage.getItem('userId');
     useEffect(() => {
-        if (!jwt && !localJwt) {
-            window.location.href = 'https://in.sumsub.com/idensic/l/#/uni_QUqyWtzT5Evcg0eC';
-        } else {
-            localStorage.setItem('jwt', jwt)
-        }
+        const fetchData = async () => {
+            try {
+                setLoading(true); // Set loading to true before making the API call
+                const { data } = await userService.getUserById(userId);
+                setUser(data);
+                setLoading(false); // Set loading back to false after data is fetched
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+                setLoading(false); // Set loading back to false if an error occurs
+            }
+        };
 
-    }, []);
+        fetchData();
+    }, [userId]);
+
     const next = () => {
         setCurrent(current + 1);
     };
@@ -37,21 +52,22 @@ const Invest = () => {
 
     const steps = [
         {
-            title: `Purchase Agreement`,
-            content: <InvestStep1 onNext={next}/>,
-        },
-        {
             title: t("buy:choose"),
-            content: <InvestStep2 onNext={next} onPrev={prev}/>,
+            content: <InvestStep2  handlePayments={handlePayments} onNext={next} onPrev={prev} />,
         },
         // {
-        //     title: t("buy:fill"),
-        //     content: <InvestStep3 onNext={next} onPrev={prev}/>,
+        //     title: `Purchase Agreement`,
+        //     content: <InvestStep1 payments={payments} user={user} onNext={next} />,
         // },
-        // {
-        //     title: t("buy:confirmation"),
-        //     content: <InvestStep4 onPrev={prev}/>,
-        // }
+        {
+            title: t("buy:fill"),
+            content: <InvestStep3 user={user} onNext={next} onPrev={prev} />,
+        },
+
+        {
+            title: t("buy:confirmation"),
+            content: <InvestStep4 investAmount={investAmount} paymentOption={paymentOption} onPrev={prev} />,
+        }
     ];
 
     const items = steps.map((item) => ({key: item.title, title: item.title}));

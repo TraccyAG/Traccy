@@ -4,15 +4,21 @@ import { Link, Router, useHistory } from "react-router-dom"
 
 import InvestWrapper from "./InvestWrapper";
 import "./InvestStep4.scss";
-import { useTrackedState } from "../../contexts/store";
+import {useTrackedState, useWallet} from "../../contexts/store";
 import { toast } from "react-toastify";
-import { REQUEST_ENDPOINT, SUCCESS_OPTION } from "../../config/constants";
+import {PHASEABLE_SALE_CONTRACT_ADDRESS, REQUEST_ENDPOINT, SUCCESS_OPTION} from "../../config/constants";
 import { useTranslation } from "react-i18next";
+import {Contract, ethers} from "ethers";
+import saleAbi from "../../config/PhaseableSaleABI.json";
+import erc20Abi from "../../config/erc20.json";
+import {userService} from "../../service/user.service";
 
-const InvestStep4 = ({ onNext, onPrev }) => {
+const InvestStep4 = ({ onNext, onPrev ,investAmount,paymentOption}) => {
   const {t} = useTranslation();
   const history = useHistory();
   const state = useTrackedState();
+  const wallet = useWallet()
+  const id = localStorage.getItem('userId')
 
   const download_pdf = () => {
     toast("Downloading", SUCCESS_OPTION);
@@ -21,30 +27,59 @@ const InvestStep4 = ({ onNext, onPrev }) => {
     const a = document.createElement("a");
 
     xhr.open(
-      "GET",
-      REQUEST_ENDPOINT + "/download_pdf?filename=" + state.saftDocument,
-      true
+        "GET",
+        REQUEST_ENDPOINT + "/download_pdf?filename=" + 'New_pdf.pdf',
+        true
     );
 
     xhr.responseType = "blob";
-    xhr.onload = function () {
+    xhr.onload = async function () {
       const file = new Blob([xhr.response], {
         type: "application/octet-stream",
       });
+      const formData = new FormData();
+
+      formData.append('file', file);
       window.URL = window.URL || window.webkitURL;
       a.href = window.URL.createObjectURL(file);
       a.download = "confirm.pdf";
       a.click();
+      try {
+        await userService.saveAgreement(id, formData); // Pass the file data object to the saveAgreement method
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
     };
     xhr.send();
-
     toast.dismiss();
   };
 
   useEffect(() => {
-    download_pdf();
+    // download_pdf();
   }, []);
-  const handleNext = () => {
+  const handleNext = async () => {
+    if (wallet && wallet.initialized && paymentOption != null) {
+      const saleContract = new Contract(PHASEABLE_SALE_CONTRACT_ADDRESS, saleAbi.abi, wallet.signer.provider);
+      const paymentContract = new Contract(paymentOption.address, erc20Abi.abi, wallet.signer.provider);
+
+      // step 1 - allowance
+      const txAllowance = await paymentContract.connect(wallet.signer).approve(saleContract.address, ethers.utils.parseUnits(investAmount.toString(), paymentOption.decimals));
+      toast("Once the approval transaction has been performed, you will be asked to confirm the purchase in an additional transaction.");
+      await txAllowance.wait();
+
+      // step 2 - actual purchase
+      let txPurchase;
+      if (paymentOption.name === "USDC") {
+        txPurchase = await saleContract.connect(wallet.signer).purchaseUsdc(ethers.utils.parseUnits(investAmount.toString(), paymentOption.decimals));
+      }
+      if (paymentOption.name === "USDT") {
+        txPurchase = await saleContract.connect(wallet.signer).purchaseUsdt(ethers.utils.parseUnits(investAmount.toString(), paymentOption.decimals));
+      }
+      toast("Thank you for your purchase, you will be notified once your tokens are available in your wallet.");
+      await txPurchase.wait();
+      toast("Your new tokens are now available in your wallet.");
+    }
     history.push("/home");
   }
   return (

@@ -45,6 +45,8 @@ const TokenSelector = (props) => {
 
   const token = "TRCYCN";
 
+
+
   const changeValue = (e) => {
     dispatch({ type: "setInvestAmount", payload: e.target.value });
     dispatch({ type: "setInvestTrcyAmount", payload: Math.floor(parseFloat(e.target.value) / price) });

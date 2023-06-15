@@ -99,7 +99,6 @@ const ChainSelector = (props) => {
       label: <div onClick={() => handleTokenSelect(index)}>{token.name}</div>
     }
   }), [token_list]);
-
   useEffect(() => {
     handleTokenSelect(0);
   }, [tokenItems]);
