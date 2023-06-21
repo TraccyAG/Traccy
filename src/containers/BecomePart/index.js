@@ -165,28 +165,58 @@ const BecomePart = () => {
         <Navbar />
     </div> */}
                     <div className='rightbar-inner'>
-                        <div className="text-bar">
-                            <hr className="vertical-line"/>
-                                <div className="text-bar-content">
-                                    <div>
-                                        <h2 >Believe</h2>
-                                        <p style={{color:'rgba(230, 43, 201, 1)'}}>in a bright future</p>
-                                    </div>
-                                    <div>
-                                        <h2>Invest</h2>
-                                        <p style={{color:'rgba(159, 100, 235, 1)'}}>In impact</p>
-                                    </div>
-                                    <div>
-                                        <h2>Achieve</h2>
-                                        <p style={{color:'rgba(23, 197, 250, 1)'}}>change</p>
+                        {!user &&
+                            <div className='address-bar'>
+                                {/* <div className='logo-section'>
+            <img src={LogoLight} alt='Logo' />
+        </div> */}
+                                <div className='address-col'>
+                                    <h3>{t("become:location")}</h3>
+                                    <p>
+                                        TRACCY AG <br/>
+                                        Chaltenbodenstrasse 6a, <br/>
+                                        8834 Schindellegi <br/>
+                                        info@traccy.ch <br/>
+                                        +41 43 810 29 51
+                                    </p>
+                                </div>
+                                <div className='bottom-link'>
+                                    <a href='/termofuse.html' target='_blank' rel="noreferrer">
+                                        {t("become:terms")}
+                                    </a> I
+                                    <a href='/Policy.html' target='_blank' rel="noreferrer">
+                                        {t("become:privacy")}
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                        {user &&
+                            <>
+                                <div className="text-bar">
+                                    <hr className="vertical-line"/>
+                                    <div className="text-bar-content">
+                                        <div>
+                                            <h2 >Believe</h2>
+                                            <p style={{color:'rgba(230, 43, 201, 1)'}}>in a bright future</p>
+                                        </div>
+                                        <div>
+                                            <h2>Invest</h2>
+                                            <p style={{color:'rgba(159, 100, 235, 1)'}}>In impact</p>
+                                        </div>
+                                        <div>
+                                            <h2>Achieve</h2>
+                                            <p style={{color:'rgba(23, 197, 250, 1)'}}>change</p>
+                                        </div>
                                     </div>
                                 </div>
-                        </div>
 
 
-                        <div className={'light-container'}>
+                                <div className={'light-container'}>
 
-                        </div>
+                                </div>
+                            </>
+                        }
+
                         <div className="dtl-section">
                             {loading ? (
                                 <div>Loading...</div> // Show a loading state if `loading` is true
