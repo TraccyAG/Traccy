@@ -163,17 +163,16 @@ const fieldStyle = {
     background: 'linear-gradient(90.42deg, rgba(255, 255, 255, 0.25) 9.18%, rgba(255, 255, 255, 0.25) 88.96%)',
     opacity: ' 0.5',
     backdropFilter: 'blur(12.5px)',
-    // backgroundColor: "#4D4B4F",
     color: "#fff",
     padding: "5px 10px",
-    width: "200px",
+    width: "100%",
     height: '45px'
 };
 const redStyle = {
     background: 'linear-gradient(90deg, rgba(231, 24, 136, 0.25) 17.05%, rgba(77, 33, 75, 0.3) 100%)',
     color: "#fff",
     padding: "5px 10px",
-    width: "200px",
+    width: "100%",
     height: '45px'
 }
 
