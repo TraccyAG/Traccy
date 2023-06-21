@@ -93,9 +93,9 @@ const LoginModal = ({setModal}) => {
             </div>
             <div style={{width: '100%'}}>
                 {isRegistered ? (
-                    <RegistrationModal/>
+                    <RegistrationModal setIsRegistered={ setIsRegistered}/>
                 ) : sendMail ? (
-                    <SetEmail setModal={setModal}/>
+                    <SetEmail setSendMail={setSendMail} setModal={setModal}/>
                 ) : (
                     <div className={'login-form-blur'}>
                         <form className="llogin-form">
@@ -122,7 +122,7 @@ const LoginModal = ({setModal}) => {
                             />
                             <div className={'login-buttons'}>
                                 <LoginButton name={'Login'} loading={isLoading} onClick={loginUser}></LoginButton>
-                                <LoginButton name={'Registration'} onClick={handleRegistration}></LoginButton>
+                                <LoginButton name={'Registration'}  onClick={handleRegistration}></LoginButton>
                                 <LoginButton name={'Forgot password'} onClick={forgotPassword}></LoginButton>
                             </div>
                         </form>

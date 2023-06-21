@@ -1,23 +1,19 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Container, Row, Col, SvgIcon } from '../../components/common';
-import { Button, Modal } from 'antd';
+import React, {useEffect, useRef, useState} from 'react';
+import {Col, Container, Row, SvgIcon} from '../../components/common';
+import {Button, Modal} from 'antd';
 import Slider from "react-slick";
 import Countdown from "react-countdown";
-import { PieChart } from 'react-minimal-pie-chart';
+import {PieChart} from 'react-minimal-pie-chart';
 import './index.scss';
-import { useHistory } from "react-router-dom";
+import {useHistory} from "react-router-dom";
 
-import BannerImg from '../../assets/images/banner-img.png';
-import CommunityImg from '../../assets/images/community-access.svg';
-import Stakingimg from '../../assets/images/staking-img.svg';
-import PlatformImg from '../../assets/images/platform-img.png';
+import BannerImg from '../../assets/images/New Coin.png';
+import PlatformImg from '../../assets/images/New Dashboard.png';
 import leftHexa from '../../assets/images/left-hexa.svg';
 import righttHexa from '../../assets/images/right-hexa.svg';
 import HeaderBg1 from '../../assets/images/title-bg1.svg';
 import HeaderBg2 from '../../assets/images/title-bg2.svg';
-import VotingPower from '../../assets/images/voting-power.svg';
-import { useTranslation } from 'react-i18next';
-import RoadmapPath from '../../assets/images/raodmap-line.svg';
+import {useTranslation} from 'react-i18next';
 import RoadMap from '../../components/TraccyToken/RoadMap';
 
 

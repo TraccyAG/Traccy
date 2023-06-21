@@ -8,7 +8,7 @@ import LoginInput from "../authComponents/loginInput";
 import SelectInput from "../authComponents/SelectIcon";
 import './RegistrationModal.scss'
 
-const RegistrationModal = () => {
+const RegistrationModal = ({ setIsRegistered}) => {
     const [firstName, setFirstName] = useState('');
     const [surname, setSurname] = useState('');
     const [email, setEmail] = useState('');
@@ -230,6 +230,7 @@ const RegistrationModal = () => {
                             :
                             <LoginButton name={'KYC Integration'} onClick={handleLinkClick}></LoginButton>
                     }
+                    <LoginButton name={'Login'} onClick={()=>setIsRegistered(false)}></LoginButton>
                 </div>
             </form>
         </div>

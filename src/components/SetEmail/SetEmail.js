@@ -5,7 +5,7 @@ import LoginInput from "../authComponents/loginInput";
 import LoginButton from "../authComponents/LoginButton";
 import {useHistory} from "react-router-dom";
 
-const SetEmail = ({setModal}) => {
+const SetEmail = ({setModal,setSendMail}) => {
     const [email, setEmail] = useState('');
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
@@ -43,6 +43,7 @@ const SetEmail = ({setModal}) => {
                 </div>
                 <div className={'login-buttons'}>
                     <LoginButton name={'Reset Password'} onClick={forgotPassword}></LoginButton>
+                    <LoginButton name={'Login'} onClick={()=>setSendMail(false)}></LoginButton>
                 </div>
             </form>
         </div>
