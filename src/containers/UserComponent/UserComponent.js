@@ -36,16 +36,11 @@ const UserComponent = ({user}) => {
             <div style={headerStyle}>
                 <img style={imgStyle} onClick={() => history.push('/login')} src={LogoUser} alt="logo-user"/>
             </div>
-            <div style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'flex-start',
-                padding: ' 0 170px'
-            }}>
-                <div>
+            <div className={'form-user-inputs'}>
+                <div style={{paddingRight: '20%'}}>
                     <div style={{display: 'flex', alignItems: "center", columnGap: "7px"}}>
                         <h2 style={titleStyle}>My Profile</h2>
-                        <img  style={ellipseStyle} src={ellipse} alt="ellipse" />
+                        <img style={ellipseStyle} src={ellipse} alt="ellipse"/>
                     </div>
                     <hr style={lineStyle}></hr>
                 </div>
@@ -139,7 +134,6 @@ const containerStyle = {
     marginTop: "70px",
     background: 'linear-gradient(180deg, rgba(40, 31, 65, 0.25) 0%, rgba(24, 17, 37, 0.48) 100%)',
     backdropFilter: 'blur(12.5px)',
-    /* Note: backdrop-filter has minimal browser support */
     borderRadius: '25px',
     padding: "20px",
     height: "80%"
@@ -148,7 +142,7 @@ const imgStyle = {
     width: 70,
     height: 70,
     borderRadius: '50%',
-    cursor:"pointer"
+    cursor: "pointer"
 };
 
 const titleStyle = {

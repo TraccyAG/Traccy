@@ -332,6 +332,13 @@
   background-color: rgb(23, 197, 250);
 }
 
+.form-user-inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 170px;
+}
+
 @media screen and (max-width: 1200px) {
   .becomepart-wrapper .right-section .rightbar-inner {
     flex-direction: column-reverse;
@@ -369,11 +376,27 @@
   .becomepart-wrapper {
     background: #351c2f;
     background: linear-gradient(170deg, #351c2f 0%, #150c1f 18%, #1b0b26 39%, #20082d 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#351c2f",endColorstr="#20082d",GradientType=1);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#351c2f", endColorstr="#20082d", GradientType=1);
     min-height: 100vh;
     position: relative;
     display: flex;
     overflow: hidden;
     justify-content: space-between;
+  }
+  .form-user-inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px !important;
+  }
+  .form-user-inputs div p label {
+    font-size: 13px !important;
+  }
+}
+
+
+@media screen and (max-width: 500px) {
+  .form-user-inputs div p label {
+    font-size: 10px !important;
   }
 }
