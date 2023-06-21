@@ -75,7 +75,7 @@ const BecomePart = () => {
         setCurrent(current + 1);
 
         if (current == 1) {
-            console.log(current)
+
             const emailData = {
                 firstName: name,
                 surName: surName,
@@ -84,8 +84,13 @@ const BecomePart = () => {
                 interest: interest,
                 message: message,
             }
+            const sendMail = {
+                email: email,
+                name: name,
+            }
             try {
                 await emailsService.saveEmail(emailData);
+                await emailsService.sendEmail(sendMail)
             } catch (error) {
                 console.error('Error saving email data:', error);
                 toast.error("Failed to save email data");

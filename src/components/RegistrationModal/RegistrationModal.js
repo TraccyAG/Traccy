@@ -1,28 +1,32 @@
 import React, {useEffect, useState} from 'react';
 import {toast} from "react-toastify";
-import {Col, Row, SvgIcon} from "../common";
-import {Form, Select,Button} from "antd";
-import {useTranslation} from "react-i18next";
+import {Checkbox} from "antd";
 import {authService} from "../../service/auth.service";
 import {useHistory} from "react-router-dom";
+import LoginButton from "../authComponents/LoginButton";
+import LoginInput from "../authComponents/loginInput";
+import SelectInput from "../authComponents/SelectIcon";
+import './RegistrationModal.scss'
 
 const RegistrationModal = () => {
     const [firstName, setFirstName] = useState('');
     const [surname, setSurname] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const {t} = useTranslation();
     const [gender, setGender] = useState('Male');
-    const [interest, setInterest] = useState('Employee');
     const [tokenJwt, setToken] = useState('');
     const [title, setTitle] = useState('');
     const [address, setAddress] = useState('');
     const [zipcode, setZipcode] = useState('');
+    const [agreeTerms, setAgreeTerms] = useState(false); // Checkbox state
 
     const [isLoading, setIsLoading] = useState(false); // Loading state variable
-    const [isKYCCompleted, setIsKYCCompleted] = useState(false);
     const history = useHistory();
     const [popup, setPopup] = useState(null);
+
+    const handleAgreeTermsChange = (e) => {
+        setAgreeTerms(e.target.checked);
+    };
 
     const openPopup = () => {
         const popupWindow = window.open("https://in.sumsub.com/idensic/l/#/uni_QUqyWtzT5Evcg0eC", "popupWindow", "width=500,height=400");
@@ -59,6 +63,11 @@ const RegistrationModal = () => {
     };
     const registerUser = async (e) => {
         e.preventDefault();
+        // Validate if the user has agreed to the terms
+        if (!agreeTerms) {
+            toast('Please agree to the terms of service');
+            return;
+        }
         // Email validation using regular expression
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailPattern.test(email)) {
@@ -74,9 +83,9 @@ const RegistrationModal = () => {
                 gender: gender,
                 tokenSumSub: tokenJwt,
                 password: password,
-                address:address,
-                zipcode:zipcode,
-                title:title
+                address: address,
+                zipcode: zipcode,
+                title: title
             }
 
             // Call the registration API
@@ -99,148 +108,128 @@ const RegistrationModal = () => {
             setIsLoading(false); // Set loading state to false after registration attempt
         }
     };
+    const handleTitleChange = (value) => {
+        setTitle(value);
+    };
+    const handleGenderChange = (value) => {
+        setTitle(value);
+    };
 
     return (
-        <div style={{color: 'black'}}>
-
+        <div className={'login-form-blur'}>
             <form className="llogin-form">
-                <h2>Sign UP</h2>
+                <div className={'form-close'}>
+                    <h2>Sign up</h2>
+                    <button className="close-button" onClick={() => history.push('/become-part')}>
+                        &#x2715;
+                    </button>
+                </div>
                 <div className="form-group">
-                    <Col lg="6">
-                        <Form.Item
-                            name="title"
-                            label={t('become:Title')}
-                            rules={[{required: true, message: 'Please Enter title'}]}
-                            validateStatus={!isKYCCompleted ? 'warning' : ''}
-                        >
-                            <Select
-                                defaultValue="Title"
-                                suffixIcon={<SvgIcon name="select-arrow" viewbox="0 0 9.42 7.186"/>}
-                                popupClassName="select-drop"
-                                options={[
-                                    {value: 'Mr', label: 'Mr'},
-                                    {value: 'Mrs', label: 'Mrs'},
-                                    {value: 'Dr', label: 'Dr'},
-                                    {value: 'Ms', label: 'Ms'}
-                                ]}
-                                value={gender}
-                                onChange={(e) => setTitle(e)}
-                            />
-                        </Form.Item>
-                    </Col>
-                    <label htmlFor="firstName">First Name</label>
-                    <input
-                        type="text"
-                        id="firstName"
+                    <div style={{
+                        display: 'flex',
+                        justifyContent: 'flex-end'
+                    }}>
+                        <SelectInput
+                            name={'Title'}
+                            defaultValue="Title"
+                            options={[
+                                {value: 'Mr', label: 'Mr'},
+                                {value: 'Mrs', label: 'Mrs'},
+                                {value: 'Dr', label: 'Dr'},
+                                {value: 'Ms', label: 'Ms'},
+                            ]}
+                            value={title}
+                            onChange={handleTitleChange}
+                        />
+                    </div>
+                </div>
+                <div className={'register-flex-container'}>
+                    <LoginInput
+                        width={'45%'}
+                        label="Name"
+                        placeholder="Enter your name"
+                        type={'text'}
+                        required={true}
                         value={firstName}
-                        required={true}
                         onChange={(e) => setFirstName(e.target.value)}
-                        placeholder="Enter your first name"
                     />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="surname">Surname</label>
-                    <input
-                        type="text"
-                        id="surname"
+                    <LoginInput
+                        width={'45%'}
+                        label="Surname"
+                        placeholder="Enter your surname"
+                        type={'text'}
+                        required={true}
                         value={surname}
-                        required={true}
                         onChange={(e) => setSurname(e.target.value)}
-                        placeholder="Enter your surname"
                     />
                 </div>
-                <div className="form-group">
-                    <label htmlFor="address">Address</label>
-                    <input
-                        type="text"
-                        id="address"
+                <div className={'register-flex-container'}>
+                    <LoginInput
+                        width={'45%'}
+                        label="Address"
+                        placeholder="Enter your address"
+                        type={'text'}
+                        required={true}
                         value={address}
-                        required={true}
                         onChange={(e) => setAddress(e.target.value)}
-                        placeholder="Enter your surname"
                     />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="address">Zipcode</label>
-                    <input
-                        type="text"
-                        id="zipcode"
+                    <LoginInput
+                        width={'45%'}
+                        label="Zipcode"
+                        placeholder="Enter your zip code"
+                        type={'text'}
+                        required={true}
                         value={zipcode}
-                        required={true}
                         onChange={(e) => setZipcode(e.target.value)}
-                        placeholder="Enter your surname"
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="email">Email</label>
-                    <input
-                        type="email"
-                        id="email"
-                        value={email}
-                        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"
-                        required={true}
-                        onChange={(e) => setEmail(e.target.value)}
+                    <LoginInput
+                        label="Email"
                         placeholder="Enter your email"
+                        type={'text'}
+                        required={true}
+                        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input
-                        type="password"
-                        id="password"
-                        required={true}
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                    <LoginInput
+                        label="Password"
                         placeholder="Enter your password"
+                        type={'password'}
+                        value={password}
+                        required={true}
+                        onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
-                <Row>
-                    <Col lg="6">
-                        <Form.Item
-                            name="gender"
-                            label={t('become:gender')}
-                            rules={[{required: true, message: 'Please Enter gender'}]}
-                            validateStatus={!isKYCCompleted ? 'warning' : ''}
-                        >
-                            <Select
-                                defaultValue="Male"
-                                suffixIcon={<SvgIcon name="select-arrow" viewbox="0 0 9.42 7.186"/>}
-                                popupClassName="select-drop"
-                                options={[
-                                    {value: 'Male', label: 'Male'},
-                                    {value: 'Female', label: 'Female'},
-                                    {value: 'Company', label: 'Company'}
-                                ]}
-                                value={gender}
-                                onChange={(e) => setGender(e)}
-                            />
-                        </Form.Item>
-                    </Col>
-                </Row>
+                <div style={{width: '200px'}}>
+                    <SelectInput
+                        name={'Gender'}
+                        defaultValue="Gender"
+                        options={[
+                            {value: 'Male', label: 'Male'},
+                            {value: 'Female', label: 'Female'},
+                            {value: 'Company', label: 'Company'}
+                        ]}
+                        value={gender}
+                        onChange={handleGenderChange}
+                    />
+                </div>
                 <div>
-                    {tokenJwt ?  <Button
-                            style={{
-                                width: '100%',
-                                color: 'white',
-                                background: '#B90B5F',
-                                height: '40px',
-                            }}
-                            onClick={registerUser}
-                            loading={isLoading} // Set the loading state of the button
-                        >
-                            Registration
-                        </Button>
-                 : <button
-                        style={{
-                            width: '100%',
-                            color: 'white',
-                            background: '#B90B5F',
-                            height: '40px',
-                        }}
-                        onClick={handleLinkClick}
-                    >
-                        KYC Integration
-                    </button>}
+                    <Checkbox className="custom-checkbox" onChange={handleAgreeTermsChange}>
+                        I agree to the all elements in terms of service
+                    </Checkbox>
+                </div>
+                <div className={'login-buttons'}>
+                    {
+                        tokenJwt ?
+                            <LoginButton name={' Registration'} loading={isLoading}
+                                         onClick={registerUser}></LoginButton>
+                            :
+                            <LoginButton name={'KYC Integration'} onClick={handleLinkClick}></LoginButton>
+                    }
                 </div>
             </form>
         </div>

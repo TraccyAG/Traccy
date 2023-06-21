@@ -39,7 +39,7 @@ const ResetPasswordModal = () => {
     };
 
     return (
-        <div>
+        <div  style={{display: 'flex', justifyContent: 'flex-end'}}>
             <form className="llogin-form">
                 <h2>Reset Password</h2>
                 <div className="form-group">

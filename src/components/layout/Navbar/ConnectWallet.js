@@ -114,12 +114,10 @@ export default function ConnectWallet() {
                         <span>{t("general:logout")}</span>
                     </Button>
                     :
-                    <Button type="ghost" className="connect-wallet" onClick={() => setModal(true)}>
+                    <Button type="ghost" className="connect-wallet" onClick={() => history.push('/login')}>
                         <span>{t("general:login")}</span>
                     </Button>
             }
-
-            {modal && <Modal token={token} activeModal={modal} setActive={setModal}> <LoginModal setModal={setModal} /></Modal>}
             <Button type="ghost" className="connect-wallet" onClick={onConnect}>
                 {!connected && <span>{t("general:connectwallet")}</span>}
                 {(connected && !initialized) && <span>Loading</span>}

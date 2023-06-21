@@ -1,0 +1,33 @@
+.ant-select-selector {
+  background-color: inherit !important;
+  border: none !important;
+  font-weight: 400 !important;
+  font-size: 15px !important;
+  line-height: 18px !important;
+  letter-spacing: 0.035em !important;
+  height: 50px !important;
+  color: #FFFFFF !important;
+  border-color: inherit;
+  opacity: 0.5 !important;
+}
+
+.ant-select-focused {
+  border: none !important;
+  border-color: inherit;
+}
+
+//span .ant-select-arrow svg {
+//  position: relative !important;
+//  left: 80px !important;
+//}
+
+span .ant-select-arrow {
+  font-weight: 400 !important;
+  font-size: 15px !important;
+  line-height: 18px !important;
+  letter-spacing: 0.035em !important;
+
+  color: #FFFFFF !important;
+
+  opacity: 0.5 !important;
+}

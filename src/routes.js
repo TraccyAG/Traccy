@@ -19,6 +19,8 @@ import TraccySolar from "./containers/ImpactThroughTraccyDetails/TraccySolar";
 import TraccyLab from "./containers/ImpactThroughTraccyDetails/TraccyLab";
 import TraccyFarm from "./containers/ImpactThroughTraccyDetails/TraccyFarm";
 import ResetPassword from "./containers/resetPassword/ResetPassword";
+import loginLayout from "./layouts/loginLayout";
+import LoginModal from "./components/LoginModal/LoginModal";
 
 // Route Views
 
@@ -131,5 +133,11 @@ export const rotues = [
     path: "/impact-through-traccy-details/traccy-farm",
     layout: defaultWhite,
     component: () => <TraccyFarm />
-  }
+  },
+  {
+    path: "/login",
+    exact: true,
+    layout: loginLayout,
+    component: () => <LoginModal />,
+  },
 ];

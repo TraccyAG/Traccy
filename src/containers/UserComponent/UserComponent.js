@@ -1,11 +1,32 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {useWallet} from "../../contexts/store";
-import { ethers} from "ethers";
-
+import {Contract, ethers} from "ethers";
+import {TRCYN_TOKEN_ADDRESS, PHASEABLE_SALE_CONTRACT_ADDRESS} from "../../config/constants";
+import saleAbi from "../../config/PhaseableSaleABI.json";
+import erc20Abi from "../../config/erc20.json";
 
 const UserComponent = ({user}) => {
     const wallet = useWallet();
-    const etherBalance = ethers.utils.formatEther(wallet.balance);
+    const [price, setPrice] = useState(0);
+    const [balance, setBalance] = useState(0);
+
+    useEffect(() => {
+        if (wallet.account){
+            // read phase info of current phase and store it in state variable `price` and `phaseVolume`
+            const tokenContract = new Contract(TRCYN_TOKEN_ADDRESS, erc20Abi.abi, wallet.signer.provider);
+            const saleContract = new Contract(PHASEABLE_SALE_CONTRACT_ADDRESS, saleAbi.abi, wallet.signer.provider);
+            saleContract.phaseCounter().then(
+                counter => saleContract.phaseInfo(counter-1 > 0 ? counter-1: 0).then(
+                    res => {
+                        setPrice(ethers.utils.formatUnits(res.priceUsd, 6));
+                    }
+                )
+            );
+            tokenContract.balanceOf(wallet.account).then(
+                balance => setBalance(ethers.utils.formatEther(balance))
+        );
+        }
+    }, [wallet.account]);
 
     return (
         <div style={containerStyle}>
@@ -74,7 +95,7 @@ const UserComponent = ({user}) => {
                         <label style={labelStyle}>Available TRCYN TOKEN:</label>
                         <input
                             type="text"
-                            value={0}
+                            value={balance}
                             style={redStyle}
                             disabled
                         />
@@ -82,9 +103,8 @@ const UserComponent = ({user}) => {
                     <p style={partStyle}>
                         <label style={labelStyle}>Value in USD$:</label>
                         <input
-
                             type="text"
-                            value={etherBalance}
+                            value={balance*price}
                             style={redStyle}
                             disabled
                         />
