@@ -424,16 +424,16 @@ export const Sliders = [
          //    route: "green-protocol"
          // },
          {
-            number: "Traccy Lab",
-            desc: "Creating a automated ecosystem in real world whereall the population is 100% independent to external sources, likeWater purification, Food and plant production, oil creation, energy production and green mobilitation",
-            image: "/impact/side-menu/traccy-lab.png",
-            route: "traccy-lab"
-         },
-         {
             number: "Traccy Solar",
             desc: "",
             image: "/impact/side-menu/traccy-solar.png",
             route: "traccy-solar"
+         },
+         {
+            number: "Traccy Lab",
+            desc: "Creating a automated ecosystem in real world whereall the population is 100% independent to external sources, likeWater purification, Food and plant production, oil creation, energy production and green mobilitation",
+            image: "/impact/side-menu/traccy-lab.png",
+            route: "traccy-lab"
          },
          {
             number: "Traccy Farm",
