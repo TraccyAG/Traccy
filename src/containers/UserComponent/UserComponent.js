@@ -156,23 +156,28 @@ const titleStyle = {
 const fieldStyle = {
     background: 'linear-gradient(90.42deg, rgba(255, 255, 255, 0.25) 9.18%, rgba(255, 255, 255, 0.25) 88.96%)',
     opacity: ' 0.5',
+    flexShrink:0,
     backdropFilter: 'blur(12.5px)',
     color: "#fff",
     padding: "5px 10px",
     width: "100%",
+    border:"none",
     height: '45px'
 };
 const redStyle = {
-    background: 'linear-gradient(90deg, rgba(231, 24, 136, 0.25) 17.05%, rgba(77, 33, 75, 0.3) 100%)',
+    background: 'linear-gradient(90deg, rgba(231, 24, 136, 0.25) 0%, rgba(77, 33, 75, 0.30) 100%)',
+    flexShrink:0,
     color: "#fff",
     padding: "5px 10px",
     width: "100%",
+    border:"none",
     height: '45px'
 }
 
 const inputsStyle = {
     marginTop: '60px',
     display: 'flex',
+    border:"none",
     rowGap: '10px',
     flexDirection: 'row',
     justifyContent: 'center',
@@ -188,7 +193,8 @@ const labelStyle = {
     fontSize: '15px',
     lineHeight: '18px',
     letterSpacing: '-0.06em',
-    color: 'rgba(255, 255, 255, 0.35)'
+    color: 'rgba(255, 255, 255, 0.35)',
+    marginBottom: '5px'
 }
 
 const headerStyle = {
