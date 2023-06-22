@@ -217,7 +217,7 @@ const BecomePart = () => {
                             </>
                         }
 
-                        <div className="dtl-section">
+                        <div className={`dtl-section ${user ? 'user' : ''}`}>
                             {loading ? (
                                 <div>Loading...</div> // Show a loading state if `loading` is true
                             ) : user ? (

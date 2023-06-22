@@ -13,6 +13,7 @@ const SelectInput = ({ defaultValue, options, value, onChange, name }) => {
                         name={name}
                     >
                         <Select
+                            className={'select-input'}
                             style={{ background: 'inherit' }}
                             dropdownStyle={{ backgroundColor: 'inherit', color: 'white' }}
                             defaultValue={defaultValue}

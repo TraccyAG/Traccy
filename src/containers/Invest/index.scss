@@ -276,7 +276,7 @@
 
 .light-container {
   position: absolute;
-  width: 70%;
+  width: 50%;
   height: 50%;
   left: 20%;
   top: 200px;
@@ -291,17 +291,22 @@
 }
 
 .vertical-line {
-  height: 100%;
+  height: 80%;
   width: 1px;
   border: none;
-  background-image: linear-gradient(to bottom, transparent, #625b5b, transparent);
+  background: linear-gradient(270.01deg, rgba(21, 175, 208, 0.43) 0.98%, rgba(255, 255, 255, 0.68) 42.01%, rgba(175, 34, 153, 0.46) 81.62%);
   margin-right: 20px;
   position: relative;
+  top: -47px;
 }
 
 .text-bar-content {
   display: flex;
   flex-direction: column;
+
+  h2 {
+    font-size: 30px;
+  }
 }
 
 .text-bar-content > div {
@@ -336,7 +341,15 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0 170px;
+  padding-left: 25%;
+}
+
+.line-myprofile {
+  border: none;
+  height: 1px;
+  background: linear-gradient(270.01deg, rgba(21, 175, 208, 0.29) 0.98%, rgba(255, 255, 255, 0.68) 42.01%, rgba(175, 34, 153, 0.15) 81.62%);
+  width: 280px;
+  margin-left: -30%;
 }
 
 @media screen and (max-width: 1200px) {
@@ -352,7 +365,8 @@
   .text-bar {
     display: flex;
     align-items: center;
-    padding-bottom: 12%;
+    //padding-bottom: 12%;
+    padding: 0;
     flex-direction: column-reverse;
   }
   .vertical-line {
@@ -392,6 +406,9 @@
   .form-user-inputs div p label {
     font-size: 13px !important;
   }
+  .vertical-line {
+    top: -15px;
+  }
 }
 
 
@@ -399,4 +416,15 @@
   .form-user-inputs div p label {
     font-size: 10px !important;
   }
+
 }
+
+.dtl-section.user::before {
+  display: none !important;
+}
+
+.dtl-section.user {
+  border-left: none !important;
+}
+
+

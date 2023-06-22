@@ -42,11 +42,11 @@ const UserComponent = ({user}) => {
                         <h2 style={titleStyle}>My Profile</h2>
                         <img style={ellipseStyle} src={ellipse} alt="ellipse"/>
                     </div>
-                    <hr style={lineStyle}></hr>
+                    <hr className={'line-myprofile'}></hr>
                 </div>
                 <div style={inputsStyle}>
 
-                    <div>
+                    <div >
                         <p style={partStyle}>
                             <label style={labelStyle}>Title:</label>
                             <input
@@ -196,17 +196,12 @@ const headerStyle = {
     justifyContent: 'flex-end',
     alignItems: ' flex-end'
 }
-const lineStyle = {
-    border: 'none',
-    height: '1px',
-    backgroundImage: 'linear-gradient(to right, transparent, #CCC, transparent)',
-    width: "280px"
-}
 
 const ellipseStyle = {
     height: '18px',
     marginBottom: '5px',
     width: '18px'
 }
+
 
 export default UserComponent;
