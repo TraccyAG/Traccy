@@ -164,7 +164,7 @@ const BecomePart = () => {
                     {/* <div className='header-bar'>
         <Navbar />
     </div> */}
-                    <div className='rightbar-inner'>
+                        <div className={`rightbar-inner ${user ? 'user' : ''}`}>
                         {!user &&
                             <div className='address-bar'>
                                 {/* <div className='logo-section'>
