@@ -122,7 +122,7 @@ const InvestStep3 = ({ onNext, onPrev,user }) => {
     formData.append("file", fileBlob, "signature.png"); // Append the file Blob to the form data
 
     try {
-      const response = await axios.post(`http://localhost:5000/documents/${user.id}`,
+      const response = await axios.post(`https://octopus-app-z7hd5.ondigitalocean.app/documents/${user.id}`,
         formData
       , {
         responseType: 'blob', // Specify the response type as 'blob' to receive a Blob object
@@ -137,6 +137,7 @@ const InvestStep3 = ({ onNext, onPrev,user }) => {
         const newFile = new File([blob], "agreement.pdf");
         formDataAgreement.append('file', newFile);
         try {
+          // await userService.createAgreement(user.id, formDataAgreement); // Pass the file data object to the saveAgreement method
           await userService.saveAgreement(user.id, formDataAgreement); // Pass the file data object to the saveAgreement method
         } catch (error) {
           console.error(error);

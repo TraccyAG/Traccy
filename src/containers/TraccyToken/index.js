@@ -549,15 +549,27 @@ const TraccyToken = () => {
                             {/* <p className='main-heading-text'>{t("token:platform")}</p> */}
                         </Col>
                     </Row>
+
                     <Row>
                         <Col>
                             <div className='platform-img'>
                                 <img src={PlatformImg} alt='Platform'/>
+                                <section className='banner-section' style={{paddingTop:0,top:'-170px'}}>
+                                    <Col lg='6' className="banner-left">
+                                        <div className='learn-more-row'>
+                                            <Button onClick={() => history.push("/impact-through-traccy-details/traccy-connect")}>
+                                                LEARN MORE
+                                                <SvgIcon name='send-icon' viewbox='0 0 19.612 18.074'/>
+                                            </Button>
+                                        </div>
+                                    </Col>
+                                </section>
                             </div>
                             <p className='bottom-text'>{t("token:why_1")}<span>{t("token:why_2")}</span> {t("token:why_3")}
                                 <br/>{t("token:why_4")}</p>
                         </Col>
                     </Row>
+
                 </Container>
             </section>
         </div>
