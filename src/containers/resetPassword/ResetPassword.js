@@ -4,10 +4,9 @@ import ResetPasswordModal from "../../components/ResetPasswordModal/ResetPasswor
 
 
 const ResetPassword = () => {
-    const [modal,setModal] = useState(true);
     return (
-        <div className={'becomepart-wrapper'}>
-            <Modal activeModal={modal} setActive={setModal} bool={true}><ResetPasswordModal/> </Modal>
+        <div >
+          <ResetPasswordModal/>
         </div>
     );
 };

@@ -67,11 +67,7 @@ export const rotues = [
     layout: authLayout,
     component: () => <BecomePart />
   },
-  {
-    path: "/reset-password/:token",
-    layout: defaultLayout,
-    component: () => <ResetPassword />,
-  },
+
   // {
   //   path: "/impact-through-traccy",
   //   layout: defaultWhiteHeader,
@@ -139,5 +135,11 @@ export const rotues = [
     exact: true,
     layout: loginLayout,
     component: () => <LoginModal />,
+  },
+  {
+    path: "/reset-password/:token",
+    exact: true,
+    layout: loginLayout,
+    component: () => <ResetPassword />,
   },
 ];

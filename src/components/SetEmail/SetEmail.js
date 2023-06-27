@@ -16,9 +16,9 @@ const SetEmail = ({setModal,setSendMail}) => {
         try {
             await authService.resetMailPassword(email)
             toast('Reset link sent on you email')
-            setModal(false)
         } catch (e) {
-            toast('Incorrect email')
+            console.log(e);
+            // toast('Incorrect email')
         }
     };
     return (

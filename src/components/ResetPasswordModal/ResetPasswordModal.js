@@ -3,6 +3,8 @@ import {toast} from 'react-toastify';
 import {useHistory, useParams} from 'react-router-dom';
 import {authService} from '../../service/auth.service';
 import {Button} from "antd";
+import LoginInput from "../authComponents/loginInput";
+import LoginButton from "../authComponents/LoginButton";
 
 const ResetPasswordModal = () => {
     const [password, setPassword] = useState('');
@@ -39,41 +41,26 @@ const ResetPasswordModal = () => {
     };
 
     return (
-        <div  style={{display: 'flex', justifyContent: 'flex-end'}}>
-            <form className="llogin-form">
+        <div style={{display: 'flex', justifyContent: 'flex-end'}}>
+            <form className="llogin-form" style={{width: '45%'}}>
                 <h2>Reset Password</h2>
-                <div className="form-group">
-                    <label htmlFor="password">New Password</label>
-                    <input
-                        type="password"
-                        id="password"
-                        value={password}
-                        onChange={handlePasswordChange}
-                        placeholder="Enter your new password"
-                    />
+                <LoginInput
+                    label="Password"
+                    placeholder="Enter your password"
+                    type={'password'}
+                    value={password}
+                    onChange={handlePasswordChange}
+                />
+                <LoginInput
+                    label="Password"
+                    placeholder="Confirm your new password"
+                    type={'password'}
+                    value={confirmPassword}
+                    onChange={handleConfirmPasswordChange}
+                />
+                <div className={'login-buttons'}>
+                    <LoginButton name={' Reset Password'} onClick={handleResetPassword}></LoginButton>
                 </div>
-                <div className="form-group">
-                    <label htmlFor="confirmPassword">Confirm Password</label>
-                    <input
-                        type="password"
-                        id="confirmPassword"
-                        value={confirmPassword}
-                        onChange={handleConfirmPasswordChange}
-                        placeholder="Confirm your new password"
-                    />
-                </div>
-                <Button
-                    style={{
-                        width: '100%',
-                        color: 'white',
-                        background: '#B90B5F',
-                        height: '40px',
-                    }}
-                    onClick={handleResetPassword}
-                    loading={isLoading} // Set the loading state of the button
-                >
-                    Reset Password
-                </Button>
             </form>
         </div>
     );

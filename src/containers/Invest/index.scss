@@ -156,18 +156,18 @@
           padding: 15px;
           margin: 0 0 3rem 0;
         }
-         &::before {
-             position: absolute;
-             content: ' ';
-             left: -4.8px;
-             width: 9px;
-             height: 9px;
-             border-radius: 9px;
-             background: #A7A7A7;
-             display: inline-block;
-             z-index: 2;
-             top: 60px;
-         }
+         //&::before {
+         //    position: absolute;
+         //    content: ' ';
+         //    left: -4.8px;
+         //    width: 9px;
+         //    height: 9px;
+         //    border-radius: 9px;
+         //    background: #A7A7A7;
+         //    display: inline-block;
+         //    z-index: 2;
+         //    top: 60px;
+         //}
         .ant-steps {
           margin-bottom: 3rem;
           max-width: 670px;

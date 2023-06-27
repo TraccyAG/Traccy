@@ -119,7 +119,12 @@ h1 {
 }
 
 a {
-  text-decoration: none;
+  text-decoration: none !important;
+  color: inherit;
+}
+
+a:hover {
+  color: inherit;
 }
 
 .link-text {
@@ -813,7 +818,7 @@ body {
       }
     }
   }
-  
+
 }
 
 .login-wrapper {
