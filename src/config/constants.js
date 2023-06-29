@@ -4,6 +4,9 @@ export const REQUEST_ENDPOINT =
 
 export const PAYMENT_CONTRACT_ADDRESS = "0xDB4Eb8a105A20B9070ba292AD897d2d81483CD07"
 
+export const PHASEABLE_SALE_CONTRACT_ADDRESS = "0xf606A0Cb6405DBEE4d143D73536D990B87a02e24" // phaseable sale on avalance
+export const TRCYN_TOKEN_ADDRESS = "0x500d241f16c62Bf84B80E0631Bf38882D2942cFB" // phaseable sale on avalance
+
 export const WEFUND_JUNO_ADDRESS = " ";
 export const WEFUND_BSC_ADDRESS = "0xeD0C3d4d42EFFb4BbabB8155f6D16A4698e0Ddf1";
 export const WEFUND_TRON_WALLET = "";
@@ -248,9 +251,15 @@ export const CHAINS_CONFIG = {
     rpc: "https://rpc2.fantom.network",
   },
   avalanche: {
-    chainId: "0xa86a",
+    //chainId: "0xa86a",
+    chainId: 43114,
     chainName: "Avalanche C-Chain",
     rpc: "https://api.avax.network/ext/bc/C/rpc",
+    nativeCurrency: {
+      name: "AVAX",
+      symbol: "AVAX",
+      decimals: 18
+    },
   },
 };
 

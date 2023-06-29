@@ -3,31 +3,32 @@
 .becomepart-wrapper {
   background: rgb(53, 28, 47);
   background: -moz-linear-gradient(
-    170deg,
-    rgba(53, 28, 47, 1) 0%,
-    rgba(21, 12, 31, 1) 18%,
-    rgba(27, 11, 38, 1) 39%,
-    rgba(32, 8, 45, 1) 100%
+                  170deg,
+                  rgba(53, 28, 47, 1) 0%,
+                  rgba(21, 12, 31, 1) 18%,
+                  rgba(27, 11, 38, 1) 39%,
+                  rgba(32, 8, 45, 1) 100%
   );
   background: -webkit-linear-gradient(
-    170deg,
-    rgba(53, 28, 47, 1) 0%,
-    rgba(21, 12, 31, 1) 18%,
-    rgba(27, 11, 38, 1) 39%,
-    rgba(32, 8, 45, 1) 100%
+                  170deg,
+                  rgba(53, 28, 47, 1) 0%,
+                  rgba(21, 12, 31, 1) 18%,
+                  rgba(27, 11, 38, 1) 39%,
+                  rgba(32, 8, 45, 1) 100%
   );
   background: linear-gradient(
-    170deg,
-    rgba(53, 28, 47, 1) 0%,
-    rgba(21, 12, 31, 1) 18%,
-    rgba(27, 11, 38, 1) 39%,
-    rgba(32, 8, 45, 1) 100%
+                  170deg,
+                  rgba(53, 28, 47, 1) 0%,
+                  rgba(21, 12, 31, 1) 18%,
+                  rgba(27, 11, 38, 1) 39%,
+                  rgba(32, 8, 45, 1) 100%
   );
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#351c2f",endColorstr="#20082d",GradientType=1);
-  min-height: 90vh;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#351c2f", endColorstr="#20082d", GradientType=1);
+  min-height: 100vh;
   position: relative;
   display: flex;
   overflow: hidden;
+
   .polygon-effect {
     & > img {
       &:nth-child(1) {
@@ -39,6 +40,7 @@
           display: none;
         }
       }
+
       &:nth-child(2) {
         position: absolute;
         right: -63px;
@@ -50,6 +52,7 @@
       }
     }
   }
+
   .leftbar {
     width: 140px;
     padding-top: 80px;
@@ -65,6 +68,7 @@
     @media screen and (max-width: 580px) {
       width: 45px;
     }
+
     .traccy-icon {
       border-bottom: 1px solid #292828;
       height: 100px;
@@ -74,6 +78,7 @@
       @media screen and (max-width: 1440px) {
         height: 70px;
       }
+
       img {
         height: 50px;
         @media screen and (max-width: 1440px) {
@@ -84,6 +89,7 @@
         }
       }
     }
+
     .social-icon-list {
       height: calc(100vh - 180px);
       display: flex;
@@ -104,12 +110,14 @@
         }
         cursor: pointer;
         transition: all ease-in 0.1s;
+
         &:hover {
           transform: scale(1.15);
         }
       }
     }
   }
+
   .right-section {
     width: calc(100% - 140px);
     padding-top: 80px;
@@ -125,10 +133,11 @@
       display: flex;
       border-top: 1px solid #292828;
       border-left: 1px solid #292828;
-
+      //justify-content: space-between;
       @media screen and (max-width: 991px) {
         flex-direction: column-reverse;
       }
+
       .address-bar {
         width: 100%;
         max-width: 420px;
@@ -142,12 +151,14 @@
         @media screen and (max-width: 1440px) {
           padding: 2.2%;
         }
+
         .logo-section {
           width: 100%;
           margin-bottom: 6vh;
           @media screen and (max-width: 1440px) {
             margin-bottom: 4vh;
           }
+
           img {
             max-width: 265px;
             @media screen and (max-width: 1650px) {
@@ -158,8 +169,10 @@
             }
           }
         }
+
         .address-col {
           margin-top: 4vh;
+
           h3 {
             color: #be1e73;
             font-size: 1.4rem;
@@ -168,6 +181,7 @@
               font-size: 1.1rem;
             }
           }
+
           p {
             color: rgba($white, 0.5);
             line-height: 1.6;
@@ -177,24 +191,28 @@
             }
           }
         }
+
         .bottom-link {
           display: flex;
           flex-wrap: wrap;
           align-items: center;
           color: rgba($white, 0.5);
           margin-top: 5rem;
+
           a {
             color: rgba($white, 0.5);
             margin: 0 10px 0 0;
             @media screen and (max-width: 1440px) {
               font-size: 13px;
             }
+
             &:nth-child(2) {
               margin-left: 10px;
             }
           }
         }
       }
+
       .dtl-section {
         padding: 2.5% 3%;
         width: 100%;
@@ -213,6 +231,7 @@
           padding: 15px;
           margin: 0 0 3rem 0;
         }
+
         &::before {
           position: absolute;
           content: " ";
@@ -225,6 +244,7 @@
           z-index: 2;
           top: 60px;
         }
+
         .ant-steps {
           margin-bottom: 3rem;
           max-width: 670px;
@@ -237,29 +257,35 @@
           @media screen and (max-width: 991px) {
             flex-direction: row;
           }
+
           .ant-steps-item-tail {
             @media screen and (max-width: 991px) {
               display: none;
             }
           }
+
           .ant-steps-item {
             .ant-steps-item-container {
               .ant-steps-item-icon {
                 display: none;
               }
+
               .ant-steps-item-content {
                 .ant-steps-item-title {
                   font-size: 18px;
                   color: rgba($white, 0.5);
+
                   &::after {
                     display: none;
                   }
+
                   @media screen and (max-width: 1440px) {
                     font-size: 13px;
                   }
                 }
               }
             }
+
             &.ant-steps-item-active {
               .ant-steps-item-content {
                 .ant-steps-item-title {
@@ -270,14 +296,17 @@
             }
           }
         }
+
         .steps-content {
           min-height: calc(100vh - 400px);
         }
+
         .steps-action {
           margin-top: 1rem;
           text-align: right;
           display: flex;
           justify-content: space-between;
+
           a {
             color: #be1e73;
             font-size: 1.4rem;
@@ -285,6 +314,7 @@
               font-size: 1.1rem;
             }
           }
+
           .ant-btn {
             padding: 0 60px;
             border-radius: 0;
@@ -300,6 +330,7 @@
               padding: 0 20px;
               font-size: 13px;
             }
+
             &.ant-btn-default {
               border: 1px solid $white;
               color: $white;
@@ -317,12 +348,15 @@
     font-size: 21px;
     margin-bottom: 12px;
   }
+
   p {
     color: rgba($white, 0.5);
     line-height: 1.5;
   }
+
   &.bottom {
     margin-top: 8vh;
+
     .ant-divider {
       border-color: #403f3f;
       max-width: 240px;
@@ -335,6 +369,7 @@
 .sent-wrapper {
   text-align: center;
   padding-top: 0.2rem;
+
   h2 {
     font-size: 35px;
     margin: 3rem auto;
@@ -345,6 +380,7 @@
       font-size: 24px;
     }
   }
+
   p {
     font-size: 18px;
     margin-bottom: 3rem;
@@ -355,8 +391,10 @@
       font-size: 14px;
     }
   }
+
   .slick-slider {
     margin-top: 5rem;
+
     .slick-arrow {
       position: absolute;
       z-index: 2;
@@ -367,29 +405,36 @@
       align-items: center;
       justify-content: center;
       border: 1px solid #968d91;
+
       .icon {
         fill: $white;
         width: 10px;
         opacity: 0.7;
       }
+
       &::before {
         display: none;
       }
+
       &.slick-next {
         left: 40px;
         right: auto;
       }
+
       &.slick-disabled {
         width: 40px;
         height: 40px;
         pointer-events: none;
+
         .icon {
           width: 8px;
         }
       }
     }
+
     .download-col {
       text-align: center;
+
       h4 {
         font-size: 30px;
         margin-bottom: 8px;
@@ -403,6 +448,7 @@
           font-size: 16px;
         }
       }
+
       .download-btn {
         display: flex;
         align-items: center;
@@ -416,6 +462,7 @@
         @media screen and (max-width: 576px) {
           font-size: 13px;
         }
+
         .arrow-icon {
           border: 1px solid #707070;
           width: 26px;
@@ -433,6 +480,7 @@
             width: 15px;
             height: 15px;
           }
+
           .icon {
             fill: #707070;
             width: 10px;
@@ -442,6 +490,7 @@
           }
         }
       }
+
       .ant-divider {
         border-color: #b9b5b5;
         border-width: 1px;
@@ -461,4 +510,8 @@
   &::placeholder {
     color: rgba(white, 0.2);
   }
+}
+
+span.anticon.anticon-eye-invisible.ant-input-password-icon {
+  color: white;
 }

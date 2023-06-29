@@ -1,0 +1,62 @@
+.ant-checkbox-wrapper {
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 15px !important;
+  line-height: 18px !important;
+  color: #FFFFFF !important;
+}
+
+.ant-checkbox-inner {
+  background-color: inherit !important;
+  border: 0.6px solid #FFFFFF !important;
+}
+
+.login-form-blur {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.register-flex-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 800px) {
+  .leftbar {
+    display: none;
+  }
+  .text-container {
+    display: none;
+  }
+  .login-form-blur {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 115px;
+    padding-bottom: 20px;
+  }
+  .llogin-form {
+    min-height: 80vh;
+    display: flex;
+    width: 95%;
+    padding: 60px;
+    background: linear-gradient(180deg, rgba(40, 31, 65, 0.25) 0%, rgba(24, 17, 37, 0.2) 100%);
+    -webkit-backdrop-filter: blur(12.5px);
+    backdrop-filter: blur(12.5px);
+    border-radius: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    justify-content: center;
+  }
+  .register-flex-container {
+    display: flex;
+    flex-direction: column;
+
+  }
+  .register-flex-container div {
+    width: 100%!important;
+  }
+  .main-header .login .header-inner .right-header .menu-icon.ant-btn{
+    background: inherit;
+  }
+}

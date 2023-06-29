@@ -70,7 +70,7 @@ const RightNumbers = ({ showContent }) => {
           </li>
           <li className={showContent === 3 ? 'selected' : ''}
             onClick={() => router.push("/impact-through-traccy-details/traccy-lab")}>
-            02 <span>TRACCY LAB<br />ZURICH, SWITZERLAN</span>
+            02 <span>TRACCY LAB<br />ZURICH, SWITZERLAND</span>
           </li>
           <li className={showContent === 4 ? 'selected' : ''}
             onClick={() => router.push("/impact-through-traccy-details/traccy-farm")}

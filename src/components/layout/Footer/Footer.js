@@ -20,7 +20,7 @@ const Footer = () => {
           </Col>
         </Row>
         <Row className="footer-upper">
-          <Col lg='7'>
+          <Col lg='6'>
             <Row>
               <Col lg='4'>
                 <h3>Website</h3>
@@ -46,13 +46,20 @@ const Footer = () => {
                   <a href="https://web.telegram.org/z/#-1837824968"><li>Telegram </li></a>
                   <a href="https://twitter.com/traccy_official?s=11&t=_z6GdVt91PmJiJmxDvd8sA"><li>Twitter  </li></a>
                   <a href="https://www.instagram.com/traccy_official/"><li>Instagram</li></a>
-                  <a href="https://www.linkedin.com/company/traccy-ag/?viewAsMember=true"><li>Linkedin </li></a>
+                  <a href="https://portal.traccy.io/invest"><li>Buy TRCYN Token </li></a>
                 </ul>
               </Col>
             </Row>
           </Col>
-          <Col lg='1'></Col>
-          <Col lg='4' className="subscribe-col">
+          <Col lg='3'>
+            <h3>Links</h3>
+            <ul>
+              <a href="https://metamask.io/news/latest/buying-crypto-in-portfolio-dapp-for-an-easy-experience-the-metamask-way/"><li>Create Metamask</li></a>
+              <a href="https://support.metamask.io/hc/en-us/articles/360015489531-Getting-started-with-MetaMask"><li>Deposite Metamask</li></a>
+              <a href="https://metamask.io/news/latest/buying-crypto-in-portfolio-dapp-for-an-easy-experience-the-metamask-way/"><li>Create Metamask</li></a>
+            </ul>
+          </Col>
+          <Col lg='3' className="subscribe-col">
             <h3>Connect your Wallet </h3>
             <p>Connect your wallet to participate in STO  </p>
             <Button type="primary" onClick={handleClick} id="footer-wallet">Connect Wallet</Button>

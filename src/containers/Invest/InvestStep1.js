@@ -1,84 +1,84 @@
-import { useState} from "react";
-
 import { Button } from "antd";
 import { useHistory } from 'react-router-dom';
 import InvestWrapper from "./InvestWrapper";
 import "./InvestStep1.scss";
 import { useTranslation } from "react-i18next";
+import {useTrackedState, useWallet} from "../../contexts/store";
 
-const InvestStep1 = ({ onNext }) => {
-  const {t} = useTranslation();
+const InvestStep1 = ({ onNext,user }) => {
+  const { t } = useTranslation();
+
   const history = useHistory();
-  const handleNext = () => {
-      onNext();
-  }
+    const handleNext = () => {
+    onNext();
+  };
+
   const handleDecline = () => {
     history.push("/");
-  }
-  
+  };
+
   return (
-    <InvestWrapper>
-      <div className="invest-step1-body0">
-        <span>{t("buy:saft")}&nbsp;{t("buy:form")}</span>
-        <span>{t("buy:terms")}</span>
+      <InvestWrapper>
+        <div className="invest-step1-body0">
+          <span>Subscription form for participation certificates (Art. 652a in conjunction with Art. 652 OR)</span>
+          <span>{t("buy:terms")}</span>
 
-        <div className="invest-document">
-          <TERMS />
-        </div>
-        <div className="steps-action">
-          <Button type="primary" onClick={() => handleNext()}>
-            {t("buy:accept")}
-          </Button>
+          <div className="invest-document">
+            <TermsAndConditions user={user} />
+          </div>
 
-          <Button onClick={() => handleDecline()} className="decline">
-            {t("buy:decline")}
-          </Button>
+          <div className="steps-action">
+            <Button type="primary" onClick={() => handleNext()}>
+              {t("buy:accept")}
+            </Button>
+
+            <Button onClick={() => handleDecline()} className="decline">
+              {t("buy:decline")}
+            </Button>
+          </div>
         </div>
-      </div>
-    </InvestWrapper>
-  )
-}
+      </InvestWrapper>
+  );
+};
 
 export default InvestStep1;
 
-const TERMS = () => {
-  return <span>
-    <center><b>WFD Token</b>, a product of AI.WFD<br />
-      <b>Commercial Brokers<br />
-      SAFT<br />
-      (Simple Agreement for Future Tokens)</b><br /></center>
-      <br/><br/>
-      THIS CERTIFIES THAT in exchange for the payment by the undersigned purchaser (the
-      “Purchaser”) of $[ ] (the “Purchase Amount”) on or about [ ], 2022,
-      WeFund, an AI.WFD Commercial Brokers corporation (the “Company”), hereby issues to
-      the Purchaser the right (the “Right”) to certain units of WFD Token (the “Token” or “WFD
-      Token”), subject to the terms set forth below.<br /><br />
-    1. Events<br />
-    (a) Network Launch. If there is a Network Launch before the expiration or termination
-    of this instrument, the Company will automatically issue to the Purchaser a number of units
-    of the Token equal to the Purchase Amount divided by the Discount Price.
-    In connection with and prior to the issuance of Tokens by the Company to the Purchaser
-    pursuant to this Section 1(a):<br />
-    (i) The Purchaser will execute and deliver to the Company any and all other
-    transaction documents related to this SAFT, including verification of accredited investor
-    status or non-U.S. person status under the applicable securities laws; and<br />
-    (ii) The Purchaser will provide to the Company a network address for which to
-    allocate Purchaser's Tokens upon the Network Launch.<br />
-    (b) Dissolution Event. If there is a Dissolution Event before this instrument expires or
-    terminates, the Company will pay an amount equal to the Purchase Amount multiplied by
-    the Discount Rate (the “Discounted Purchase Amount”), due and payable to the
-    Purchaser immediately prior to, or concurrent with, the consummation of the Dissolution
-    Event[, subject to the rights and preferences of the holders of the Company’s preferred
-    stock, as set forth in the Company’s Certificate of Incorporation, as it may be amended from
-    time to time.][1] If immediately prior to the consummation of the Dissolution Event, the
-    assets of the Company that remain legally available, for distribution to the Purchaser and all
-    holders of all other SAFTs (the “Dissolving Purchasers”), as determined in good faith by
-    the Company’s board of directors, are insufficient to permit the payment to the Dissolving
-    Purchasers of their respective Discounted Purchase Amounts, then the remaining assets of
-    the Company legally available for distribution, following all distributions to the holders of the
-    Company’s preferred stock, will be distributed with equal priority and pro rata among the
-    Dissolving Purchasers in proportion to the Discounted Purchase Amounts they would
-    otherwise be entitled to receive pursuant to this Section 1(b). Any distributed amounts shall
-    be in U.S. Dollars.<br />
-  </span>
-}
+const TermsAndConditions = ({user}) => {
+    const state = useTrackedState();
+    const wallet = useWallet();
+    const currentDate = new Date();
+    const formattedDate = currentDate.toLocaleDateString('en-US');
+
+    return (
+      <span>
+      <center>
+        <b>Subscription form for participation certificates (Art. 652a in conjunction with Art. 652 OR)</b>
+        <br />
+        Referring to (i) the Articles of Association of TRACCY CONNECT AG with registered office in Feusisberg (CHE-453.130.488; the "Company") and (ii) the resolution of the Board of Directors of June 12, 2023 to create participation capital from the statutory capital band in Amount of CHF 8,000.00 through the issue of 800,000 participation certificates with a nominal value of CHF 0.01 each, which are made out to the bearer and are to be paid in cash,
+        the undersigned undertakes
+      </center>
+      <br /><br />
+      First name / Name: {user.firstName}
+      <br />
+      Address: {wallet.account}
+      <br />
+      Acting for: _______________________________________________
+      <br />
+      [if acting in the name and on account of a legal entity]
+      <br />
+      for the subscription of {state.investAmount} [number] participation certificates of the company with a nominal value of CHF 0.01 at a price of CHF 0.25 each, as well as for the unconditional and irrevocable payment of the entire subscription amount of CHF {state.investTrcyAmount} [number x CHF 0.25] to the wallet below.
+      <br />
+      in favor of: Traccy Connect AG, Feusisberg
+      <br />
+      IBAN: 0xCa7f7606853A7D70386B1C854a9A77Fc72195913
+      <br />
+      Network: ERC 20
+      <br />
+      Reference: Participation capital Traccy Connect AG
+      <br /><br />
+      The newly issued participation certificates are subject to the rights set out in the articles of association of the company. The undersigned hereby requests that his/her participation certificates be deposited at the above address with the custodian.
+      <br />
+          {formattedDate}
+    </span>
+  );
+};

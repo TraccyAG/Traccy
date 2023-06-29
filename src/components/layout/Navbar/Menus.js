@@ -12,7 +12,7 @@ import ConnectWallet from "./ConnectWallet";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 
-const Menus = () => {
+const Menus = ({login}) => {
   const router = useHistory();
   const [open, setOpen] = useState(false);
   const { i18n } = useTranslation();
@@ -54,6 +54,7 @@ const Menus = () => {
         rootClassName='menubar-right'
       >
         <Button className="menu-close" onClick={onClose}><SvgIcon name="close" viewbox="0 0 10.357 10.357" /></Button>
+
         <ul>
           <li>
             <a href="https://traccy.io/">
@@ -133,62 +134,65 @@ const Menus = () => {
           </li>
         </ul>
       </Drawer>
-      <ul className="web-menu">
-        <li>
-          <a href="https://traccy.io/">Home</a>
-        </li>
-        <li>
-          <NavLink
-            to='/traccy-token'
-            className={`${path.includes("/traccy-token") ? "active_m" : ""}`}
-          >
-            TRACCY CONNECT
-          </NavLink>
-        </li>
-        <li className="impact-menu-wrapper">
-          <a
-            href='/impact-through-traccy/0'
-            className={`${path.includes("/impact-through-traccy") ? "active_m" : ""}`}
-          >
-            IMPACT
-          </a>
-          <div className="impact-menu-all">
-            <div className="mask" />
-            <div className="impact-menu">
-              <NavLink to='/impact-through-traccy/0'><span>Intro</span></NavLink>
-              <NavLink to='/impact-through-traccy/1'><span>Selection</span></NavLink>
-              <NavLink to='/impact-through-traccy/2'><span>Incubation</span></NavLink>
-              <NavLink to='/impact-through-traccy/3'><span>Launch</span></NavLink>
-              <NavLink to='/impact-through-traccy/4'><span>Monitoring</span></NavLink>
-            </div>
-          </div>
-        </li>
-        <li>
-          <NavLink
-            to='/about'
-            className={`${path.includes("/about") ? "active_m" : ""}`}
-          >
-            ABOUT US
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to='/become-part'
-            className={`${path.includes("/become-part") ? "active_m" : ""}`}
-          >
-            BECOME A PART
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to='/invest'
-            className={`${path.includes("/invest") ? "active_m" : ""}`}
-          >
-            BUY TOKEN
-          </NavLink>
-        </li>
-      </ul>
-      <ConnectWallet />
+      {!login &&
+          <ul className="web-menu">
+            <li>
+              <a href="https://traccy.io/">Home</a>
+            </li>
+            <li>
+              <NavLink
+                  to='/traccy-token'
+                  className={`${path.includes("/traccy-token") ? "active_m" : ""}`}
+              >
+                TRACCY CONNECT
+              </NavLink>
+            </li>
+            <li className="impact-menu-wrapper">
+              <a
+                  href='/impact-through-traccy/0'
+                  className={`${path.includes("/impact-through-traccy") ? "active_m" : ""}`}
+              >
+                IMPACT
+              </a>
+              <div className="impact-menu-all">
+                <div className="mask" />
+                <div className="impact-menu">
+                  <NavLink to='/impact-through-traccy/0'><span>Intro</span></NavLink>
+                  <NavLink to='/impact-through-traccy/1'><span>Selection</span></NavLink>
+                  <NavLink to='/impact-through-traccy/2'><span>Incubation</span></NavLink>
+                  <NavLink to='/impact-through-traccy/3'><span>Launch</span></NavLink>
+                  <NavLink to='/impact-through-traccy/4'><span>Monitoring</span></NavLink>
+                </div>
+              </div>
+            </li>
+            <li>
+              <NavLink
+                  to='/about'
+                  className={`${path.includes("/about") ? "active_m" : ""}`}
+              >
+                ABOUT US
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                  to='/become-part'
+                  className={`${path.includes("/become-part") ? "active_m" : ""}`}
+              >
+                BECOME A PART
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                  to='/invest'
+                  className={`${path.includes("/invest") ? "active_m" : ""}`}
+              >
+                BUY TOKEN
+              </NavLink>
+            </li>
+          </ul>
+      }
+      {!login &&  <ConnectWallet />}
+
       {/* <Select
         defaultValue={defaultLang}
         value={defaultLang}
@@ -211,7 +215,14 @@ const Menus = () => {
           },
         ]}
       /> */}
-      <Button className="menu-icon" onClick={showDrawer}><SvgIcon name="menu" viewbox="0 0 28 28" /></Button>
+      {
+         !login &&
+          <Button className="menu-icon" onClick={showDrawer}><SvgIcon name="menu" viewbox="0 0 28 28" /></Button>
+      }
+      {
+        login &&
+          <Button className="menu-icon login" onClick={showDrawer}><SvgIcon name="menu" viewbox="0 0 28 28" /></Button>
+      }
     </>
   );
 }

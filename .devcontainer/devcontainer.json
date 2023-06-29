@@ -1,0 +1,21 @@
+{
+    "name": "NextJS Dev Environment",
+    "dockerFile": "Dockerfile",
+  
+    "settings": {
+      "terminal.integrated.shell.linux": "/bin/bash"
+    },
+    "extensions": [
+      "esbenp.prettier-vscode",
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode",
+      "bradlc.vscode-tailwindcss"
+    ],
+
+    "runArgs": ["--network=devnet"],
+  
+    "remoteUser": "node", //default non-root user of Node container images
+    "workspaceMount": "source=${localWorkspaceFolder},target=/home/node/workspace/${localWorkspaceFolderBasename},type=bind",
+    "workspaceFolder": "/home/node/workspace/${localWorkspaceFolderBasename}",
+    "postCreateCommand": "yarn install"
+  }

@@ -2,6 +2,8 @@ import { useRef, useState, useEffect } from "react";
 import { Button } from "antd";
 import SignatureCanvas from "react-signature-canvas";
 import { toast } from "react-toastify";
+import axios from "axios";
+
 
 import InvestWrapper from "./InvestWrapper";
 import "./InvestStep3.scss";
@@ -9,8 +11,9 @@ import { useTrackedState, useDispatch, useWallet } from "../../contexts/store";
 import { ERROR_OPTION, REQUEST_ENDPOINT, SUCCESS_OPTION } from "../../config/constants";
 import { LookForTokenInfo } from "../../config/utilitiy";
 import { useTranslation } from "react-i18next";
+import {userService} from "../../service/user.service";
 
-const InvestStep3 = ({ onNext, onPrev }) => {
+const InvestStep3 = ({ onNext, onPrev,user }) => {
   const { t } = useTranslation();
   const state = useTrackedState();
   const dispatch = useDispatch();
@@ -105,32 +108,63 @@ const InvestStep3 = ({ onNext, onPrev }) => {
   }
 
   async function createSAFTPdf() {
-    const currentDate = new Date();
-    const investDate = currentDate.getDate() + "/" + (currentDate.getMonth() + 1);
-    dispatch({ type: "setInvestDate", payload: investDate });
-
     const formData = new FormData();
-    formData.append("investName", state.investName);
-    formData.append("investTitle", state.investTitle);
-    formData.append("investEmail", state.investEmail);
-    formData.append("investAmount", state.investAmount);
-    formData.append("investDate", investDate);
-    formData.append("investSignature", canvasRef.current.toDataURL());
-    formData.append("presale", "presale");
+    formData.append("firstName", user.firstName);
+    formData.append("surName", user.surName);
+    formData.append("address", user.address);
+    formData.append("zipcode", user.zipcode);
+    formData.append("numberOfShares", state.investAmount);
+    formData.append("totalAmount", state.investTrcyAmount);
 
-    const requestOptions = {
-      method: "POST",
-      body: formData,
-    };
+    const canvasDataURL = canvasRef.current.toDataURL(); // Convert canvas to data URL
+    const fileBlob = await fetch(canvasDataURL).then((res) => res.blob()); // Convert data URL to Blob
 
-    toast("Uploading", SUCCESS_OPTION);
+    formData.append("file", fileBlob, "signature.png"); // Append the file Blob to the form data
 
-    const res = await fetch(REQUEST_ENDPOINT + "/pdfmake", requestOptions)
-    const data = await res.json();
-    dispatch({ type: "setSaftDocument", payload: data.data })
+    try {
+      const response = await axios.post(`https://octopus-app-z7hd5.ondigitalocean.app/documents/${user.id}`,
+        formData
+      , {
+        responseType: 'blob', // Specify the response type as 'blob' to receive a Blob object
+      });
+
+      if (response.status === 201) {
+        const blob = new Blob([response.data], {
+          type: "application/octet-stream",
+        });
+        console.log(blob);
+        const formDataAgreement = new FormData();
+        const newFile = new File([blob], "agreement.pdf");
+        formDataAgreement.append('file', newFile);
+        try {
+          // await userService.createAgreement(user.id, formDataAgreement); // Pass the file data object to the saveAgreement method
+          await userService.saveAgreement(user.id, formDataAgreement); // Pass the file data object to the saveAgreement method
+        } catch (error) {
+          console.error(error);
+          throw error;
+        }
+        const fileUrl = window.URL.createObjectURL(new Blob([response.data]));
+        // Create a link element
+        const link = document.createElement('a');
+        link.href = fileUrl;
+        link.download = 'Agreement.pdf';
+        // Simulate a click on the link to trigger the download
+        link.click();
+        // Clean up the temporary URL
+        window.URL.revokeObjectURL(fileUrl);
+
+      } else {
+        throw new Error('Error downloading PDF file');
+      }
+    } catch (error) {
+      console.error('Error downloading PDF:', error);
+      // Handle the error, such as displaying an error message to the user
+    }
   }
 
+
   const handleNext = async () => {
+
     try {
       if (checkValication() === false)
         return;

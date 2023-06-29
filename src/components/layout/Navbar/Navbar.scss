@@ -100,7 +100,7 @@
         &.ant-btn {
           height: 37px;
           padding: 0 15px;
-          background: $primary-color;
+          background: inherit;
           color: $white;
           border-radius: 4px;
           line-height: 40px;
@@ -109,6 +109,24 @@
           }
           display: none;
           @media screen and (max-width: 1200px) {
+            display: block;
+          }
+        }
+      }
+
+      .menu-icon.login {
+        &.ant-btn {
+          height: 37px;
+          padding: 0 15px;
+          background: inherit;
+          color: $white;
+          border-radius: 4px;
+          line-height: 40px;
+          .icon {
+            fill: $white;
+          }
+          display: none;
+          @media screen and (max-width: 800px) {
             display: block;
           }
         }

@@ -7,7 +7,7 @@ import TraccyLogo from '../../../assets/images/logo.png';
 import TraccyLogoSmall from '../../../assets/images/icon.png';
 import { useEffect } from "react";
 
-const Navbar = () => {
+const Navbar = ({login}) => {
   const [scrollTop, setScrollTop] = useState(0);
 
   useEffect(() => {
@@ -27,20 +27,22 @@ const Navbar = () => {
     <header className={`main-header`}>
       <Container className="container-with-connect-wallet">
         <div className={`${scrollTop > 10 ? "dark-header" : ""} header-inner `}>
-          <div
+          {!login &&
+              <div
             className="logo"
             onClick={() => window.location.assign("https://traccy.io/")}
-          >
+            >
             <img src={TraccyLogo} alt="logo" />
             <img src={TraccyLogoSmall} alt="logo" />
             <p>
-              using <br />
-              blockchain <br />
-              impactful
+            using <br />
+            blockchain <br />
+            impactful
             </p>
-          </div>
+            </div>
+          }
           <div className="right-header">
-            <Menus />
+            <Menus login={login}/>
           </div>
 
         </div>
