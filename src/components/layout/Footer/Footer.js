@@ -54,9 +54,8 @@ const Footer = () => {
           <Col lg='3'>
             <h3>Links</h3>
             <ul>
-              <a href="https://metamask.io/news/latest/buying-crypto-in-portfolio-dapp-for-an-easy-experience-the-metamask-way/"><li>Create Metamask</li></a>
-              <a href="https://support.metamask.io/hc/en-us/articles/360015489531-Getting-started-with-MetaMask"><li>Deposite Metamask</li></a>
-              <a href="https://metamask.io/news/latest/buying-crypto-in-portfolio-dapp-for-an-easy-experience-the-metamask-way/"><li>Create Metamask</li></a>
+              <a href="https://support.metamask.io/hc/en-us/articles/360015489531-Getting-started-with-MetaMask"><li>Create Metamask</li></a>
+              <a href="https://metamask.io/news/latest/buying-crypto-in-portfolio-dapp-for-an-easy-experience-the-metamask-way/"><li>Deposite Metamask</li></a>
             </ul>
           </Col>
           <Col lg='3' className="subscribe-col">
