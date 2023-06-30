@@ -99,10 +99,10 @@ const InvestStep3 = ({ onNext, onPrev,user }) => {
       return false;
     }
 
-    // if (parseFloat(investAmount) <= 0) {
-    //   toast("Please input amount", ERROR_OPTION);
-    //   return false;
-    // }
+    if (parseFloat(investAmount) <= 0) {
+      toast("Please input amount", ERROR_OPTION);
+      return false;
+    }
 
     return true;
   }
