@@ -175,7 +175,7 @@ const RegistrationModal = ({ setIsRegistered}) => {
                     />
                     <LoginInput
                         width={'45%'}
-                        label="Zipcode"
+                        label="Zip code"
                         placeholder="Enter your zip code"
                         type={'text'}
                         required={true}
@@ -219,7 +219,7 @@ const RegistrationModal = ({ setIsRegistered}) => {
                 </div>
                 <div>
                     <Checkbox className="custom-checkbox" onChange={handleAgreeTermsChange}>
-                        I agree to the all elements in terms of service
+                        I agree to the  <a href="https://portal.traccy.io/termofuse.html"><strong>terms of use</strong></a>
                     </Checkbox>
                 </div>
                 <div className={'login-buttons'}>

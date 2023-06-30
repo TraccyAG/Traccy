@@ -15,7 +15,7 @@ const SelectInput = ({ defaultValue, options, value, onChange, name }) => {
                         <Select
                             className={'select-input'}
                             style={{ background: 'inherit' }}
-                            dropdownStyle={{ backgroundColor: 'inherit', color: 'white' }}
+                            dropdownStyle={{ backgroundColor: 'black', color: 'white' }}
                             defaultValue={defaultValue}
                             suffixIcon={<SvgIcon style={{fill:'white',marginTop:'25px'}} name="chevron-down" viewbox="0 -2 4 8" />}
                             popupClassName="select-drop"

@@ -397,15 +397,9 @@ const TraccyConnect = () => {
         </Container>
         {showContent === 0 &&
           <div className='bottom-left-details details3'>
-            <div className='numbers'>
+            <div className='numbers' style={{maxWidth:"100%"}}>
               <div className='color-bar'></div>
-              01.
-            </div>
-            <div className='right-content'>
-              <h4>Traccy Connect</h4>
-              <p>
-                Building a community of Impact Investors that’s try to solve real world problems
-              </p>
+              <h4 style={{fontSize:'50px',maxWidth:"100%"}}>01 Traccy Connect</h4>
             </div>
           </div>
         }

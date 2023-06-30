@@ -153,7 +153,7 @@ const TraccyToken = () => {
                                 </span>
                             </h1>
                             <p>
-                                With the TRCYC Security Token, you become a participant in the profits of Traccy
+                                With the TRCYN Security Token, you become a participant in the profits of Traccy
                                 Connect, the impact platform through which our sustainable projects, as well as
                                 exclusive services are handled.
                             </p>
@@ -554,7 +554,7 @@ const TraccyToken = () => {
                         <Col>
                             <div className='platform-img'>
                                 <img src={PlatformImg} alt='Platform'/>
-                                <section className='banner-section' style={{paddingTop:0,top:'-170px'}}>
+                                <section className='banner-section' style={{padding:0}}>
                                     <Col lg='6' className="banner-left">
                                         <div className='learn-more-row'>
                                             <Button onClick={() => history.push("/impact-through-traccy-details/traccy-connect")}>
