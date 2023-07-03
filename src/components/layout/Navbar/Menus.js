@@ -54,7 +54,6 @@ const Menus = ({login}) => {
         rootClassName='menubar-right'
       >
         <Button className="menu-close" onClick={onClose}><SvgIcon name="close" viewbox="0 0 10.357 10.357" /></Button>
-
         <ul>
           <li>
             <a href="https://traccy.io/">
@@ -130,6 +129,14 @@ const Menus = ({login}) => {
                 <img src="/invest-form/crypto-wallet-bitcoin-icon.svg" width="26px" height="26px" alt="bitcoin" />
               </div>
               Buy token
+            </Link>
+          </li>
+          <li>
+            <Link to='/login'>
+              <div className='menu-icon'>
+                <img src="/invest-form/icons8-customer-100.png" width="30px" height="30px" alt="bitcoin" />
+              </div>
+             login
             </Link>
           </li>
         </ul>
