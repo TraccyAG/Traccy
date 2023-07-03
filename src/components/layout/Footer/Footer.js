@@ -20,9 +20,9 @@ const Footer = () => {
           </Col>
         </Row>
         <Row className="footer-upper">
-          <Col lg='6'>
+          <Col lg='8'>
             <Row>
-              <Col lg='4'>
+              <Col lg='3'>
                 <h3>Website</h3>
                 <ul>
                   <a href="/home"><li>Home</li></a>
@@ -33,14 +33,14 @@ const Footer = () => {
                   <a href="/invest"><li>Buy Token</li></a>
                 </ul>
               </Col>
-              <Col lg='4'>
+              <Col lg='3'>
                 <h3>Company</h3>
                 <ul>
                   <a href="/become-part"><li>Contact Us</li></a>
                   {/* <a href="/library"><li>Documents </li></a> */}
                 </ul>
               </Col>
-              <Col lg='4'>
+              <Col lg='3'>
                 <h3>Social Media</h3>
                 <ul>
                   <a href="https://web.telegram.org/z/#-1837824968"><li>Telegram </li></a>
@@ -49,16 +49,16 @@ const Footer = () => {
                   <a href="https://portal.traccy.io/invest"><li>Buy TRCYN Token </li></a>
                 </ul>
               </Col>
+              <Col lg='3' className={'col-padding'}  >
+                <h3>Links</h3>
+                <ul style={{width:'107%'}}>
+                  <a href="https://support.metamask.io/hc/en-us/articles/360015489531-Getting-started-with-MetaMask"><li>Create Metamask</li></a>
+                  <a href="https://metamask.io/news/latest/buying-crypto-in-portfolio-dapp-for-an-easy-experience-the-metamask-way/"><li>Deposite Metamask</li></a>
+                </ul>
+              </Col>
             </Row>
           </Col>
-          <Col lg='3'>
-            <h3>Links</h3>
-            <ul>
-              <a href="https://support.metamask.io/hc/en-us/articles/360015489531-Getting-started-with-MetaMask"><li>Create Metamask</li></a>
-              <a href="https://metamask.io/news/latest/buying-crypto-in-portfolio-dapp-for-an-easy-experience-the-metamask-way/"><li>Deposite Metamask</li></a>
-            </ul>
-          </Col>
-          <Col lg='3' className="subscribe-col">
+          <Col lg='3' className="subscribe-col col-padding" >
             <h3>Connect your Wallet </h3>
             <p>Connect your wallet to participate in STO  </p>
             <Button type="primary" onClick={handleClick} id="footer-wallet">Connect Wallet</Button>

@@ -95,6 +95,7 @@
                 }
             }
         }
+
         .social-icon-list{
             max-width: 300px;
             width: 100%;
@@ -116,5 +117,12 @@
                 }
             }
         }
+    }
+}
+
+.col-padding {
+    padding-left: 50px!important;
+    @media screen and (max-width:1000px) {
+        padding-left: 15px!important;
     }
 }
