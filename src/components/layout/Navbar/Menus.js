@@ -71,6 +71,14 @@ const Menus = ({login}) => {
               TRACCY Connect
             </Link>
           </li>
+          <li>
+            <Link to='/invest'>
+              <div className='menu-icon'>
+                <img src="/invest-form/crypto-wallet-bitcoin-icon.svg" width="26px" height="26px" alt="bitcoin" />
+              </div>
+              Buy token
+            </Link>
+          </li>
           {/* <li>
             <a href='/impact-through-traccy/0'>
               <div className='menu-icon'>
@@ -123,14 +131,7 @@ const Menus = ({login}) => {
               Become a part
             </Link>
           </li>
-          <li>
-            <Link to='/invest'>
-              <div className='menu-icon'>
-                <img src="/invest-form/crypto-wallet-bitcoin-icon.svg" width="26px" height="26px" alt="bitcoin" />
-              </div>
-              Buy token
-            </Link>
-          </li>
+
           <li>
             <Link to='/login'>
               <div className='menu-icon'>
@@ -152,6 +153,14 @@ const Menus = ({login}) => {
                   className={`${path.includes("/traccy-token") ? "active_m" : ""}`}
               >
                 TRACCY CONNECT
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                  to='/invest'
+                  className={`${path.includes("/invest") ? "active_m" : ""}`}
+              >
+                BUY TOKEN
               </NavLink>
             </li>
             <li className="impact-menu-wrapper">
@@ -188,14 +197,7 @@ const Menus = ({login}) => {
                 BECOME A PART
               </NavLink>
             </li>
-            <li>
-              <NavLink
-                  to='/invest'
-                  className={`${path.includes("/invest") ? "active_m" : ""}`}
-              >
-                BUY TOKEN
-              </NavLink>
-            </li>
+
           </ul>
       }
       {!login &&  <ConnectWallet />}
