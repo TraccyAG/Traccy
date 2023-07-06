@@ -559,7 +559,7 @@ const TraccyToken = () => {
                                         <div className='learn-more-row'>
                                             <Button onClick={() => history.push("/impact-through-traccy-details/traccy-connect")}>
                                                 LEARN MORE
-                                                <SvgIcon name='send-icon' viewbox='0 0 19.612 18.074'/>
+                                                <SvgIcon name='send-icon' style={{marginLeft:'65px'}} viewbox='0 0 19.612 18.074'/>
                                             </Button>
                                         </div>
                                     </Col>

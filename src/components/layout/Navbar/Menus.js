@@ -136,7 +136,7 @@ const Menus = ({login}) => {
               <div className='menu-icon'>
                 <img src="/invest-form/icons8-customer-100.png" width="30px" height="30px" alt="bitcoin" />
               </div>
-             login
+             Login
             </Link>
           </li>
         </ul>
