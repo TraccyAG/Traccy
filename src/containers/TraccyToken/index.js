@@ -555,7 +555,7 @@ const TraccyToken = () => {
                             <div className='platform-img'>
                                 <img src={PlatformImg} alt='Platform'/>
                                 <section className='banner-section' style={{padding:0}}>
-                                    <Col lg='6' className="banner-left">
+                                    <Col lg='6' className="banner-left"  style={{padding:0}}>
                                         <div className='learn-more-row'>
                                             <Button onClick={() => history.push("/impact-through-traccy-details/traccy-connect")}>
                                                 LEARN MORE
