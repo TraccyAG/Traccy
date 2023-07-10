@@ -113,7 +113,8 @@ const TraccyFarm = () => {
                                 <div className="demoPage">
                                     <div className='bookpage-inner-right' style={{background: 'rgb(170 217 168)',padding:'13px -1px 0px 0px'}}>
                                         <div className='arrow-left-sm' onClick={prevPage}>
-                                            <SvgIcon name='circle-bottom' viewbox='0 0 51 50.998'/>
+                                            {/*<SvgIcon name='circle-bottom' viewbox='0 0 51 50.998'/>*/}
+                                            <img  src={arrowLeft} alt="arrowLeft"/>
                                         </div>
                                         <div className="first">
                                             <div className='left-col'>

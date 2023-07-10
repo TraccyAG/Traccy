@@ -4,6 +4,15 @@
     align-items: center;
     position: relative;
     left: -55px;
+
+}
+@media screen and (max-width: 990px) {
+    .image-gallery{
+        left: 0;
+    }
+    .image-gallery__item:nth-child(4) {
+        margin-left: -10%;
+    }
 }
 
 .image-gallery__item {
@@ -45,4 +54,29 @@
 .image-gallery__item:hover {
   z-index: 1;
   transform: scale(1.5);
+}
+@media screen and (max-width: 500px) {
+    .left-section.book img{
+        width: 180px!important;
+        padding: 10px;
+    }
+    .book-layout{
+        height: 36vh;
+    }
+    .image-gallery__item:nth-child(1) {
+        height: 140px;
+    }
+    .image-gallery__item:nth-child(2) {
+        height: 150px;
+    }
+    .image-gallery__item:nth-child(3) {
+        height: 160px;
+    }
+    .image-gallery__item:nth-child(4) {
+        height: 170px;
+    }
+    .image-gallery{
+        width: 75%;
+        padding-top: 25px;
+    }
 }

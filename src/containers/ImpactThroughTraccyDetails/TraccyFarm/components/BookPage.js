@@ -1,5 +1,6 @@
 import React from 'react';
 import {SvgIcon} from "../../../../components/common";
+import arrow from "../../../../assets/images/farm/arrow.png";
 
 
 const BookPage = ({nextPage, prevPage,header,text}) => {
@@ -7,7 +8,7 @@ const BookPage = ({nextPage, prevPage,header,text}) => {
         <div>
             <div className='bookpage-inner-left' >
                 <div className="row">
-                    <div className="left-section">
+                    <div className="left-section book">
                         <img src="/impact/traccy-agro/traccy-farm-logo.png" alt="mosquito"/>
                     </div>
                     <div className={'book-layout'}>
@@ -15,7 +16,8 @@ const BookPage = ({nextPage, prevPage,header,text}) => {
                         <p>{text}</p>
                     </div>
                     <div className='arrow-right-sm' onClick={nextPage} >
-                        <SvgIcon name='circle-bottom' viewbox='0 0 51 50.998' style={{fill: "white"}}/>
+                        {/*<SvgIcon name='circle-bottom' viewbox='0 0 51 50.998' style={{fill: "white"}}/>*/}
+                        <img src={arrow} style={{height:'30px'}} alt=""/>
                     </div>
                 </div>
             </div>
