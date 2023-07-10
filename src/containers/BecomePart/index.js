@@ -188,7 +188,7 @@ const BecomePart = () => {
                                 </a>
                             </div>
                         </div>
-                        <div className={`dtl-section ${user ? 'user' : ''}`}>
+                        <div className={`dtl-section`}>
                             <Steps current={current} items={items}/>
                             <div className="steps-content">{steps[current].content}</div>
                             <div className="steps-action">
