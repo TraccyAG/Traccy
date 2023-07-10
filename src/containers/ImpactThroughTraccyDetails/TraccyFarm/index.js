@@ -1,15 +1,10 @@
-import React, {useRef} from 'react';
-import {Container, Row, Col, SvgIcon} from '../../../components/common';
+import React, {useRef, useState} from 'react';
+import {Col, Container, Row, SvgIcon} from '../../../components/common';
 import {useMediaQuery} from 'react-responsive'
 import PageFlip from 'react-pageflip';
 import './index.scss';
-
-import MapImg from '../../../assets/images/map.png';
-import {useState} from 'react';
 import RightNumbers from '../../../components/Impact/right-numbers';
-import Popup from '../../../components/Impact/pop-up';
 import Stage from '../../../components/ImpactDetail/Stage';
-import {Tabs} from "antd";
 import BookPage from "./components/BookPage";
 import ImageSwiper from "./components/ImageSwiper";
 import arrow from "../../../assets/images/farm/arrow.png";
@@ -139,7 +134,7 @@ const TraccyFarm = () => {
                                 <div className="demoPage">
                                     <div className='bookpage-inner-right' style={{background: 'rgb(170 217 168)'}}>
                                         <div className='arrow-left-sm' onClick={prevPage}>
-                                            <SvgIcon name='circle-bottom' viewbox='0 0 51 50.998'/>
+                                            <img src={arrowLeft} alt="arrowLeft"/>
                                         </div>
                                         <div className="first">
                                             <div className='left-col'>
