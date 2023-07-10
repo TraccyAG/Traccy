@@ -51,6 +51,7 @@
     "react-toastify": "^9.1.1",
     "react-tracked": "^1.7.11",
     "react-youtube": "^10.1.0",
+    "swiper": "^10.0.3",
     "web-vitals": "^2.1.4",
     "web3": "^1.8.2",
     "web3modal": "^1.9.12",

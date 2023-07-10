@@ -1,0 +1,48 @@
+.image-gallery {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    left: -55px;
+}
+
+.image-gallery__item {
+    flex: 1;
+    position: relative;
+    transition: transform 0.3s ease-in-out;
+}
+
+.image-gallery__item:not(:first-child) {
+    margin-left: -50%;
+}
+
+.image-gallery__item img {
+    width: 100%;
+    height: auto;
+}
+
+/*.image-gallery__item--large {*/
+/*  z-index: 1;*/
+/*  transform: scale(1.5);*/
+/*}*/
+
+.image-gallery__item:nth-child(1) {
+    height: 200px
+}
+
+.image-gallery__item:nth-child(2) {
+    height: 220px;
+}
+
+/*.image-gallery__item:nth-child(3) {*/
+/*  transform: scale(1);*/
+/*}*/
+.image-gallery__item:nth-child(4) {
+  margin-left: -40%;
+}
+/*!* Додати стилі для інших картинок *!*/
+
+.image-gallery__item:hover {
+  z-index: 1;
+  transform: scale(1.5);
+}

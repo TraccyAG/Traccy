@@ -164,99 +164,62 @@ const BecomePart = () => {
                     {/* <div className='header-bar'>
         <Navbar />
     </div> */}
-                        <div className={`rightbar-inner ${user ? 'user' : ''}`}>
-                        {!user &&
-                            <div className='address-bar'>
-                                {/* <div className='logo-section'>
+                    <div className={`rightbar-inner ${user ? 'user' : ''}`}>
+                        <div className='address-bar'>
+                            {/* <div className='logo-section'>
             <img src={LogoLight} alt='Logo' />
         </div> */}
-                                <div className='address-col'>
-                                    <h3>{t("become:location")}</h3>
-                                    <p>
-                                        TRACCY AG <br/>
-                                        Chaltenbodenstrasse 6a, <br/>
-                                        8834 Schindellegi <br/>
-                                        info@traccy.ch <br/>
-                                        +41 43 810 29 51
-                                    </p>
-                                </div>
-                                <div className='bottom-link'>
-                                    <a href='/termofuse.html' target='_blank' rel="noreferrer">
-                                        {t("become:terms")}
-                                    </a> I
-                                    <a href='/Policy.html' target='_blank' rel="noreferrer">
-                                        {t("become:privacy")}
-                                    </a>
-                                </div>
+                            <div className='address-col'>
+                                <h3>{t("become:location")}</h3>
+                                <p>
+                                    TRACCY AG <br/>
+                                    Chaltenbodenstrasse 6a, <br/>
+                                    8834 Schindellegi <br/>
+                                    info@traccy.ch <br/>
+                                    +41 43 810 29 51
+                                </p>
                             </div>
-                        }
-                        {user &&
-                            <>
-                                <div className="text-bar">
-                                    <hr className="vertical-line"/>
-                                    <div className="text-bar-content">
-                                        <div>
-                                            <h2 >Believe</h2>
-                                            <p style={{color:'rgba(230, 43, 201, 1)'}}>in a bright future</p>
-                                        </div>
-                                        <div>
-                                            <h2>Invest</h2>
-                                            <p style={{color:'rgba(159, 100, 235, 1)'}}>In impact</p>
-                                        </div>
-                                        <div>
-                                            <h2>Achieve</h2>
-                                            <p style={{color:'rgba(23, 197, 250, 1)'}}>change</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div className={'light-container'}>
-
-                                </div>
-                            </>
-                        }
-
+                            <div className='bottom-link'>
+                                <a href='/termofuse.html' target='_blank' rel="noreferrer">
+                                    {t("become:terms")}
+                                </a> I
+                                <a href='/Policy.html' target='_blank' rel="noreferrer">
+                                    {t("become:privacy")}
+                                </a>
+                            </div>
+                        </div>
                         <div className={`dtl-section ${user ? 'user' : ''}`}>
-                            {loading ? (
-                                <div>Loading...</div> // Show a loading state if `loading` is true
-                            ) : user ? (
-                                <UserComponent user={user}/>
-                            ) : (
-                                <>
-                                    <Steps current={current} items={items}/>
-                                    <div className="steps-content">{steps[current].content}</div>
-                                    <div className="steps-action">
-                                        {current === 0 && (
-                                            <>
-                                                {/* <Link to='/'>FAQ</Link> */}
-                                                <Button type="primary" onClick={() => next()}>
-                                                    Continue
-                                                </Button>
-                                            </>
-                                        )}
-                                        {current === 1 && (
-                                            <>
-                                                {/* <Link to='/'>FAQ</Link> */}
-                                                <div>
-                                                    <Button onClick={() => prev()}>
-                                                        Back
-                                                    </Button>
-                                                    <Button type="primary" onClick={() => next()}>
-                                                        Continue
-                                                    </Button>
-                                                </div>
-                                            </>
-                                        )}
-                                    </div>
-                                </>
-                            )}
+                            <Steps current={current} items={items}/>
+                            <div className="steps-content">{steps[current].content}</div>
+                            <div className="steps-action">
+                                {current === 0 && (
+                                    <>
+                                        {/* <Link to='/'>FAQ</Link> */}
+                                        <Button type="primary" onClick={() => next()}>
+                                            Continue
+                                        </Button>
+                                    </>
+                                )}
+                                {current === 1 && (
+                                    <>
+                                        {/* <Link to='/'>FAQ</Link> */}
+                                        <div>
+                                            <Button onClick={() => prev()}>
+                                                Back
+                                            </Button>
+                                            <Button type="primary" onClick={() => next()}>
+                                                Continue
+                                            </Button>
+                                        </div>
+                                    </>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </UserContext.Provider>
-);
+    );
 }
 
 export default BecomePart

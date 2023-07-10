@@ -21,6 +21,7 @@ import TraccyFarm from "./containers/ImpactThroughTraccyDetails/TraccyFarm";
 import ResetPassword from "./containers/resetPassword/ResetPassword";
 import loginLayout from "./layouts/loginLayout";
 import LoginModal from "./components/LoginModal/LoginModal";
+import MyProfile from "./containers/MyProfile/MyProfile";
 
 // Route Views
 
@@ -66,6 +67,11 @@ export const rotues = [
     path: "/contact",
     layout: authLayout,
     component: () => <BecomePart />
+  },
+  {
+    path: "/myProfile",
+    layout: defaultheaderLayout,
+    component: () => <MyProfile />
   },
 
   // {

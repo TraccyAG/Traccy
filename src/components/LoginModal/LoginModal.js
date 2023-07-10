@@ -52,7 +52,7 @@ const LoginModal = ({setModal}) => {
             let userId = data.user.id;
             localStorage.setItem('accessToken', accessToken);
             localStorage.setItem('userId', userId);
-            history.push('/become-part');
+            history.push('/myProfile');
         } catch (error) {
             toast('Invalid password or email');
         }
