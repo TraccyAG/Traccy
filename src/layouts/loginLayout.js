@@ -1,6 +1,6 @@
 import React from 'react';
 import { Content } from 'antd/es/layout/layout';
-import backgroundImage from '../../src/assets/login/loginImage.png';
+import backgroundImage from '../../src/assets/login/loginImage2.png';
 import {Navbar} from "../components/layout"; // Replace with the path to your image file
 
 const LoginLayout = ({ children }) => {
