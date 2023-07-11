@@ -66,6 +66,7 @@
 }
 
 @media screen and (max-width: 500px) {
+
     .left-section.book img{
         width: 180px!important;
         padding: 10px;
@@ -77,14 +78,14 @@
         height: 150px;
     }
     .image-gallery__item:nth-child(3) {
-        height: 160px;
+        height: 180px;
     }
     .image-gallery__item:nth-child(4) {
         height: 170px;
     }
     .image-gallery{
-        width: 75%;
-        padding-top: 25px;
+        width: 85%;
+        padding-top: 0;
     }
 }
 
