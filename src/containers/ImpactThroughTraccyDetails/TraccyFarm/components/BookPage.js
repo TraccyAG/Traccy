@@ -1,6 +1,5 @@
 import React from 'react';
 import {SvgIcon} from "../../../../components/common";
-import arrow from "../../../../assets/images/farm/arrow.png";
 
 
 const BookPage = ({nextPage, prevPage,header,text}) => {
@@ -16,8 +15,7 @@ const BookPage = ({nextPage, prevPage,header,text}) => {
                         <p>{text}</p>
                     </div>
                     <div className='arrow-right-sm' onClick={nextPage} >
-                        {/*<SvgIcon name='circle-bottom' viewbox='0 0 51 50.998' style={{fill: "white"}}/>*/}
-                        <img src={arrow} style={{height:'30px'}} alt=""/>
+                        <SvgIcon name='circle-bottom' viewbox='0 0 51 50.998' style={{fill: "white"}}/>
                     </div>
                 </div>
             </div>

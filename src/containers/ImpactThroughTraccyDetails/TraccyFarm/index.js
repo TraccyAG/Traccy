@@ -102,14 +102,15 @@ const TraccyFarm = () => {
                                               text={'Our CFO & Co-Founder Dedry with local employees at work on our tomato farm in DR Congo.'}
                                               nextPage={nextPage} prevPage={prevPage}/>
                                     <div className='arrow-left' onClick={prevPage}>
-                                        <img src={arrowLeft} alt="arrowLeft"/>
+                                        {/*<img src={arrowLeft} alt="arrowLeft"/>*/}
+                                        <SvgIcon name='circle-bottom'fill={'white'}  viewbox='0 0 51 50.998'/>
                                     </div>
                                 </div>
                                 <div className="demoPage">
-                                    <div className='bookpage-inner-right' style={{background: 'rgb(170 217 168)',padding:'13px -1px 0px 0px'}}>
+                                    <div className='bookpage-inner-right' style={{background: 'rgb(170 217 168)',padding:'18px 50px 0px 64px'}}>
                                         <div className='arrow-left-sm' onClick={prevPage}>
-                                            {/*<SvgIcon name='circle-bottom' viewbox='0 0 51 50.998'/>*/}
-                                            <img  src={arrowLeft} alt="arrowLeft"/>
+                                            <SvgIcon name='circle-bottom'fill={'white'} viewbox='0 0 51 50.998'/>
+                                            {/*<img  src={arrowLeft} alt="arrowLeft"/>*/}
                                         </div>
                                         <div className="first">
                                             <div className='left-col'>
@@ -121,14 +122,16 @@ const TraccyFarm = () => {
                                     </div>
                                     <div className='arrow-right' style={{right: '5px', bottom: '5px'}}
                                          onClick={nextPage}>
-                                        <img src={arrow} style={{height:'30px'}} alt=""/>
+                                        {/*<img src={arrow} style={{height:'30px'}} alt=""/>*/}
+                                        <SvgIcon name='circle-bottom'fill={'white'}  viewbox='0 0 51 50.998'/>
                                     </div>
                                 </div>
                                 <div className="demoPage">
                                     <BookPage header={'Video gallery'} text={'Impressions from our first trip to DR Congo in October 2022.'} nextPage={nextPage} prevPage={prevPage}/>
                                     <div className='arrow-left' onClick={prevPage}>
-                                        <img src={arrowLeft} alt="arrowLeft"/>
+                                        {/*<img src={arrowLeft} alt="arrowLeft"/>*/}
                                         {/*<SvgIcon name='circle-bottom' viewbox='0 0 51 50.998'/>*/}
+                                        <SvgIcon name='circle-bottom'fill={'white'}  viewbox='0 0 51 50.998'/>
                                     </div>
                                 </div>
                                 <div className="demoPage">
