@@ -37,7 +37,7 @@ const TraccyFarm = () => {
                 primaryColor="#50E456"
                 secondaryColor="#42FF00"
             />
-            <Modal  activeModal={modal} setActive={setModal}> <img style={{width:'100%',height:'100%'}} src={image} alt="image"/></Modal>
+            <Modal  activeModal={modal} setActive={setModal}> <img style={{height:'100%'}} src={image} alt="image"/></Modal>
             <section className='book-section'>
                 <Container>
                     <Row>
