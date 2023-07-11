@@ -7,12 +7,12 @@ import RightNumbers from '../../../components/Impact/right-numbers';
 import Stage from '../../../components/ImpactDetail/Stage';
 import BookPage from "./components/BookPage";
 import ImageSwiper from "./components/ImageSwiper";
-import arrow from "../../../assets/images/farm/arrow.png";
-import arrowLeft from "../../../assets/images/farm/arrow-left.png";
+import {Modal} from "../../../components/Modal/Modal";
 
 const TraccyFarm = () => {
     const [showContent, setShowContent] = useState(4);
-
+    const [modal, setModal] = useState(false);
+    const [image, setImage] = useState(null);
     const smallDeviceBook = useMediaQuery({query: '(max-width: 991px)'})
 
     const bookRef = useRef();
@@ -37,6 +37,7 @@ const TraccyFarm = () => {
                 primaryColor="#50E456"
                 secondaryColor="#42FF00"
             />
+            <Modal  activeModal={modal} setActive={setModal}> <img style={{width:'100%',height:'100%'}} src={image} alt="image"/></Modal>
             <section className='book-section'>
                 <Container>
                     <Row>
@@ -102,42 +103,40 @@ const TraccyFarm = () => {
                                               text={'Our CFO & Co-Founder Dedry with local employees at work on our tomato farm in DR Congo.'}
                                               nextPage={nextPage} prevPage={prevPage}/>
                                     <div className='arrow-left' onClick={prevPage}>
-                                        {/*<img src={arrowLeft} alt="arrowLeft"/>*/}
-                                        <SvgIcon name='circle-bottom'fill={'white'}  viewbox='0 0 51 50.998'/>
+                                        <SvgIcon name='circle-bottom' fill={'white'} viewbox='0 0 51 50.998'/>
                                     </div>
                                 </div>
                                 <div className="demoPage">
-                                    <div className='bookpage-inner-right' style={{background: 'rgb(170 217 168)',padding:'18px 50px 0px 64px'}}>
+                                    <div className='bookpage-inner-right'
+                                         style={{background: 'rgb(170 217 168)', padding: '18px 50px 0px 64px'}}>
                                         <div className='arrow-left-sm' onClick={prevPage}>
-                                            <SvgIcon name='circle-bottom'fill={'white'} viewbox='0 0 51 50.998'/>
-                                            {/*<img  src={arrowLeft} alt="arrowLeft"/>*/}
+                                            <SvgIcon name='circle-bottom' fill={'white'} viewbox='0 0 51 50.998'/>
                                         </div>
                                         <div className="first">
                                             <div className='left-col'>
                                                 <div className='left-upper'>
-                                                    <ImageSwiper/>
+                                                    <ImageSwiper setImage={setImage} setModal={setModal}/>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div className='arrow-right' style={{right: '5px', bottom: '5px'}}
                                          onClick={nextPage}>
-                                        {/*<img src={arrow} style={{height:'30px'}} alt=""/>*/}
-                                        <SvgIcon name='circle-bottom'fill={'white'}  viewbox='0 0 51 50.998'/>
+                                        <SvgIcon name='circle-bottom' fill={'white'} viewbox='0 0 51 50.998'/>
                                     </div>
                                 </div>
                                 <div className="demoPage">
-                                    <BookPage header={'Video gallery'} text={'Impressions from our first trip to DR Congo in October 2022.'} nextPage={nextPage} prevPage={prevPage}/>
+                                    <BookPage header={'Video gallery'}
+                                              text={'Impressions from our first trip to DR Congo in October 2022.'}
+                                              nextPage={nextPage} prevPage={prevPage}/>
                                     <div className='arrow-left' onClick={prevPage}>
-                                        {/*<img src={arrowLeft} alt="arrowLeft"/>*/}
-                                        {/*<SvgIcon name='circle-bottom' viewbox='0 0 51 50.998'/>*/}
-                                        <SvgIcon name='circle-bottom'fill={'white'}  viewbox='0 0 51 50.998'/>
+                                        <SvgIcon name='circle-bottom' fill={'white'} viewbox='0 0 51 50.998'/>
                                     </div>
                                 </div>
                                 <div className="demoPage">
                                     <div className='bookpage-inner-right' style={{background: 'rgb(170 217 168)'}}>
                                         <div className='arrow-left-sm' onClick={prevPage}>
-                                            <img src={arrowLeft} alt="arrowLeft"/>
+                                            <SvgIcon name='circle-bottom' fill={'white'} viewbox='0 0 51 50.998'/>
                                         </div>
                                         <div className="first">
                                             <div className='left-col'>

@@ -4,7 +4,7 @@ import {SvgIcon} from "../../../../components/common";
 
 const BookPage = ({nextPage, prevPage,header,text}) => {
     return (
-        <div>
+        <div style={{height:'100%'}}>
             <div className='bookpage-inner-left' >
                 <div className="row">
                     <div className="left-section book">

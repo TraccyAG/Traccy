@@ -6,7 +6,7 @@ const Modal = ({activeModal, setActive, children, token, bool}) => {
         setActive(false)
     }
     return (
-        <div className={activeModal ? `${css.modal} ${css.active}` : css.modal}
+        <div style={{zIndex:4000}} className={activeModal ? `${css.modal} ${css.active}` : css.modal}
              onClick={() => setActive(!bool ? false : true)}>
             <div className={activeModal ? `${css.content} ${css.active}` : css.content}
                  onClick={e => e.stopPropagation()}>

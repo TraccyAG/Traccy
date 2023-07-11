@@ -5,23 +5,14 @@ import image1 from '../../../../assets/images/farm/image1.jpeg';
 import image2 from '../../../../assets/images/farm/image2.jpeg';
 import image3 from '../../../../assets/images/farm/image3.jpeg';
 import image4 from '../../../../assets/images/farm/image4.jpeg';
+import {Modal} from "../../../../components/Modal/Modal";
 
 const slide_img = [image2, image4, image1, image3];
 
-const ImageGallery = () => {
-    const [showImagePopup, setShowImagePopup] = useState(false);
-    const [selectedImage, setSelectedImage] = useState(null);
-
+const ImageGallery = ({setModal,setImage}) => {
     const openImage = (image) => {
-        setSelectedImage(image);
-        setShowImagePopup(true);
-        document.body.style.overflow = 'hidden'; // Prevent scrolling
-    };
-
-    const closeImage = () => {
-        setSelectedImage(null);
-        setShowImagePopup(false);
-        document.body.style.overflow = ''; // Enable scrolling
+        setImage(image)
+        setModal(true)
     };
 
     return (
@@ -39,13 +30,6 @@ const ImageGallery = () => {
                     />
                 ))}
             </div>
-            {showImagePopup && (
-                <div className="image-popup-overlay" onClick={closeImage}>
-                    <div className="image-popup">
-                        <img src={selectedImage} alt="" className="image-popup__image" />
-                    </div>
-                </div>
-            )}
         </div>
     );
 };
