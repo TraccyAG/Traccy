@@ -8,12 +8,27 @@ import LogoUser from '../../assets/images/logo-user.jpeg'
 import ellipse from '../../assets/images/Ellipse.png'
 import {useHistory} from "react-router-dom";
 import './UserComponent.css'
+import LoginButton from "../../components/authComponents/LoginButton";
+import {userService} from "../../service/user.service";
+import * as toastr from "highcharts";
 
 const UserComponent = ({user}) => {
     const wallet = useWallet();
     const [price, setPrice] = useState(0);
     const [balance, setBalance] = useState(0);
     const history = useHistory();
+    const deleteMyProfile = async () => {
+        try {
+            await userService.deleteUser({email:user.email}).then((response) => {
+                localStorage.removeItem('accessToken')
+                localStorage.removeItem('userId')
+                history.push('/')
+            })
+        } catch (error) {
+            toastr.error('Error deleting profile. Please try again.');
+            console.error(error);
+        }
+    };
     useEffect(() => {
         if (wallet.account) {
             // read phase info of current phase and store it in state variable `price` and `phaseVolume`
@@ -39,7 +54,7 @@ const UserComponent = ({user}) => {
             </div>
             <div className={'form-user-inputs'}>
                 <div className={'line-padding'}>
-                    <div className={'user-header'} >
+                    <div className={'user-header'}>
                         <h2 className={'titleStyle'}>My Profile</h2>
                         <img className={'ellipseStyle'} src={ellipse} alt="ellipse"/>
                     </div>
@@ -124,6 +139,9 @@ const UserComponent = ({user}) => {
                         </p>
                     </div>
                 </div>
+            </div>
+            <div className={'login-buttons'} style={{alignItems: "flex-end"}}>
+                <LoginButton name={'Delete my profile'} onClick={deleteMyProfile}></LoginButton>
             </div>
         </div>
     );
