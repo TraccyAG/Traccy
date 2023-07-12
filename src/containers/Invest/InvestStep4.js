@@ -61,10 +61,9 @@ const InvestStep4 = ({ onNext, onPrev ,investAmount,paymentOption}) => {
   const handleNext = async () => {
     if (wallet && wallet.initialized && paymentOption != null) {
       const saleContract = new Contract(PHASEABLE_SALE_CONTRACT_ADDRESS, saleAbi.abi, wallet.signer.provider);
-      const paymentContract = new Contract(paymentOption.address, erc20Abi.abi, wallet.signer.provider);
 
       // step 1 - allowance
-      const txAllowance = await paymentContract.connect(wallet.signer).approve(saleContract.address, ethers.utils.parseUnits(investAmount.toString(), paymentOption.decimals));
+      const txAllowance = await paymentOption.connect(wallet.signer).approve(saleContract.address, ethers.utils.parseUnits(investAmount.toString(), paymentOption.decimals));
       toast("Once the approval transaction has been performed, you will be asked to confirm the purchase in an additional transaction.");
       await txAllowance.wait();
 
