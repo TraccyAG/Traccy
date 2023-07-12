@@ -59,7 +59,7 @@ const InvestStep4 = ({ onNext, onPrev ,investAmount,paymentOption}) => {
     // download_pdf();
   }, []);
   const handleNext = async () => {
-    if (wallet && wallet.initialized && props.paymentOption != null) {
+    if (wallet && wallet.initialized && paymentOption != null) {
       const saleContract = new Contract(PHASEABLE_SALE_CONTRACT_ADDRESS, saleAbi.abi, wallet.signer.provider);
       const paymentContract = new Contract(paymentOption.address, erc20Abi.abi, wallet.signer.provider);
 
