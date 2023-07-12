@@ -8,14 +8,14 @@ import LoginInput from "../authComponents/loginInput";
 import SelectInput from "../authComponents/SelectIcon";
 import './RegistrationModal.scss'
 
-const RegistrationModal = ({ setIsRegistered}) => {
+const RegistrationModal = ({setIsRegistered}) => {
     const [firstName, setFirstName] = useState('');
     const [surname, setSurname] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [gender, setGender] = useState('Male');
     const [tokenJwt, setToken] = useState('');
-    const [title, setTitle] = useState('');
+    const [city, setCity] = useState('');
     const [address, setAddress] = useState('');
     const [zipcode, setZipcode] = useState('');
     const [agreeTerms, setAgreeTerms] = useState(false); // Checkbox state
@@ -85,7 +85,7 @@ const RegistrationModal = ({ setIsRegistered}) => {
                 password: password,
                 address: address,
                 zipcode: zipcode,
-                title: title
+                city: city
             }
 
             // Call the registration API
@@ -108,11 +108,8 @@ const RegistrationModal = ({ setIsRegistered}) => {
             setIsLoading(false); // Set loading state to false after registration attempt
         }
     };
-    const handleTitleChange = (value) => {
-        setTitle(value);
-    };
     const handleGenderChange = (value) => {
-        setTitle(value);
+        setGender(value);
     };
 
     return (
@@ -123,25 +120,6 @@ const RegistrationModal = ({ setIsRegistered}) => {
                     <button className="close-button" onClick={() => history.push('/become-part')}>
                         &#x2715;
                     </button>
-                </div>
-                <div className="form-group">
-                    <div style={{
-                        display: 'flex',
-                        justifyContent: 'flex-end'
-                    }}>
-                        <SelectInput
-                            name={'Title'}
-                            defaultValue="Title"
-                            options={[
-                                {value: 'Mr', label: 'Mr'},
-                                {value: 'Mrs', label: 'Mrs'},
-                                {value: 'Dr', label: 'Dr'},
-                                {value: 'Ms', label: 'Ms'},
-                            ]}
-                            value={title}
-                            onChange={handleTitleChange}
-                        />
-                    </div>
                 </div>
                 <div className={'register-flex-container'}>
                     <LoginInput
@@ -183,6 +161,17 @@ const RegistrationModal = ({ setIsRegistered}) => {
                         onChange={(e) => setZipcode(e.target.value)}
                     />
                 </div>
+                <div className={'register-flex-container'}>
+                    <LoginInput
+                        width={'45%'}
+                        label="City"
+                        placeholder="Enter your city"
+                        type={'text'}
+                        required={true}
+                        value={city}
+                        onChange={(e) => setCity(e.target.value)}
+                    />
+                </div>
                 <div className="form-group">
                     <LoginInput
                         label="Email"
@@ -219,18 +208,23 @@ const RegistrationModal = ({ setIsRegistered}) => {
                 </div>
                 <div>
                     <Checkbox className="custom-checkbox" onChange={handleAgreeTermsChange}>
-                        I agree to the  <a href="https://portal.traccy.io/termofuse.html"><strong>terms of use</strong></a>
+                        I agree to the <a href="https://portal.traccy.io/termofuse.html"><strong>terms of
+                        use</strong></a>
                     </Checkbox>
                 </div>
                 <div className={'login-buttons'}>
                     {
                         tokenJwt ?
-                            <LoginButton name={' Registration'} loading={isLoading}
-                                         onClick={registerUser}></LoginButton>
+                            <>
+                                <LoginButton name={'Continue'} loading={isLoading}
+                                             onClick={registerUser}></LoginButton>
+                            </>
                             :
-                            <LoginButton name={'KYC Integration'} onClick={handleLinkClick}></LoginButton>
+                            <>
+                                <LoginButton name={'Continue'} onClick={handleLinkClick}></LoginButton>
+                                <LoginButton name={'Login'} onClick={() => setIsRegistered(false)}></LoginButton>
+                            </>
                     }
-                    <LoginButton name={'Login'} onClick={()=>setIsRegistered(false)}></LoginButton>
                 </div>
             </form>
         </div>
