@@ -32,16 +32,6 @@ const InvestStep3 = ({onNext, onPrev, user}) => {
         return () => window.removeEventListener('resize', getSnapshot);
     }, [])
 
-    const handleName = (e) => {
-        dispatch({type: "setInvestName", payload: e.target.value});
-    }
-    const handleTitle = (e) => {
-        dispatch({type: "setInvestTitle", payload: e.target.value});
-    }
-    const handleEmail = (e) => {
-        dispatch({type: "setInvestEmail", payload: e.target.value});
-    }
-
     function openUpload() {
         if (typeof document !== "undefined") {
             const fileSelector = document.getElementById("fileSelector");
