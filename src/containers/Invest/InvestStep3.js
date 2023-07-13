@@ -117,6 +117,7 @@ const InvestStep3 = ({ onNext, onPrev,user }) => {
     formData.append("totalAmount", state.investTrcyAmount);
 
     const canvasDataURL = canvasRef.current.toDataURL(); // Convert canvas to data URL
+    localStorage.setItem('canvasDataURL',canvasDataURL)
     const fileBlob = await fetch(canvasDataURL).then((res) => res.blob()); // Convert data URL to Blob
 
     formData.append("file", fileBlob, "signature.png"); // Append the file Blob to the form data

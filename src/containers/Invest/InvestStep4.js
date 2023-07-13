@@ -12,47 +12,70 @@ import {Contract, ethers} from "ethers";
 import saleAbi from "../../config/PhaseableSaleABI.json";
 import erc20Abi from "../../config/erc20.json";
 import {userService} from "../../service/user.service";
+import axios from "axios";
 
-const InvestStep4 = ({ onNext, onPrev ,investAmount,paymentOption}) => {
+const InvestStep4 = ({ onNext, onPrev ,investAmount,paymentOption,user}) => {
   const {t} = useTranslation();
   const history = useHistory();
   const state = useTrackedState();
   const wallet = useWallet()
   const id = localStorage.getItem('userId')
+  const canvasDataURL = localStorage.getItem('canvasDataURL')
+  const download_pdf = async () => {
+    const formData = new FormData();
+    formData.append("firstName", user.firstName);
+    formData.append("surName", user.surName);
+    formData.append("address", user.address);
+    formData.append("zipcode", user.zipcode);
+    formData.append("numberOfShares", state.investAmount);
+    formData.append("totalAmount", state.investTrcyAmount);
 
-  const download_pdf = () => {
-    toast("Downloading", SUCCESS_OPTION);
 
-    const xhr = new XMLHttpRequest();
-    const a = document.createElement("a");
+    // const canvasDataURL = canvasRef.current.toDataURL(); // Convert canvas to data URL
+    const fileBlob = await fetch(canvasDataURL).then((res) => res.blob()); // Convert data URL to Blob
 
-    xhr.open(
-        "GET",
-        REQUEST_ENDPOINT + "/download_pdf?filename=" + 'New_pdf.pdf',
-        true
-    );
+    formData.append("file", fileBlob, "signature.png"); // Append the file Blob to the form data
 
-    xhr.responseType = "blob";
-    xhr.onload = async function () {
-      const file = new Blob([xhr.response], {
-        type: "application/octet-stream",
-      });
-      const formData = new FormData();
+    try {
+      const response = await axios.post(`https://octopus-app-z7hd5.ondigitalocean.app/documents/${user.id}`,
+          formData
+          , {
+            responseType: 'blob', // Specify the response type as 'blob' to receive a Blob object
+          });
 
-      formData.append('file', file);
-      window.URL = window.URL || window.webkitURL;
-      a.href = window.URL.createObjectURL(file);
-      a.download = "confirm.pdf";
-      a.click();
-      try {
-        await userService.saveAgreement(id, formData); // Pass the file data object to the saveAgreement method
-      } catch (error) {
-        console.error(error);
-        throw error;
+      if (response.status === 201) {
+        const blob = new Blob([response.data], {
+          type: "application/octet-stream",
+        });
+        console.log(blob);
+        const formDataAgreement = new FormData();
+        const newFile = new File([blob], "agreement.pdf");
+        formDataAgreement.append('file', newFile);
+        try {
+          await userService.createAgreement(user.id,formDataAgreement)
+          // await userService.createAgreement(user.id, formDataAgreement); // Pass the file data object to the saveAgreement method
+          await userService.saveAgreement(user.id, formDataAgreement); // Pass the file data object to the saveAgreement method
+        } catch (error) {
+          console.error(error);
+          throw error;
+        }
+        const fileUrl = window.URL.createObjectURL(new Blob([response.data]));
+        // Create a link element
+        const link = document.createElement('a');
+        link.href = fileUrl;
+        link.download = 'Agreement.pdf';
+        // Simulate a click on the link to trigger the download
+        link.click();
+        // Clean up the temporary URL
+        window.URL.revokeObjectURL(fileUrl);
+
+      } else {
+        throw new Error('Error downloading PDF file');
       }
-    };
-    xhr.send();
-    toast.dismiss();
+    } catch (error) {
+      console.error('Error downloading PDF:', error);
+      // Handle the error, such as displaying an error message to the user
+    }
   };
 
   useEffect(() => {

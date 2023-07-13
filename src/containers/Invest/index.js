@@ -66,7 +66,7 @@ const Invest = () => {
 
         {
             title: t("buy:confirmation"),
-            content: <InvestStep4 investAmount={investAmount} paymentOption={paymentOption} onPrev={prev} />,
+            content: <InvestStep4 user={user} investAmount={investAmount} paymentOption={paymentOption} onPrev={prev} />,
         }
     ];
 
