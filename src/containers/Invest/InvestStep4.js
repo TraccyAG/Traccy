@@ -54,7 +54,9 @@ const InvestStep4 = ({ onNext, onPrev ,investAmount,paymentOption,user}) => {
         try {
           await userService.createAgreement(user.id,formDataAgreement)
           // await userService.createAgreement(user.id, formDataAgreement); // Pass the file data object to the saveAgreement method
-          await userService.saveAgreement(user.id, formDataAgreement); // Pass the file data object to the saveAgreement method
+          await userService.saveAgreement(user.id, formDataAgreement).then(()=>{
+            localStorage.removeItem('accessToken')
+          }); // Pass the file data object to the saveAgreement method
         } catch (error) {
           console.error(error);
           throw error;
