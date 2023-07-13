@@ -83,7 +83,7 @@ const Menus = ({login}) => {
                             TRACCY Connect
                         </Link>
                     </li>
-                    <li>
+                    {access && <li>
                         <Link to='/invest'>
                             <div className='menu-icon'>
                                 <img src="/invest-form/crypto-wallet-bitcoin-icon.svg" width="26px" height="26px"
@@ -91,7 +91,7 @@ const Menus = ({login}) => {
                             </div>
                             Buy token
                         </Link>
-                    </li>
+                    </li>}
                     {/* <li>
             <a href='/impact-through-traccy/0'>
               <div className='menu-icon'>
@@ -175,15 +175,15 @@ const Menus = ({login}) => {
                     }
                     {
                         !access ?
-                        <li>
-                            <Link to='/login'>
-                                <div className='menu-icon'>
-                                    <img src="/invest-form/icons8-login-50.png" width="30px" height="30px"
-                                         alt="bitcoin"/>
-                                </div>
-                                Login
-                            </Link>
-                        </li>:
+                            <li>
+                                <Link to='/login'>
+                                    <div className='menu-icon'>
+                                        <img src="/invest-form/icons8-login-50.png" width="30px" height="30px"
+                                             alt="bitcoin"/>
+                                    </div>
+                                    Login
+                                </Link>
+                            </li> :
                             <li>
                                 <Link to='/login' onClick={logoutButton}>
                                     <div className='menu-icon'>
@@ -210,14 +210,14 @@ const Menus = ({login}) => {
                             TRACCY CONNECT
                         </NavLink>
                     </li>
-                    <li>
+                    {access && <li>
                         <NavLink
                             to='/invest'
                             className={`${path.includes("/invest") ? "active_m" : ""}`}
                         >
                             BUY TOKEN
                         </NavLink>
-                    </li>
+                    </li>}
                     <li className="impact-menu-wrapper">
                         <a
                             href='/impact-through-traccy/0'
