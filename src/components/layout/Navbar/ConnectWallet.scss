@@ -27,6 +27,11 @@
   }
 }
 
+.connect-wallet.delete{
+  @media (max-width: 768px) {
+    display: block;
+  }
+}
 .connect-wallet {
   width: 150px;
   height: 40px !important;

@@ -11,6 +11,7 @@ import './UserComponent.css'
 import LoginButton from "../../components/authComponents/LoginButton";
 import {userService} from "../../service/user.service";
 import * as toastr from "highcharts";
+import {Button} from "antd";
 
 const UserComponent = ({user}) => {
     const wallet = useWallet();
@@ -141,7 +142,9 @@ const UserComponent = ({user}) => {
                 </div>
             </div>
             <div className={'login-buttons'} style={{alignItems: "flex-end"}}>
-                <LoginButton name={'Delete my profile'} onClick={deleteMyProfile}></LoginButton>
+                <Button type="ghost" className="connect-wallet delete"  onClick={deleteMyProfile}>
+                    <span>Delete my profile</span>
+                </Button>
             </div>
         </div>
     );
