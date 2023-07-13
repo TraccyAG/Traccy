@@ -12,19 +12,38 @@
   .input-parts {
     display: flex;
     flex-direction: row;
-    gap: 70px;
-    align-items: flex-end;
-    justify-content: center;
+    /* gap: 70px; */
+    align-items: flex-start;
     position: relative;
+    justify-content: center;
+
+    @media screen and (max-width: 1150px) {
+      display: flex;
+      flex-direction: column;
+      /* gap: 70px; */
+      /* left: 20%; */
+      position: relative;
+      justify-content: center;
+      align-items: center;
+      .input-contents{
+        width: auto!important;
+      }
+      .splitter{
+        display: none;
+      }
+    }
 
     @media screen and (max-width: 576px) {
       display: block;
       width: 100%;
     }
     .input-contents {
-      width: 300px;
+      width: 700px;
       font-size: 14px;
-
+      @media screen and (max-width: 576px) {
+        display: block;
+        width: 100%;
+      }
       input {
         width: 100%;
         height: 38px;
