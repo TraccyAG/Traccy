@@ -4,13 +4,14 @@ import { Container, Row, Col, SvgIcon } from "../../common";
 import './Footer.scss';
 
 import Logo from '../../../assets/images/logo.png';
-import { Link } from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 
 const Footer = () => {
   const handleClick = () => {
     const buttons = document.getElementsByClassName("connect-wallet-mobile")
     buttons[0].click();
   }
+  const history = useHistory();
   return (
     <footer className="footer">
       <Container>
@@ -59,9 +60,10 @@ const Footer = () => {
             </Row>
           </Col>
           <Col lg='3' className="subscribe-col col-padding" >
-            <h3>Connect your Wallet </h3>
-            <p>Connect your wallet to participate in STO  </p>
-            <Button type="primary" onClick={handleClick} id="footer-wallet">Connect Wallet</Button>
+            <h3>Log in to your Account</h3>
+            <p>Log in to your account to
+              participate in STO </p>
+            <Button type="primary" onClick={()=>history.push('/login')} id="footer-wallet">Login</Button>
           </Col>
         </Row>
         <Row className='footer-bottom'>

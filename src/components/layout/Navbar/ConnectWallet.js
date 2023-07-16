@@ -110,19 +110,22 @@ export default function ConnectWallet() {
             </div>
             {
                 token ?
+                    <>
                     <Button type="ghost" className="connect-wallet" onClick={logoutButton}>
-                        <span>{t("general:logout")}</span>
+                        <span>{t("general:Logout")}</span>
                     </Button>
+                    <Button type="ghost" className="connect-wallet" onClick={onConnect}>
+                        {!connected && <span>{t("general:connectwallet")}</span>}
+                        {(connected && !initialized) && <span>Loading</span>}
+                        {(connected && initialized) && <><WalletOutlined/><CheckOutlined/><span>{address}</span></>}
+                    </Button>
+                    </>
                     :
                     <Button type="ghost" className="connect-wallet" onClick={() => history.push('/login')}>
-                        <span>{t("general:login")}</span>
+                        <span>{t("general:Login")}</span>
                     </Button>
             }
-            <Button type="ghost" className="connect-wallet" onClick={onConnect}>
-                {!connected && <span>{t("general:connectwallet")}</span>}
-                {(connected && !initialized) && <span>Loading</span>}
-                {(connected && initialized) && <><WalletOutlined/><CheckOutlined/><span>{address}</span></>}
-            </Button>
+
             <Drawer
                 title={false}
                 placement='right'

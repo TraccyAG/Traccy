@@ -39,12 +39,34 @@ const LoginModal = ({setModal}) => {
         setSendMail(true);
     };
 
-    const loginUser = async (e) => {
+    // const loginUser = async (e) => {
+    //     e.preventDefault();
+    //     setLoading(true); // Set loading state to true
+    //
+    //     try {
+    //         const {data} = await authService.login({
+    //             email,
+    //             password,
+    //         });
+    //         let accessToken = data.tokenPair.accessToken;
+    //         let userId = data.user.id;
+    //         localStorage.setItem('accessToken', accessToken);
+    //         localStorage.setItem('userId', userId);
+    //         history.push('/myProfile');
+    //     } catch (error) {
+    //         toast('Invalid password or email');
+    //     }
+    //
+    //     setLoading(false); // Set loading state back to false
+    // };
+
+    // New function to handle form submission
+    const handleFormSubmit = async (e) => {
         e.preventDefault();
-        setLoading(true); // Set loading state to true
+        setLoading(true);
 
         try {
-            const {data} = await authService.login({
+            const { data } = await authService.login({
                 email,
                 password,
             });
@@ -57,9 +79,8 @@ const LoginModal = ({setModal}) => {
             toast('Invalid password or email');
         }
 
-        setLoading(false); // Set loading state back to false
+        setLoading(false);
     };
-
     const handleCloseSnackbar = () => {
         setError(null);
     };
@@ -98,10 +119,10 @@ const LoginModal = ({setModal}) => {
                     <SetEmail setSendMail={setSendMail} setModal={setModal}/>
                 ) : (
                     <div className={'login-form-blur'}>
-                        <form className="llogin-form">
+                        <form className="llogin-form" onSubmit={handleFormSubmit}>
                             <div className={'form-close'}>
                                 <h2>Sign in</h2>
-                                <button className="close-button" onClick={()=>history.push('/become-part')}>
+                                <button className="close-button" type={'button'} onClick={()=>history.push('/become-part')}>
                                     &#x2715;
                                 </button>
                             </div>
@@ -121,7 +142,7 @@ const LoginModal = ({setModal}) => {
                                 onChange={handlePasswordChange}
                             />
                             <div className={'login-buttons'}>
-                                <LoginButton name={'Login'} loading={isLoading} onClick={loginUser}></LoginButton>
+                                <LoginButton name={'Login'} loading={isLoading} type={'submit'} ></LoginButton>
                                 <LoginButton name={'Registration'}  onClick={handleRegistration}></LoginButton>
                                 <LoginButton name={'Forgot password'} onClick={forgotPassword}></LoginButton>
                             </div>

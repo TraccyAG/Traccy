@@ -1,10 +1,10 @@
 import React from 'react';
 import { Spin } from 'antd';
 
-const LoginButton = ({ name, loading, onClick }) => {
+const LoginButton = ({ name, loading, onClick,type }) => {
     return (
         <div style={containerStyle}>
-            <button style={buttonStyle} onClick={onClick} disabled={loading}>
+            <button type={type} style={buttonStyle} onClick={onClick} disabled={loading}>
                 {loading ? (
                     <Spin size="small" style={spinnerStyle} />
                 ) : (
