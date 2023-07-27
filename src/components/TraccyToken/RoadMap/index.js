@@ -33,11 +33,11 @@ const RoadMap = ({ datas }) => {
         id="roadmap-overlay"
       >
         {datas.map((data, index) => (
-          <div className="roadmap-card">
+          <div className="roadmap-card" key={index}>
             <span className="roadmap-title">
               {data.title}
             </span>
-            <div 
+            <div
               className="timeline"
               style={{background: TimeLineColors[index]}}
             />

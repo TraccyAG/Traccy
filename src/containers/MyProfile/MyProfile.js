@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { userService } from "../../service/user.service";
+import React, {useEffect, useState} from 'react';
+import {userService} from "../../service/user.service";
 import UserComponent from "../UserComponent/UserComponent";
 import {SvgIcon} from "../../components/common";
-import {Button, Steps} from "antd";
 import {UserContext} from "../BecomePart";
 
 const MyProfile = () => {
@@ -14,7 +13,7 @@ const MyProfile = () => {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const { data } = await userService.getUserById(userId);
+                const {data} = await userService.getUserById(userId);
                 setUser(data);
                 setLoading(false);
             } catch (error) {
@@ -30,7 +29,7 @@ const MyProfile = () => {
 
     return (
         <div>
-            <UserContext.Provider >
+            <UserContext.Provider value={user}>
                 <div className='becomepart-wrapper'>
                     <div className="polygon-effect">
                         <img src="/invest-form/left-hexa.png" alt="polygon-left"/>
@@ -53,9 +52,6 @@ const MyProfile = () => {
                         </div>
                     </div>
                     <div className='right-section'>
-                        {/* <div className='header-bar'>
-        <Navbar />
-    </div> */}
                         <div className={`rightbar-inner ${user ? 'user' : ''}`}>
                             {user &&
                                 <>
@@ -63,24 +59,25 @@ const MyProfile = () => {
                                         <hr className="vertical-line"/>
                                         <div className="text-bar-content">
                                             <div>
-                                                <h2 >Believe</h2>
-                                                <p style={{color:'rgba(230, 43, 201, 1)'}}>in a bright future</p>
+                                                <h2>Believe</h2>
+                                                <p style={{color: 'rgba(230, 43, 201, 1)'}}>in a bright future</p>
                                             </div>
                                             <div>
                                                 <h2>Invest</h2>
-                                                <p style={{color:'rgba(159, 100, 235, 1)'}}>In impact</p>
+                                                <p style={{color: 'rgba(159, 100, 235, 1)'}}>In impact</p>
                                             </div>
                                             <div>
                                                 <h2>Achieve</h2>
-                                                <p style={{color:'rgba(23, 197, 250, 1)'}}>change</p>
+                                                <p style={{color: 'rgba(23, 197, 250, 1)'}}>change</p>
                                             </div>
+                                        </div>
+                                        <div className={'delete-text-block'}>
+                                            <p>You want to delete your profile?</p>
+                                            <p>Then send us an email at info@traccy.ch</p>
                                         </div>
                                     </div>
 
-
-                                    <div className={'light-container'}>
-
-                                    </div>
+                                    <div className={'light-container'}></div>
                                 </>
                             }
 
@@ -98,7 +95,6 @@ const MyProfile = () => {
                     </div>
                 </div>
             </UserContext.Provider>
-            {/*{user && <UserComponent user={user} />}*/}
         </div>
     );
 };

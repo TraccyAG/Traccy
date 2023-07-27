@@ -156,18 +156,18 @@
           padding: 15px;
           margin: 0 0 3rem 0;
         }
-         //&::before {
-         //    position: absolute;
-         //    content: ' ';
-         //    left: -4.8px;
-         //    width: 9px;
-         //    height: 9px;
-         //    border-radius: 9px;
-         //    background: #A7A7A7;
-         //    display: inline-block;
-         //    z-index: 2;
-         //    top: 60px;
-         //}
+        //&::before {
+        //    position: absolute;
+        //    content: ' ';
+        //    left: -4.8px;
+        //    width: 9px;
+        //    height: 9px;
+        //    border-radius: 9px;
+        //    background: #A7A7A7;
+        //    display: inline-block;
+        //    z-index: 2;
+        //    top: 60px;
+        //}
         .ant-steps {
           margin-bottom: 3rem;
           max-width: 670px;
@@ -237,6 +237,7 @@
           justify-content: space-between;
           align-items: center;
           width: 100%;
+          column-gap: 50px;
 
           a {
             color: #BE1E73;
@@ -289,6 +290,19 @@
   display: flex;
   align-items: center;
   padding: 10%;
+  position: relative;
+}
+
+.delete-text-block {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  position: absolute;
+  bottom: 100px;
+}
+
+.delete-text-block > p {
+  opacity: 50%;
 }
 
 .vertical-line {
@@ -338,11 +352,18 @@
   background-color: rgb(23, 197, 250);
 }
 
+.form-block {
+  display: flex;
+  column-gap: 30px;
+  justify-content: space-between;
+}
+
 .form-user-inputs {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding-left: 25%;
+  padding-left: 15px;
+  row-gap: 30px;
 }
 
 .line-myprofile {
@@ -350,7 +371,7 @@
   height: 1px;
   background: linear-gradient(270.01deg, rgba(21, 175, 208, 0.29) 0.98%, rgba(255, 255, 255, 0.68) 42.01%, rgba(175, 34, 153, 0.15) 81.62%);
   width: 280px;
-  margin-left: -30%;
+  //margin-left: -30%;
 }
 
 @media screen and (max-width: 1200px) {
@@ -410,14 +431,63 @@
   .vertical-line {
     top: -15px;
   }
+  .delete-text-block {
+    flex-direction: row;
+    column-gap: 10px;
+    bottom: 5px;
+  }
+  .delete-text-block > p {
+    font-size: 12px;
+  }
+  .vertical-line {
+    margin-bottom: 40px;
+  }
+
+  .form-block {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
+
+@media screen and (max-width: 700px) {
+  .form-block {
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .delete-text-block {
+    flex-direction: row;
+    column-gap: 10px;
+    bottom: 5px;
+  }
+  .delete-text-block > p {
+    font-size: 9px;
+  }
+  .vertical-line {
+    margin-bottom: 30px;
+  }
+
+}
 
 @media screen and (max-width: 500px) {
   .form-user-inputs div p label {
     font-size: 10px !important;
   }
-
+  .form-block {
+    flex-direction: column;
+  }
+  .delete-text-block {
+    flex-direction: row;
+    column-gap: 5px;
+    bottom: 2px;
+  }
+  .delete-text-block > p {
+    font-size: 9px;
+  }
+  .vertical-line {
+    margin-bottom: 30px;
+  }
 }
 
 .dtl-section.user::before {

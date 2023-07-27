@@ -1,5 +1,5 @@
-import {useRef, useState, useEffect} from "react";
-import {Button} from "antd";
+import React, {useEffect, useRef, useState} from "react";
+import {Spin} from "antd";
 import SignatureCanvas from "react-signature-canvas";
 import {toast} from "react-toastify";
 import axios from "axios";
@@ -7,20 +7,30 @@ import axios from "axios";
 
 import InvestWrapper from "./InvestWrapper";
 import "./InvestStep3.scss";
-import {useTrackedState, useDispatch, useWallet} from "../../contexts/store";
-import {ERROR_OPTION, REQUEST_ENDPOINT, SUCCESS_OPTION} from "../../config/constants";
+import {useDispatch, useTrackedState, useWallet} from "../../contexts/store";
+import {ERROR_OPTION, PHASEABLE_SALE_CONTRACT_ADDRESS, SUCCESS_OPTION} from "../../config/constants";
 import {LookForTokenInfo} from "../../config/utilitiy";
 import {useTranslation} from "react-i18next";
 import {userService} from "../../service/user.service";
+import MyDocument from "./PDFViewer";
+import {useHistory} from "react-router-dom";
+import {Contract, ethers} from "ethers";
+import saleAbi from "../../config/PhaseableSaleABI.json";
+import erc20Abi from "../../config/erc20.json";
 
-const InvestStep3 = ({onNext, onPrev, user}) => {
+const InvestStep3 = ({onNext, onPrev, user, setFileUrl, paymentOption}) => {
     const {t} = useTranslation();
     const state = useTrackedState();
     const dispatch = useDispatch();
+    const history = useHistory();
+
     const wallet = useWallet();
     const canvasRef = useRef({});
+
     const [_, setSignature] = useState("");
     const [width, setWidth] = useState(0);
+    const [blob, setBlob] = useState(null);
+    const [disabled, setDisabled] = useState(false);
 
     useEffect(() => {
         function getSnapshot() {
@@ -92,14 +102,15 @@ const InvestStep3 = ({onNext, onPrev, user}) => {
         }
 
         if (parseFloat(investAmount) <= 0) {
-          toast("Please input amount", ERROR_OPTION);
-          return false;
+            toast("Please input amount", ERROR_OPTION);
+            return false;
         }
 
         return true;
     }
 
     async function createSAFTPdf() {
+        setDisabled(true);
         const formData = new FormData();
         formData.append("firstName", user.firstName);
         formData.append("surName", user.surName);
@@ -125,33 +136,27 @@ const InvestStep3 = ({onNext, onPrev, user}) => {
                 const blob = new Blob([response.data], {
                     type: "application/octet-stream",
                 });
-                console.log(blob);
                 const formDataAgreement = new FormData();
                 const newFile = new File([blob], "agreement.pdf");
                 formDataAgreement.append('file', newFile);
                 try {
                     // await userService.createAgreement(user.id, formDataAgreement); // Pass the file data object to the saveAgreement method
-                    await userService.saveAgreement(user.id, formDataAgreement); // Pass the file data object to the saveAgreement method
+                    const {data} = await userService.saveAgreement(user.id, formDataAgreement); // Pass the file data object to the saveAgreement method
+                    localStorage.setItem('fileUrl', data?.file)
                 } catch (error) {
                     console.error(error);
                     throw error;
                 }
                 const fileUrl = window.URL.createObjectURL(new Blob([response.data]));
-                // Create a link element
-                const link = document.createElement('a');
-                link.href = fileUrl;
-                link.download = 'Agreement.pdf';
-                // Simulate a click on the link to trigger the download
-                link.click();
-                // Clean up the temporary URL
-                window.URL.revokeObjectURL(fileUrl);
-
+                setFileUrl(fileUrl);
+                setBlob(response.data);
+                setDisabled(false)
             } else {
                 throw new Error('Error downloading PDF file');
             }
         } catch (error) {
-            console.error('Error downloading PDF:', error);
-            // Handle the error, such as displaying an error message to the user
+            console.error('Error downloading PDF => ', error);
+            toast('Error downloading PDF => ', error)
         }
     }
 
@@ -161,20 +166,18 @@ const InvestStep3 = ({onNext, onPrev, user}) => {
         try {
             if (checkValication() === false)
                 return;
+            toast("Please wait, generating document", {...SUCCESS_OPTION, autoClose: false});
+            const tokenInfo = LookForTokenInfo(state.investChain, state.investToken);
+
+            // await wallet.buyTokens(
+            //     state.investAmount,
+            //     tokenInfo
+            // );
 
             await createSAFTPdf();
-            toast("Please wait", {...SUCCESS_OPTION, autoClose: false});
-
-            const tokenInfo = LookForTokenInfo(state.investChain, state.investToken);
-            await wallet.buyTokens(
-                state.investAmount,
-                tokenInfo
-            );
 
             toast.dismiss();
             toast("Success", SUCCESS_OPTION);
-
-            onNext();
         } catch (e) {
             toast.dismiss();
             console.log(e)
@@ -182,78 +185,141 @@ const InvestStep3 = ({onNext, onPrev, user}) => {
         }
     }
 
-    return (
-        <InvestWrapper>
-            <div className="invest-step3-body0">
-                <div className="input-parts">
-                    <div className="input-contents" style={{display:'flex',columnGap:'5%'}}>
-                        <div>
-                            <div className="input-name">
-                                <span>{t("buy:title")} </span>
-                                <input disabled={true} placeholder={user.title}/>
-                            </div>
-                            <div className="input-name">
-                                <span>First name</span>
-                                <input disabled={true} placeholder={user.firstName}/>
-                            </div>
-                            <div className="input-name">
-                                <span>Surname</span>
-                                <input disabled={true} placeholder={user.surName}/>
-                            </div>
-                            <div className="input-name">
-                                <span>Email</span>
-                                <input disabled={true} placeholder={user.email}/>
-                            </div>
-                        </div>
-                        <div>
-                            <div className="input-name">
-                                <span>Address</span>
-                                <input disabled={true} placeholder={user.address}/>
-                            </div>
-                            <div className="input-name">
-                                <span>ZIP-Code</span>
-                                <input disabled={true} placeholder={user.zipcode}/>
-                            </div>
-                            <div className="input-name">
-                                <span>City</span>
-                                <input disabled={true} placeholder={user.city}/>
-                            </div>
-                        </div>
+    const BuyToken = async () => {
+        console.log(paymentOption);
+        if (wallet && wallet.initialized && paymentOption.paymentOption != null) {
+            const saleContract = new Contract(PHASEABLE_SALE_CONTRACT_ADDRESS, saleAbi.abi, wallet.signer.provider);
+            const paymentContract = new Contract(paymentOption.paymentOption.address, erc20Abi.abi, wallet.signer.provider);
 
-                    </div>
-                    <div className="splitter"/>
-                    <div className="input-signature">
-                        <span>{t("buy:signature")}</span>
-                        <div className="signature-wrapper">
-                            <SignatureCanvas
-                                ref={canvasRef}
-                                penColor="black"
-                                canvasProps={{width: width, height: 150}}
+            // step 1 - allowance
+            const txAllowance = await paymentContract.connect(wallet.signer).approve(saleContract.address, ethers.utils.parseUnits(paymentOption.investAmount.toString(), paymentOption.decimals));
+            toast("Once the approval transaction has been performed, you will be asked to confirm the purchase in an additional transaction.");
+            await txAllowance.wait();
+
+            // step 2 - actual purchase
+            let txPurchase;
+            if (paymentOption.paymentOption.name === "USDC") {
+                txPurchase = await saleContract.connect(wallet.signer).purchaseUsdc(ethers.utils.parseUnits(paymentOption.investAmount.toString(), paymentOption.paymentOption.decimals));
+            }
+            if (paymentOption.paymentOption.name === "USDT") {
+                txPurchase = await saleContract.connect(wallet.signer).purchaseUsdt(ethers.utils.parseUnits(paymentOption.investAmount.toString(), paymentOption.paymentOption.decimals));
+            }
+            toast("Thank you for your purchase, you will be notified once your tokens are available in your wallet.");
+            await txPurchase.wait();
+            onNext()
+            toast("Your new tokens are now available in your wallet.");
+        }
+    }
+
+    const handleDecline = () => {
+        history.push("/");
+    };
+
+    return (
+        <>
+            {!blob ? <InvestWrapper>
+                <div className="invest-step3-body0">
+                    <div className="input-parts">
+                        <div className="input-contents" style={{display: 'flex', columnGap: '5%'}}>
+                            <div>
+                                <div className="input-name">
+                                    <span>{t("buy:title")} </span>
+                                    <input disabled={true} placeholder={user.title}/>
+                                </div>
+                                <div className="input-name">
+                                    <span>First name</span>
+                                    <input disabled={true} placeholder={user.firstName}/>
+                                </div>
+                                <div className="input-name">
+                                    <span>Surname</span>
+                                    <input disabled={true} placeholder={user.surName}/>
+                                </div>
+                                <div className="input-name">
+                                    <span>Email</span>
+                                    <input disabled={true} placeholder={user.email}/>
+                                </div>
+                            </div>
+                            <div>
+                                <div className="input-name">
+                                    <span>Address</span>
+                                    <input disabled={true} placeholder={user.address}/>
+                                </div>
+                                <div className="input-name">
+                                    <span>ZIP-Code</span>
+                                    <input disabled={true} placeholder={user.zipcode}/>
+                                </div>
+                                <div className="input-name">
+                                    <span>City</span>
+                                    <input disabled={true} placeholder={user.city}/>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div className="splitter"/>
+                        <div className="input-signature">
+                            <span>{t("buy:signature")}
+                                <div className="signature">*</div></span>
+                            <div className="signature-wrapper">
+                                <SignatureCanvas
+                                    ref={canvasRef}
+                                    penColor="black"
+                                    canvasProps={{width: width, height: 150}}
+                                />
+                            </div>
+                            <input
+                                type="file"
+                                id="fileSelector"
+                                name="userFile"
+                                style={{display: "none"}}
+                                onChange={(e) => onChangeSignature(e)}
                             />
-                        </div>
-                        <input
-                            type="file"
-                            id="fileSelector"
-                            name="userFile"
-                            style={{display: "none"}}
-                            onChange={(e) => onChangeSignature(e)}
-                        />
-                        <div className="button-wrapper">
-                            <Button type="primary" onClick={handleClear}>{t("buy:clear")}</Button>
-                            <Button type="primary" onClick={openUpload}>{t("buy:open")}</Button>
+                            <div className="button-wrapper">
+                                <button disabled={disabled} className={'button'}
+                                        onClick={handleClear}>{t("buy:clear")}</button>
+                                {/*<Button type="primary" onClick={openUpload}>{t("buy:open")}</Button>*/}
+                            </div>
+                            <div className="button-wrapper submit">
+                                <button disabled={disabled} className={'button'} onClick={() => onPrev()}>
+                                    Back
+                                </button>
+                                {disabled ?
+                                    <button disabled={disabled} className={'button'}>
+                                        <Spin size="small" style={spinnerStyle}/>
+                                    </button> :
+                                    <button disabled={disabled} className={'button'} onClick={() => handleNext()}>
+                                        Continue
+                                    </button>}
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div className="steps-action">
-                    <div>
-                        <Button type="primary" onClick={() => handleNext()}>
-                            {t("buy:invest")}
-                        </Button>
+            </InvestWrapper> : <InvestWrapper>
+                <div className="invest-step1-body0">
+                    <span>PARTICIPATION PURCHASE AGREEMENT</span>
+                    <span>{t("buy:terms")}</span>
+                    <div className="invest-document">
+                        <MyDocument blob={blob}/>
+                    </div>
+
+                    <div className="steps-action">
+                        <button onClick={BuyToken} className={'button'}>
+                            Accept & participate
+                        </button>
+                        <button onClick={() => handleDecline()} className={'button'}>
+                            Decline
+                        </button>
                     </div>
                 </div>
-            </div>
-        </InvestWrapper>
+            </InvestWrapper>
+            }
+        </>
     )
 }
+
+const spinnerStyle = {
+    transform: 'translate(-50%, -50%)',
+    position: 'absolute',
+    top: '15px',
+};
 
 export default InvestStep3;
