@@ -28,11 +28,11 @@ const InvestStep2 = ({onPrev, onNext,setPayments }) => {
             investAmount,
             paymentOption
         })
-        // // -- note: this is the old flow with verifcation before the actual purchase, this needs to be readjusted --
-        // if (parseFloat(state.investAmount) > parseFloat(state.balance)) {
-        //   toast("Insufficient balance", ERROR_OPTION);
-        //   return false;
-        // }
+        // -- note: this is the old flow with verifcation before the actual purchase, this needs to be readjusted --
+        if (parseFloat(state.investAmount) > parseFloat(state.balance)) {
+          toast("Insufficient balance", ERROR_OPTION);
+          return false;
+        }
         onNext();
     }
 
