@@ -128,7 +128,7 @@ const InvestStep3 = ({onNext, onPrev, user, setFileUrl, paymentOption}) => {
         formData.append("file", fileBlob, "signature.png"); // Append the file Blob to the form data
 
         try {
-            const response = await axios.post(`${baseUrl}/documents/${user.id}`,
+            const response = await axios.post(`${baseUrl}documents/${user.id}`,
                 formData
                 , {
                     responseType: 'blob', // Specify the response type as 'blob' to receive a Blob object
@@ -157,6 +157,7 @@ const InvestStep3 = ({onNext, onPrev, user, setFileUrl, paymentOption}) => {
                 throw new Error('Error downloading PDF file');
             }
         } catch (error) {
+            setDisabled(false)
             console.error('Error downloading PDF => ', error);
             toast('Error downloading PDF => ', error)
         }
@@ -188,29 +189,33 @@ const InvestStep3 = ({onNext, onPrev, user, setFileUrl, paymentOption}) => {
     }
 
     const BuyToken = async () => {
-        console.log(paymentOption);
-        if (wallet && wallet.initialized && paymentOption.paymentOption != null) {
-            const saleContract = new Contract(PHASEABLE_SALE_CONTRACT_ADDRESS, saleAbi.abi, wallet.signer.provider);
-            const paymentContract = new Contract(paymentOption.paymentOption.address, erc20Abi.abi, wallet.signer.provider);
+        try {
+            if (wallet && wallet.initialized && paymentOption.paymentOption != null) {
+                const saleContract = new Contract(PHASEABLE_SALE_CONTRACT_ADDRESS, saleAbi.abi, wallet.signer.provider);
+                const paymentContract = new Contract(paymentOption.paymentOption.address, erc20Abi.abi, wallet.signer.provider);
 
-            // step 1 - allowance
-            const txAllowance = await paymentContract.connect(wallet.signer).approve(saleContract.address, ethers.utils.parseUnits(paymentOption.investAmount.toString(), paymentOption.decimals));
-            toast("Once the approval transaction has been performed, you will be asked to confirm the purchase in an additional transaction.");
-            await txAllowance.wait();
+                // step 1 - allowance
+                const txAllowance = await paymentContract.connect(wallet.signer).approve(saleContract.address, ethers.utils.parseUnits(paymentOption.investAmount.toString(), paymentOption.decimals));
+                toast("Once the approval transaction has been performed, you will be asked to confirm the purchase in an additional transaction.");
+                await txAllowance.wait();
 
-            // step 2 - actual purchase
-            let txPurchase;
-            if (paymentOption.paymentOption.name === "USDC") {
-                txPurchase = await saleContract.connect(wallet.signer).purchaseUsdc(ethers.utils.parseUnits(paymentOption.investAmount.toString(), paymentOption.paymentOption.decimals));
+                // step 2 - actual purchase
+                let txPurchase;
+                if (paymentOption.paymentOption.name === "USDC") {
+                    txPurchase = await saleContract.connect(wallet.signer).purchaseUsdc(ethers.utils.parseUnits(paymentOption.investAmount.toString(), paymentOption.paymentOption.decimals));
+                }
+                if (paymentOption.paymentOption.name === "USDT") {
+                    txPurchase = await saleContract.connect(wallet.signer).purchaseUsdt(ethers.utils.parseUnits(paymentOption.investAmount.toString(), paymentOption.paymentOption.decimals));
+                }
+                toast("Thank you for your purchase, you will be notified once your tokens are available in your wallet.");
+                await txPurchase.wait();
+                onNext()
+                toast("Your new tokens are now available in your wallet.");
             }
-            if (paymentOption.paymentOption.name === "USDT") {
-                txPurchase = await saleContract.connect(wallet.signer).purchaseUsdt(ethers.utils.parseUnits(paymentOption.investAmount.toString(), paymentOption.paymentOption.decimals));
-            }
-            toast("Thank you for your purchase, you will be notified once your tokens are available in your wallet.");
-            await txPurchase.wait();
-            onNext()
-            toast("Your new tokens are now available in your wallet.");
+        } catch (e) {
+            console.log(e);
         }
+
     }
 
     const handleDecline = () => {
