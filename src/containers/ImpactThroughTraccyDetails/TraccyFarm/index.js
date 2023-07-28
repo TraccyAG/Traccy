@@ -37,7 +37,8 @@ const TraccyFarm = () => {
                 primaryColor="#50E456"
                 secondaryColor="#42FF00"
             />
-            <Modal  activeModal={modal} setActive={setModal}> <img style={{height:'100%'}} src={image} alt="image"/></Modal>
+            <Modal activeModal={modal} setActive={setModal}> <img style={{height: '100%'}} src={image}
+                                                                  alt="image"/></Modal>
             <section className='book-section'>
                 <Container>
                     <Row>
@@ -134,17 +135,15 @@ const TraccyFarm = () => {
                                     </div>
                                 </div>
                                 <div className="demoPage">
-                                    <div className='bookpage-inner-right' style={{background: 'rgb(170 217 168)'}}>
+                                    <div className='bookpage-inner-right'
+                                         style={{background: 'rgb(170 217 168)', width: '100%'}}>
                                         <div className='arrow-left-sm' onClick={prevPage}>
                                             <SvgIcon name='circle-bottom' fill={'white'} viewbox='0 0 51 50.998'/>
                                         </div>
-                                        <div className="first">
-                                            <div className='left-col'>
-                                                <div className='left-upper'>
-
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <iframe width="100%" height="90%"
+                                                style={{border: 'none'}}
+                                                src="https://www.youtube.com/embed/g7gcM0aPSYg"
+                                                allowFullScreen></iframe>
                                     </div>
                                     {/*<div className='arrow-right' style={{right: '5px', bottom: '5px'}}*/}
                                     {/*     onClick={nextPage}>*/}
