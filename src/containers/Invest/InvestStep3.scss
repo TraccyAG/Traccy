@@ -240,9 +240,9 @@
 
 .button {
   width: 200px;
-  background: rgb(135, 2, 64);
-  border: none;
-  border-radius: 5px;
+  background: #B90B5F;
+  border-color: #B90B5F;
+  color: #fff;
   padding: 15px 20px;
   font-size: 16px;
   font-weight: 500;
@@ -252,7 +252,6 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  opacity: 90%;
 }
 
 .button:hover {

@@ -130,6 +130,7 @@
       border-top: 1px solid #292828;
       border-left: 1px solid #292828;
       justify-content: space-around;
+      height: 100%;
       @media screen and (max-width: 991px) {
         flex-direction: column-reverse;
       }

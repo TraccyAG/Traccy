@@ -1,25 +1,12 @@
-import {useHistory} from "react-router-dom"
-
 import InvestWrapper from "./InvestWrapper";
 import "./InvestStep4.scss";
-import {useTrackedState, useWallet} from "../../contexts/store";
-import {toast} from "react-toastify";
-import {PHASEABLE_SALE_CONTRACT_ADDRESS} from "../../config/constants";
+import {useTrackedState} from "../../contexts/store";
 import {useTranslation} from "react-i18next";
-import {Contract, ethers} from "ethers";
-import saleAbi from "../../config/PhaseableSaleABI.json";
-import erc20Abi from "../../config/erc20.json";
 import {useEffect} from "react";
 
 const InvestStep4 = ({onNext, onPrev, fileUrl}) => {
     const {t} = useTranslation();
-    const history = useHistory();
     const state = useTrackedState();
-    const wallet = useWallet()
-
-    const handleNext = async () => {
-        history.push("/home");
-    }
 
     const downloadPdf = () => {
         const url = localStorage.getItem('fileUrl');
@@ -32,7 +19,16 @@ const InvestStep4 = ({onNext, onPrev, fileUrl}) => {
 
     useEffect(() => {
         downloadPdf();
-    }, [fileUrl])
+    }, [fileUrl]);
+
+    const getCurrentDay = () => {
+        let currentDate = new Date();
+        let day = currentDate.getDate();
+        let month = currentDate.getMonth() + 1;
+        day = day < 10 ? '0' + day : day;
+        month = month < 10 ? '0' + month : month;
+        return month + '/' + day;
+    }
 
 
     return (
@@ -58,22 +54,17 @@ const InvestStep4 = ({onNext, onPrev, fileUrl}) => {
                     <div className="grid-header">{t("buy:youinvest")}</div>
                     <div className="grid-header">{t("buy:get")}</div>
                     <div className="grid-header">{t("buy:saftready")}</div>
-                    <div className="grid-data">{state.investDate}</div>
+                    <div className="grid-data">{getCurrentDay()}</div>
                     <div className="grid-data">{state.investAmount}</div>
                     <div className="grid-data">{state.investTrcyAmount}</div>
-                    <div className="button" onClick={() => downloadPdf()}>Download Agreement</div>
+                    <div className="button_invest_step4" onClick={() => downloadPdf()}>Download Agreement</div>
                 </div>
                 <span className="span-auto">{t("buy:yourdownload")}</span>
-                <span className="span-download">{t("buy:again")} <span className="download"
-                                                                       onClick={() => downloadPdf()}>{t("buy:download")}</span>
+                <span className="span-download">{t("buy:again")}
+                    <span className="download"
+                          onClick={() => downloadPdf()}>{t("buy:download")}
+                    </span>
                 </span>
-                {/*<div className="steps-action">*/}
-                {/*    <div>*/}
-                {/*        <Button type="primary" onClick={() => handleNext()}>*/}
-                {/*            Back Home*/}
-                {/*        </Button>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
             </div>
         </InvestWrapper>
     )
