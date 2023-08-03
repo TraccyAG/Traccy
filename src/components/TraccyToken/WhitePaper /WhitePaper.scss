@@ -1,0 +1,54 @@
+@import "../../../assets/scss/variables.scss";
+
+.white-paper-download {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1.5rem;
+
+  @media screen and (max-width: 480px) {
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+
+  h4 {
+    font-size: 22px;
+    margin-bottom: 5px;
+  }
+
+
+  & > div {
+    display: flex;
+    cursor: pointer;
+    border-radius: 50%;
+    align-items: center;
+
+    p {
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+
+    .icon-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 15px;
+      border-radius: 50%;
+      padding: 2px;
+      z-index: 9999;
+
+      .icon {
+        fill: $white;
+        width: 18px;
+      }
+    }
+  }
+
+  & > div:hover {
+    cursor: pointer;
+
+    .icon {
+      fill: #be1e73;
+      width: 18px;
+    }
+  }
+}

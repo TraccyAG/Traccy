@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {toast} from "react-toastify";
 import {Checkbox} from "antd";
 import {authService} from "../../service/auth.service";
@@ -14,7 +14,6 @@ const RegistrationModal = ({setIsRegistered}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [gender, setGender] = useState('Male');
-    const [tokenJwt, setToken] = useState('');
     const [city, setCity] = useState('');
     const [address, setAddress] = useState('');
     const [zipcode, setZipcode] = useState('');
@@ -22,45 +21,12 @@ const RegistrationModal = ({setIsRegistered}) => {
 
     const [isLoading, setIsLoading] = useState(false); // Loading state variable
     const history = useHistory();
-    const [popup, setPopup] = useState(null);
 
     const handleAgreeTermsChange = (e) => {
         setAgreeTerms(e.target.checked);
     };
 
-    const openPopup = () => {
-        const popupWindow = window.open("https://in.sumsub.com/idensic/l/#/uni_QUqyWtzT5Evcg0eC", "popupWindow", "width=500,height=400");
-        setPopup(popupWindow);
 
-        // Listen for changes in the URL of the popup window
-        const checkPopupUrl = setInterval(() => {
-            try {
-                if (popupWindow.location.href.includes("jwt")) {
-                    console.log(popupWindow.location.href);
-                    // Extract the token from the URL
-                    const url = new URL(popupWindow.location.href);
-                    const token = url.searchParams.get("jwt");
-                    // Close the popup window
-                    setToken(token)
-                    popupWindow.close();
-                    // Do something with the token
-                    localStorage.setItem('jwt', token)
-                    // Clear the interval for checking the URL
-                    clearInterval(checkPopupUrl);
-                }
-            } catch (error) {
-                // Handle any errors that occur during the URL check
-                console.error(error);
-            }
-        }, 1000); // Adjust the interval as needed
-    };
-    useEffect(() => {
-
-    }, [])
-    const handleLinkClick = (e) => {
-        e.preventDefault();
-        openPopup();
-    };
     const registerUser = async (e) => {
         e.preventDefault();
         // Validate if the user has agreed to the terms
@@ -81,7 +47,6 @@ const RegistrationModal = ({setIsRegistered}) => {
                 email: email,
                 surName: surname,
                 gender: gender,
-                tokenSumSub: tokenJwt,
                 password: password,
                 address: address,
                 zipcode: zipcode,
@@ -99,13 +64,11 @@ const RegistrationModal = ({setIsRegistered}) => {
                     history.push('/')
                 })
             }
-            // Registration successful, perform any necessary actions or redirects
+
         } catch (error) {
-            // Handle the error here
             console.error('Registration failed:', error);
-            // You can display an error message to the user or perform any other error handling logic
         } finally {
-            setIsLoading(false); // Set loading state to false after registration attempt
+            setIsLoading(false);
         }
     };
     const handleGenderChange = (value) => {
@@ -213,18 +176,12 @@ const RegistrationModal = ({setIsRegistered}) => {
                     </Checkbox>
                 </div>
                 <div className={'login-buttons'}>
-                    {
-                        tokenJwt ?
-                            <>
-                                <LoginButton name={'Continue'} loading={isLoading}
-                                             onClick={registerUser}></LoginButton>
-                            </>
-                            :
-                            <>
-                                <LoginButton name={'Continue'} onClick={handleLinkClick}></LoginButton>
-                                <LoginButton name={'Login'} onClick={() => setIsRegistered(false)}></LoginButton>
-                            </>
-                    }
+
+                    <LoginButton name={'Continue'} loading={isLoading}
+                                 onClick={registerUser}></LoginButton>
+
+                    <LoginButton name={'Login'} onClick={() => setIsRegistered(false)}></LoginButton>
+
                 </div>
             </form>
         </div>

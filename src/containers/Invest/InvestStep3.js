@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from "react";
-import {Spin} from "antd";
+import {Button, Spin} from "antd";
 import SignatureCanvas from "react-signature-canvas";
 import {toast} from "react-toastify";
 import axios from "axios";
@@ -18,6 +18,7 @@ import {Contract, ethers} from "ethers";
 import saleAbi from "../../config/PhaseableSaleABI.json";
 import erc20Abi from "../../config/erc20.json";
 import {baseUrl} from "../../service/axios.service";
+import KYCStep from "./KYCStep/KYCStep";
 
 const InvestStep3 = ({onNext, onPrev, user, setFileUrl, paymentOption}) => {
     const {t} = useTranslation();
@@ -30,8 +31,11 @@ const InvestStep3 = ({onNext, onPrev, user, setFileUrl, paymentOption}) => {
 
     const [_, setSignature] = useState("");
     const [width, setWidth] = useState(0);
+    const [page, setPage] = useState(1);
     const [blob, setBlob] = useState(null);
     const [disabled, setDisabled] = useState(false);
+    const [popup, setPopup] = useState(null);
+    const [tokenJwt, setToken] = useState('');
 
     useEffect(() => {
         function getSnapshot() {
@@ -181,6 +185,7 @@ const InvestStep3 = ({onNext, onPrev, user, setFileUrl, paymentOption}) => {
 
             toast.dismiss();
             toast("Success", SUCCESS_OPTION);
+            setPage(3);
         } catch (e) {
             toast.dismiss();
             console.log(e)
@@ -222,9 +227,54 @@ const InvestStep3 = ({onNext, onPrev, user, setFileUrl, paymentOption}) => {
         history.push("/");
     };
 
+    const openPopup = () => {
+        const popupWindow = window.open("https://in.sumsub.com/idensic/l/#/uni_QUqyWtzT5Evcg0eC", "popupWindow", "width=500,height=600");
+        setPopup(popupWindow);
+
+        // Listen for changes in the URL of the popup window
+        const checkPopupUrl = setInterval(() => {
+            try {
+                if (popupWindow.location.href.includes("jwt")) {
+                    console.log(popupWindow.location.href);
+                    // Extract the token from the URL
+                    const url = new URL(popupWindow.location.href);
+                    const token = url.searchParams.get("jwt");
+
+                    // Close the popup window
+                    localStorage.setItem('jwt', token)
+                    setToken(token)
+                    popupWindow.close();
+                    clearInterval(checkPopupUrl);
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }, 1000); // Adjust the interval as needed
+    };
+
+    useEffect(() => {
+        if (tokenJwt) {
+            setPage(2);
+        }
+    }, [tokenJwt])
+
     return (
         <>
-            {!blob ? <InvestWrapper>
+            {!blob && page === 1 && <InvestWrapper>
+                <div className="invest-step1-body0">
+                    <span style={{fontSize: '25px'}}>Why You Need to Perform KYC ( Know Your Customer ) Before Making a Purchase</span>
+                    <KYCStep/>
+                    <div className="steps-action">
+                        <Button style={{margin: 0}} type='primary' onClick={openPopup}
+                                className={'button_accept_decline'}>
+                            Continue with KYC
+                        </Button>
+                    </div>
+                </div>
+            </InvestWrapper>
+            }
+
+            {!blob && page === 2 && <InvestWrapper>
                 <div className="invest-step3-body0">
                     <div className="input-parts">
                         <div className="input-contents" style={{display: 'flex', columnGap: '5%'}}>
@@ -281,26 +331,32 @@ const InvestStep3 = ({onNext, onPrev, user, setFileUrl, paymentOption}) => {
                                 onChange={(e) => onChangeSignature(e)}
                             />
                             <div className="button-wrapper">
-                                <button disabled={disabled} className={'button'}
-                                        onClick={handleClear}>{t("buy:clear")}</button>
-                                {/*<Button type="primary" onClick={openUpload}>{t("buy:open")}</Button>*/}
+                                <Button type='primary' disabled={disabled} className={'button'}
+                                        onClick={handleClear}><span
+                                    className={'button'}>{t("buy:clear")}</span></Button>
                             </div>
                             <div className="button-wrapper submit">
-                                <button disabled={disabled} className={'button'} onClick={() => onPrev()}>
-                                    Back
-                                </button>
+                                <Button type='primary' disabled={disabled} onClick={() => onPrev()}>
+                                    <span className={'button'}>Back</span>
+                                </Button>
+
                                 {disabled ?
-                                    <button disabled={disabled} className={'button'}>
+                                    <Button type='primary' disabled={disabled}>
                                         <Spin size="small" style={spinnerStyle}/>
-                                    </button> :
-                                    <button disabled={disabled} className={'button'} onClick={() => handleNext()}>
-                                        Continue
-                                    </button>}
+                                    </Button> :
+                                    <Button type='primary' disabled={disabled} className={'button'}
+                                            onClick={() => handleNext()}>
+                                        <span className={'button'}>Continue</span>
+                                    </Button>
+                                }
                             </div>
                         </div>
                     </div>
                 </div>
-            </InvestWrapper> : <InvestWrapper>
+            </InvestWrapper>
+            }
+
+            {blob && page === 3 && <InvestWrapper>
                 <div className="invest-step1-body0">
                     <span>PARTICIPATION PURCHASE AGREEMENT</span>
                     <span>{t("buy:terms")}</span>
@@ -309,12 +365,12 @@ const InvestStep3 = ({onNext, onPrev, user, setFileUrl, paymentOption}) => {
                     </div>
 
                     <div className="steps-action">
-                        <button onClick={BuyToken} className={'button'}>
+                        <Button type='primary' onClick={BuyToken} className={'button_accept_decline'}>
                             Accept & participate
-                        </button>
-                        <button onClick={() => handleDecline()} className={'button'}>
+                        </Button>
+                        <Button type='primary' onClick={() => handleDecline()} className={'button_accept_decline'}>
                             Decline
-                        </button>
+                        </Button>
                     </div>
                 </div>
             </InvestWrapper>

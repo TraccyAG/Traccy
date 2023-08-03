@@ -7,11 +7,19 @@ import Logo from '../../../assets/images/logo.png';
 import {Link, useHistory} from "react-router-dom";
 
 const Footer = () => {
+  const accessToken = localStorage.getItem('accessToken');
   const handleClick = () => {
     const buttons = document.getElementsByClassName("connect-wallet-mobile")
     buttons[0].click();
   }
   const history = useHistory();
+
+  const byTokenIfLogin = () => {
+    if (accessToken) return history.push("/invest");
+    return history.push("/login")
+  }
+
+
   return (
     <footer className="footer">
       <Container>
@@ -31,7 +39,7 @@ const Footer = () => {
                   <a href="/impact-through-traccy/0"><li>Impact</li></a>
                   <a href="/about"><li>About Us</li></a>
                   <a href="/become-part"><li>Bacome a Part</li></a>
-                  <a href="/invest"><li>Buy Token</li></a>
+                 <li onClick={()=> byTokenIfLogin()}>Buy Token</li>
                 </ul>
               </Col>
               <Col lg='3'>

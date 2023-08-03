@@ -239,6 +239,16 @@
 
 
 .button {
+  font-size: 17px;
+  line-height: 17px;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+
+.button_accept_decline {
   width: 200px;
   background: #B90B5F;
   border-color: #B90B5F;
@@ -254,6 +264,21 @@
   position: relative;
 }
 
-.button:hover {
-  cursor: pointer;
+.invest_step2_page1 {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  width: 100%;
+  text-align: left;
+  line-height: 20px;
+  opacity: 50%;
+
+  & > ol > li {
+    padding: 2px 0;
+  }
+
+  @media (max-width: 600px) {
+    text-align: justify;
+    font-size: 12px;
+  }
 }

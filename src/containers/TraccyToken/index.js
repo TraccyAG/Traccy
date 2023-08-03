@@ -15,6 +15,7 @@ import HeaderBg1 from '../../assets/images/title-bg1.svg';
 import HeaderBg2 from '../../assets/images/title-bg2.svg';
 import {useTranslation} from 'react-i18next';
 import RoadMap from '../../components/TraccyToken/RoadMap';
+import WhitePaper from "../../components/TraccyToken/WhitePaper /WhitePaper";
 
 
 const InfoModal = () => {
@@ -75,33 +76,7 @@ const TraccyToken = () => {
         },
     };
     const [percent, setPercent] = useState(0);
-    const onDownload = () => {
-        const xhr = new XMLHttpRequest();
-        const a = document.createElement("a");
-
-        xhr.open(
-            "GET",
-            "/2022-09-23 09-34-14.mp4",
-            true
-        );
-
-        xhr.responseType = "blob";
-        xhr.onprogress = function (pr) {
-            console.log(pr.loaded, pr.total, Math.floor(pr.loaded / pr.total * 1000) / 10);
-            setPercent(Math.floor(pr.loaded / pr.total * 1000) / 10);
-        };
-        xhr.onload = function () {
-            const file = new Blob([xhr.response], {
-                type: "application/octet-stream",
-            });
-            window.URL = window.URL || window.webkitURL;
-            a.href = window.URL.createObjectURL(file);
-            a.download = "1.mp4";
-            a.click();
-        };
-        xhr.send();
-
-    }
+    const accessToken = localStorage.getItem('accessToken');
 
     const roadmapWrapperRef = useRef();
     const hoverRoadmap = (e, index) => {
@@ -136,7 +111,12 @@ const TraccyToken = () => {
             descs[i].style.left = `${left > 0 ? left + 23 : 0}px`;
             descs[i].style.top = `${top}px`;
         }
-    }, [])
+    }, []);
+
+    const byTokenIfLogin = () => {
+        if (accessToken) return history.push("/invest");
+        return history.push("/login")
+    }
 
     return (
         <div className='tracytoken-wrapper'>
@@ -172,19 +152,11 @@ const TraccyToken = () => {
                                 </li>
                             </ul>
                             <div className='learn-more-row'>
-                                <Button onClick={() => history.push("/invest")}>
+                                <Button onClick={() => byTokenIfLogin()}>
                                     BUY TOKEN
                                     <SvgIcon name='send-icon' viewbox='0 0 19.612 18.074'/>
                                 </Button>
-                                {/* <div className='white-paper' onClick={onDownload}>
-                                    <h4>White paper </h4>
-                                    <div>
-                                        <p>Download {percent}%</p>
-                                        <div className="icon-wrapper">
-                                            <SvgIcon name='arrow-down' viewbox='0 0 25.87 25.87' />
-                                        </div>
-                                    </div>
-                                </div> */}
+                                <WhitePaper/>
                             </div>
                         </Col>
                         <Col lg='6' className='banner-right'>
@@ -554,12 +526,14 @@ const TraccyToken = () => {
                         <Col>
                             <div className='platform-img'>
                                 <img src={PlatformImg} alt='Platform'/>
-                                <section className='banner-section' style={{padding:0}}>
-                                    <Col lg='6' className="banner-left"  style={{padding:0}}>
+                                <section className='banner-section' style={{padding: 0}}>
+                                    <Col lg='6' className="banner-left" style={{padding: 0}}>
                                         <div className='learn-more-row'>
-                                            <Button onClick={() => history.push("/impact-through-traccy-details/traccy-connect")}>
+                                            <Button
+                                                onClick={() => history.push("/impact-through-traccy-details/traccy-connect")}>
                                                 LEARN MORE
-                                                <SvgIcon name='send-icon' style={{marginLeft:'65px'}} viewbox='0 0 19.612 18.074'/>
+                                                <SvgIcon name='send-icon' style={{marginLeft: '65px'}}
+                                                         viewbox='0 0 19.612 18.074'/>
                                             </Button>
                                         </div>
                                     </Col>

@@ -128,7 +128,7 @@
           align-items: center;
           width: 238px;
           height: 60px;
-          
+
           @media screen and (max-width: 640px) {
             font-size: 13px;
           }
@@ -170,49 +170,52 @@
             z-index: 4;
           }
         }
-        .white-paper {
-          display: flex;
-          flex-direction: column;
-          margin-left: 1.5rem;
-          z-index: 1000;
 
-          @media screen and (max-width: 480px) {
-            margin-left: 0;
-            margin-top: 1rem;
-          }
-
-          h4 {
-            font-size: 22px;
-            margin-bottom: 5px;
-          }
-          & > div {
-            display: flex;
-            cursor: pointer;
-            border-radius: 50%;
-            align-items: center;
-            p {
-              font-size: 14px;
-              margin-bottom: 0;
-            }
-            .icon-wrapper {
-              display: flex;
-              align-items: center;
-              margin-left: 15px;
-              border-radius: 50%;
-              padding: 2px;
-
-              .icon {
-                fill: $white;
-                width: 18px;
-              }
-            }
-          }
-          & > div:hover {
-            .icon-wrapper {
-              background: #be1e73;
-            }
-          }
-        }
+        //.white-paper-download {
+        //  display: flex;
+        //  flex-direction: column;
+        //  margin-left: 1.5rem;
+        //
+        //  @media screen and (max-width: 480px) {
+        //    margin-left: 0;
+        //    margin-top: 1rem;
+        //  }
+        //
+        //  h4 {
+        //    font-size: 22px;
+        //    margin-bottom: 5px;
+        //  }
+        //  & > div {
+        //    display: flex;
+        //    cursor: pointer;
+        //    border-radius: 50%;
+        //    align-items: center;
+        //    p {
+        //      font-size: 14px;
+        //      margin-bottom: 0;
+        //    }
+        //    .icon-wrapper {
+        //      display: flex;
+        //      align-items: center;
+        //      margin-left: 15px;
+        //      border-radius: 50%;
+        //      padding: 2px;
+        //
+        //      .icon {
+        //        fill: $white;
+        //        width: 18px;
+        //      }
+        //    }
+        //  }
+        //  & > div:hover {
+        //    .icon-wrapper {
+        //      background: #be1e73;
+        //    }
+        //  }
+        //}
+        //.white-paper-download:hover {
+        //  cursor: pointer;
+        //}
       }
     }
 
@@ -463,9 +466,10 @@
     padding: 4rem 0;
     position: relative;
     margin-top: 50px;
+
     .title-bg {
       position: absolute;
-      z-index: 0;
+      z-index: -9;
       width: 50%;
       left: 0;
       right: 0;
@@ -474,9 +478,7 @@
     }
 
     .why-card {
-      background: transparent
-        linear-gradient(180deg, #272c45 0%, #09061007 100%) 0% 0% no-repeat
-        padding-box;
+      background: transparent linear-gradient(180deg, #272c45 0%, #09061007 100%) 0% 0% no-repeat padding-box;
       padding: 2.5rem 2.5rem 4rem 2.5rem;
       text-align: center;
       position: relative;
@@ -523,9 +525,7 @@
     position: relative;
 
     .blur-circle-left {
-      background: transparent
-        linear-gradient(142deg, #7e384f 0%, #934d74 48%, #0c395b 100%) 0% 0%
-        no-repeat padding-box;
+      background: transparent linear-gradient(142deg, #7e384f 0%, #934d74 48%, #0c395b 100%) 0% 0% no-repeat padding-box;
       opacity: 0.09;
       filter: blur(50px);
       border-radius: 30%;
@@ -540,9 +540,7 @@
     }
 
     .blur-circle-right {
-      background: transparent
-        linear-gradient(142deg, #7e384f 0%, #934d74 48%, #0c395b 100%) 0% 0%
-        no-repeat padding-box;
+      background: transparent linear-gradient(142deg, #7e384f 0%, #934d74 48%, #0c395b 100%) 0% 0% no-repeat padding-box;
       opacity: 0.02;
       filter: blur(50px);
       width: 400px;
@@ -693,9 +691,7 @@
     position: relative;
 
     .blur-circle-left {
-      background: transparent
-        linear-gradient(142deg, #7e384f 0%, #934d74 48%, #0c395b 100%) 0% 0%
-        no-repeat padding-box;
+      background: transparent linear-gradient(142deg, #7e384f 0%, #934d74 48%, #0c395b 100%) 0% 0% no-repeat padding-box;
       opacity: 0.05;
       filter: blur(70px);
       border-radius: 30%;
@@ -749,9 +745,7 @@
     position: relative;
 
     .blur-circle-right {
-      background: transparent
-        linear-gradient(142deg, #7e384f 0%, #934d74 48%, #0c395b 100%) 0% 0%
-        no-repeat padding-box;
+      background: transparent linear-gradient(142deg, #7e384f 0%, #934d74 48%, #0c395b 100%) 0% 0% no-repeat padding-box;
       opacity: 0.18;
       filter: blur(50px);
       width: 450px;
@@ -783,9 +777,7 @@
       margin-top: 5rem;
 
       li {
-        background: transparent
-          linear-gradient(180deg, #e38a52 0%, #722965 100%) 0% 0% no-repeat
-          padding-box;
+        background: transparent linear-gradient(180deg, #e38a52 0%, #722965 100%) 0% 0% no-repeat padding-box;
         padding: 5rem 2rem 2rem 2rem;
         border-radius: 10px;
         text-align: center;
@@ -857,9 +849,7 @@
         .ant-btn {
           width: 55px;
           height: 51px;
-          background: transparent
-            linear-gradient(180deg, #dc8453 0%, #d55d1b 100%) 0% 0% no-repeat
-            padding-box;
+          background: transparent linear-gradient(180deg, #dc8453 0%, #d55d1b 100%) 0% 0% no-repeat padding-box;
           box-shadow: 0px 3px 6px #00000022;
           border-radius: 10px;
           padding: 0;
@@ -881,9 +871,7 @@
     position: relative;
 
     .blur-circle1 {
-      background: transparent
-        linear-gradient(142deg, #7e384f 0%, #934d74 48%, #0c395b 100%) 0% 0%
-        no-repeat padding-box;
+      background: transparent linear-gradient(142deg, #7e384f 0%, #934d74 48%, #0c395b 100%) 0% 0% no-repeat padding-box;
       opacity: 0.09;
       filter: blur(50px);
       width: 600px;
@@ -896,9 +884,7 @@
     }
 
     .blur-circle2 {
-      background: transparent
-        linear-gradient(142deg, #7e384f 0%, #934d74 48%, #0c395b 100%) 0% 0%
-        no-repeat padding-box;
+      background: transparent linear-gradient(142deg, #7e384f 0%, #934d74 48%, #0c395b 100%) 0% 0% no-repeat padding-box;
       opacity: 0.09;
       filter: blur(50px);
       width: 600px;
@@ -913,9 +899,7 @@
     }
 
     .blur-circle3 {
-      background: transparent
-        linear-gradient(142deg, #7e384f 0%, #934d74 48%, #0c395b 100%) 0% 0%
-        no-repeat padding-box;
+      background: transparent linear-gradient(142deg, #7e384f 0%, #934d74 48%, #0c395b 100%) 0% 0% no-repeat padding-box;
       opacity: 0.09;
       filter: blur(50px);
       width: 600px;
@@ -1034,9 +1018,7 @@
   }
 
   .blur-circle-left {
-    background: transparent
-      linear-gradient(142deg, #7e384f 0%, #934d74 48%, #0c395b 100%) 0% 0%
-      no-repeat padding-box;
+    background: transparent linear-gradient(142deg, #7e384f 0%, #934d74 48%, #0c395b 100%) 0% 0% no-repeat padding-box;
     opacity: 0.09;
     filter: blur(50px);
     border-radius: 30%;
@@ -1051,9 +1033,7 @@
   }
 
   .blur-circle-right {
-    background: transparent
-      linear-gradient(142deg, #7e384f 0%, #934d74 48%, #0c395b 100%) 0% 0%
-      no-repeat padding-box;
+    background: transparent linear-gradient(142deg, #7e384f 0%, #934d74 48%, #0c395b 100%) 0% 0% no-repeat padding-box;
     opacity: 0.02;
     filter: blur(50px);
     width: 400px;
@@ -1261,6 +1241,7 @@
     }
   }
 }
+
 .roadmap-section {
   padding: 12rem 0;
   position: relative;
@@ -1277,6 +1258,7 @@
       display: none;
     }
   }
+
   .right-hexa {
     position: absolute;
     right: -178px;
@@ -1286,9 +1268,11 @@
       display: none;
     }
   }
+
   .mobile {
     display: none;
   }
+
   @media screen and (max-width: 776px) {
     .desktop {
       display: none;
@@ -1297,6 +1281,7 @@
       display: block;
     }
   }
+
   .roadmap-wrapper {
     margin-top: 1rem;
     position: relative;
@@ -1321,6 +1306,7 @@
         top: 38%;
       }
     }
+
     .roadmap-path {
       position: absolute;
       width: 135%;
@@ -1330,33 +1316,39 @@
         width: 135%;
         left: -28%;
       }
+
       .roadmap-point {
         cursor: pointer;
+
         .point-outline {
           stroke: #fefcfc;
         }
+
         .point-center {
           fill: FFFBFB;
         }
+
         &:hover {
           .point-outline {
             stroke-opacity: 1;
           }
+
           .point-center {
             fill-opacity: 1;
           }
         }
       }
     }
+
     .roadmap-desc {
       position: absolute;
       width: 200px;
       // height: 300px;
       z-index: 99;
       background: linear-gradient(
-        180deg,
-        rgba(227, 15, 174, 0.7) 0%,
-        rgba(227, 15, 174, 0) 100%
+                      180deg,
+                      rgba(227, 15, 174, 0.7) 0%,
+                      rgba(227, 15, 174, 0) 100%
       );
       border-radius: 6px;
       text-align: center;
@@ -1368,6 +1360,7 @@
 
       ul {
         padding: 0 10px 0 30px;
+
         li {
           p {
             font-size: 12px;
@@ -1375,30 +1368,33 @@
           }
         }
       }
+
       @media screen and (max-width: 576px) {
       }
     }
+
     .slick-slider {
       .slick-arrow {
         position: absolute;
         height: 100%;
         width: 20%;
         z-index: 2;
+
         &::before {
           display: none;
         }
       }
+
       .slick-slide {
         .roadmap-card {
-          background: transparent
-            linear-gradient(180deg, #911658 0%, #7d0244 100%) 0% 0% no-repeat
-            padding-box;
+          background: transparent linear-gradient(180deg, #911658 0%, #7d0244 100%) 0% 0% no-repeat padding-box;
           max-width: 280px;
           text-align: center;
           padding: 80px 20px 40px 20px;
           margin-left: auto;
           margin-right: auto;
           margin-top: 3%;
+
           .circle-icon {
             fill: $white;
             width: 70px;
@@ -1406,12 +1402,14 @@
             z-index: 3;
             opacity: 0;
           }
+
           .action {
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 26px;
             margin-top: 25px;
+
             .icon {
               fill: $white;
               width: 32px;
@@ -1423,6 +1421,7 @@
     }
   }
 }
-.ant-select-selection-item{
+
+.ant-select-selection-item {
   min-width: 100px;
 }

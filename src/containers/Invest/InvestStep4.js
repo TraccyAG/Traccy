@@ -57,7 +57,11 @@ const InvestStep4 = ({onNext, onPrev, fileUrl}) => {
                     <div className="grid-data">{getCurrentDay()}</div>
                     <div className="grid-data">{state.investAmount}</div>
                     <div className="grid-data">{state.investTrcyAmount}</div>
-                    <div className="button_invest_step4" onClick={() => downloadPdf()}>Download Agreement</div>
+                    <div className="grid-data">
+                        <span className='button_invest_step4' onClick={() => downloadPdf()}>
+                             Download Agreement
+                        </span>
+                    </div>
                 </div>
                 <span className="span-auto">{t("buy:yourdownload")}</span>
                 <span className="span-download">{t("buy:again")}
