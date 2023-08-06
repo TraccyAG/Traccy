@@ -52,7 +52,7 @@ const WhitePaper = () => {
 
     return (
         <div className="white-paper-download">
-            <h4>White paper</h4>
+            <h4>Whitepaper</h4>
             <div onClick={() => !loading && onDownload()}>
                 <p>Download {percent}%</p>
                 {loading ? <div></div> :

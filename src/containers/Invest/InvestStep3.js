@@ -265,6 +265,10 @@ const InvestStep3 = ({onNext, onPrev, user, setFileUrl, paymentOption}) => {
                     <span style={{fontSize: '25px'}}>Why You Need to Perform KYC ( Know Your Customer ) Before Making a Purchase</span>
                     <KYCStep/>
                     <div className="steps-action">
+                        <Button style={{margin: 0}} type='primary' onClick={onPrev}
+                                className={'button_accept_decline'}>
+                            Back
+                        </Button>
                         <Button style={{margin: 0}} type='primary' onClick={openPopup}
                                 className={'button_accept_decline'}>
                             Continue with KYC
@@ -336,7 +340,8 @@ const InvestStep3 = ({onNext, onPrev, user, setFileUrl, paymentOption}) => {
                                     className={'button'}>{t("buy:clear")}</span></Button>
                             </div>
                             <div className="button-wrapper submit">
-                                <Button type='primary' disabled={disabled} onClick={() => onPrev()}>
+                                <Button type='primary' disabled={disabled} onClick={() => onPrev()}
+                                        className={'button'}>
                                     <span className={'button'}>Back</span>
                                 </Button>
 
@@ -382,7 +387,7 @@ const InvestStep3 = ({onNext, onPrev, user, setFileUrl, paymentOption}) => {
 const spinnerStyle = {
     transform: 'translate(-50%, -50%)',
     position: 'absolute',
-    top: '20px',
+    top: '25px',
 };
 
 export default InvestStep3;

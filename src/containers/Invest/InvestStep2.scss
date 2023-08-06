@@ -14,6 +14,7 @@
         font-size: 24px;
       }
     }
+
     &:nth-child(2) {
       font-size: 16px;
       font-weight: 400;
@@ -24,13 +25,20 @@
       }
     }
   }
+
   .selector-container {
     display: flex;
     flex-direction: column;
     width: 100%;
     gap: 10px;
   }
+
   .steps-action {
     justify-content: flex-end !important;
+
+    & > div > button:hover {
+      background: rgb(169, 0, 76) !important;
+      color: rgb(175, 169, 169) !important;
+    }
   }
 }
