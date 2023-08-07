@@ -50,7 +50,7 @@ const Footer = () => {
                                                 <div style={{padding: '4px 0 4px 0'}}>+41 43 810 29 51</div>
                                             </li>
                                         </a>
-                                        <a href={''}>
+                                        <a href='https://portal.traccy.io/Policy.html'>
                                             <li>Terms of Use</li>
                                         </a>
                                     </ul>

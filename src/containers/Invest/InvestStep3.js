@@ -31,11 +31,19 @@ const InvestStep3 = ({onNext, onPrev, user, setFileUrl, paymentOption}) => {
 
     const [_, setSignature] = useState("");
     const [width, setWidth] = useState(0);
-    const [page, setPage] = useState(1);
+    const [page, setPage] = useState(2);
     const [blob, setBlob] = useState(null);
     const [disabled, setDisabled] = useState(false);
     const [popup, setPopup] = useState(null);
     const [tokenJwt, setToken] = useState('');
+
+
+    useEffect(() => {
+        if (!user.tokenSumSub) {
+            setPage(1);
+        }
+    }, [user.tokenSumSub]);
+
 
     useEffect(() => {
         function getSnapshot() {
@@ -254,9 +262,11 @@ const InvestStep3 = ({onNext, onPrev, user, setFileUrl, paymentOption}) => {
 
     useEffect(() => {
         if (tokenJwt) {
-            setPage(2);
+            userService.updateUser(user.id, {email: user.email, tokenSumSub: tokenJwt})
+                .then(() => setPage(2))
+                .catch(e => toast('error => error updating user', e))
         }
-    }, [tokenJwt])
+    }, [tokenJwt]);
 
     return (
         <>
