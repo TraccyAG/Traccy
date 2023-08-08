@@ -22,8 +22,7 @@ const MyDocument = ({blob}) => {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        rowGap: '20px',
-        paddingTop: '30px',
+        rowGap: '25px',
     };
 
     return (
