@@ -31,65 +31,61 @@ const Footer = () => {
         <footer className="footer">
             {isDesktopScreen &&
                 <Container>
-                    <Row>
-                        <Col>
-                            <Divider/>
-                        </Col>
-                    </Row>
-                    <Row className="footer-upper">
-                        <Col lg='5'>
-                            <Row>
-                                <Col lg='6'>
-                                    <h3>TRACCY AG</h3>
-                                    <ul>
-                                        <a href="#">
-                                            <li className={'hover_none'}>
-                                                <div style={{padding: '4px 0 4px 0'}}>Chaltenbodenstrasse 6a,</div>
-                                                <div style={{padding: '4px 0 4px 0'}}>8834 Schindellegi</div>
-                                                <div style={{padding: '4px 0 4px 0'}}>info@traccy.ch</div>
-                                                <div style={{padding: '4px 0 4px 0'}}>+41 43 810 29 51</div>
-                                            </li>
-                                        </a>
-                                        <a href='https://portal.traccy.io/Policy.html'>
-                                            <li>Terms of Use</li>
-                                        </a>
-                                    </ul>
-                                </Col>
-                                <Col lg='6' className={'col-padding'}>
-                                    <h3>Links</h3>
-                                    <ul style={{width: '107%'}}>
-                                        <a href="https://support.metamask.io/hc/en-us/articles/360015489531-Getting-started-with-MetaMask">
-                                            <li>Create Metamask</li>
-                                        </a>
-                                        <a href="https://metamask.io/news/latest/buying-crypto-in-portfolio-dapp-for-an-easy-experience-the-metamask-way/">
-                                            <li>Deposite Metamask</li>
-                                        </a>
-                                    </ul>
-                                </Col>
-                            </Row>
-                        </Col>
-                        <Col lg='3' className="subscribe-col col-padding">
-                            <h3>Log in to your Account</h3>
-                            <p>Log in to your account to
-                                participate in STO </p>
-                            <Button type="primary" onClick={() => history.push('/login')}
-                                    id="footer-wallet">Login</Button>
-                        </Col>
-                        <Col lg='4'>
-                            <div className={'img_footer_block'}>
+                    <div className="footer-upper">
+                        <div className="footer-col" style={{ width: '22%' }}>
+                            <div className="footer-section">
+                                <h3>TRACCY AG</h3>
                                 <ul>
-                                    <li style={{marginBottom: '40px'}}><img src={img1} alt="footer" style={{
-                                        width: '224px',
-                                        height: '63px'
-                                    }}/></li>
-                                    <li><img src={img2} alt="footer" style={{
-                                        width: '185px',
-                                        height: '72px'
-                                    }}/></li>
+                                    <a href="#">
+                                        <li className="hover_none">
+                                            <div style={{ padding: '4px 0' }}>Chaltenbodenstrasse 6a,</div>
+                                            <div style={{ padding: '4px 0' }}>8834 Schindellegi</div>
+                                            <div style={{ padding: '4px 0' }}>info@traccy.ch</div>
+                                            <div style={{ padding: '4px 0' }}>+41 43 810 29 51</div>
+                                        </li>
+                                    </a>
+                                    <a href="https://portal.traccy.io/Policy.html">
+                                        <li>Terms of Use</li>
+                                    </a>
                                 </ul>
                             </div>
-                        </Col>
-                    </Row>
+                        </div>
+                        <div className="footer-col" style={{ width: '22%' }}>
+                            <div className="footer-section">
+                                <h3>Links</h3>
+                                <ul style={{ width: '107%' }}>
+                                    <a href="https://support.metamask.io/hc/en-us/articles/360015489531-Getting-started-with-MetaMask">
+                                        <li>Create Metamask</li>
+                                    </a>
+                                    <a href="https://metamask.io/news/latest/buying-crypto-in-portfolio-dapp-for-an-easy-experience-the-metamask-way/">
+                                        <li>Deposite Metamask</li>
+                                    </a>
+                                </ul>
+                            </div>
+                        </div>
+                        <div className="footer-col" style={{ width: '25%' }}>
+                            <div className="footer-section subscribe-col">
+                                <h3>Log in to your Account</h3>
+                                <p>Log in to your account to participate in STO</p>
+                                <Button type="primary" onClick={() => history.push('/login')}
+                                        id="footer-wallet">Login</Button>
+                            </div>
+                        </div>
+                        <div className="footer-col" style={{ width: '31%' }}>
+                            <div className="footer-section">
+                                <div className="img_footer_block">
+                                    <ul>
+                                        <li style={{ marginBottom: '40px' }}>
+                                            <img src={img1} alt="footer" style={{ width: '224px', height: '63px' }} />
+                                        </li>
+                                        <li>
+                                            <img src={img2} alt="footer" style={{ width: '185px', height: '72px' }} />
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <Row className='footer-bottom'>
                         <Col lg='8'>
                             <div className="left-inner">

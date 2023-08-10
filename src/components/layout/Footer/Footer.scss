@@ -13,6 +13,10 @@
   }
 
   .footer-upper {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
     h3 {
       font-size: 24px;
       margin-bottom: 1.2rem;
@@ -72,6 +76,12 @@
         border-radius: 0;
         text-transform: uppercase;
         max-width: 400px;
+      }
+
+      @media(max-width: 1050px) {
+        .ant-btn {
+          max-width: 200px!important;
+        }
       }
     }
   }
@@ -177,6 +187,12 @@
 
   #footer-wallet {
     min-width: 270px;
+  }
+
+  @media (max-width: 1051px) {
+    #footer-wallet {
+      min-width: 0;
+    }
   }
 
   .footer-bottom {
