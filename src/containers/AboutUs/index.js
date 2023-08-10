@@ -444,11 +444,14 @@ const AboutUs = () => {
                     </Row>
                 </Container>
             </section>
+
             <section className="ourteam-section">
-                <img className='left-hexa' src={LeftHexa} alt='Hexa'/>
-                <div className='blur-circle1'></div>
-                <div className='blur-circle2'></div>
-                <div className='blur-circle3'></div>
+            </section>
+            {/*<section className="ourteam-section">*/}
+                {/*<img className='left-hexa' src={LeftHexa} alt='Hexa'/>*/}
+                {/*<div className='blur-circle1'></div>*/}
+                {/*<div className='blur-circle2'></div>*/}
+                {/*<div className='blur-circle3'></div>*/}
                 {/*<Container>*/}
                 {/*    <Row>*/}
                 {/*        <Col>*/}
@@ -465,28 +468,28 @@ const AboutUs = () => {
                 {/*                /!* <span className="card-role">{team.role}</span> *!/*/}
                 {/*                <span className="card-description">{team.role}</span>*/}
 
-                {/*                <div className="card-social">*/}
-                {/*                    /!* <SvgIcon name='telegram' viewbox='0 0 34.875 34.664' />*/}
-                {/*                    <SvgIcon name='twitter' viewbox='0 0 36 29.239' />*/}
-                {/*                    <SvgIcon name='instagram' viewbox='0 0 32.999 32.999' /> *!/*/}
-                {/*                    <a href={team.linkedin}>*/}
-                {/*                        <SvgIcon name='linkedin' viewbox='0 0 32.001 32.001' />*/}
-                {/*                    </a>*/}
-                {/*                </div>*/}
-                {/*            </div>*/}
-                {/*        ))}*/}
-                {/*    </div>*/}
-                {/*    <div className="ourteam-wrapper-mobile">*/}
-                {/*        <Slider {...settings4}>*/}
-                {/*            {OURTEAM.map(team => (*/}
-                {/*                <div>*/}
-                {/*                    <div className="card">*/}
-                {/*                        <div className="avatar-wrapper">*/}
-                {/*                            <img src={team.image} alt="team" />*/}
-                {/*                        </div>*/}
-                {/*                        <span className="card-name">{team.name}</span>*/}
-                {/*                        /!* <span className="card-role">{team.role}</span> *!/*/}
-                {/*                        <span className="card-description">{team.role}</span>*/}
+                    {/*            <div className="card-social">*/}
+                    {/*                /!* <SvgIcon name='telegram' viewbox='0 0 34.875 34.664' />*/}
+                    {/*                <SvgIcon name='twitter' viewbox='0 0 36 29.239' />*/}
+                    {/*                <SvgIcon name='instagram' viewbox='0 0 32.999 32.999' /> *!/*/}
+                    {/*                <a href={team.linkedin}>*/}
+                    {/*                    <SvgIcon name='linkedin' viewbox='0 0 32.001 32.001' />*/}
+                    {/*                </a>*/}
+                    {/*            </div>*/}
+                    {/*        </div>*/}
+                    {/*    ))}*/}
+                    {/*</div>*/}
+                    {/*<div className="ourteam-wrapper-mobile">*/}
+                    {/*    <Slider {...settings4}>*/}
+                    {/*        {OURTEAM.map(team => (*/}
+                    {/*            <div>*/}
+                    {/*                <div className="card">*/}
+                    {/*                    <div className="avatar-wrapper">*/}
+                    {/*                        <img src={team.image} alt="team" />*/}
+                    {/*                    </div>*/}
+                    {/*                    <span className="card-name">{team.name}</span>*/}
+                    {/*                    /!* <span className="card-role">{team.role}</span> *!/*/}
+                    {/*                    <span className="card-description">{team.role}</span>*/}
 
                 {/*                        <div className="card-social">*/}
                 {/*                            /!* <SvgIcon name='telegram' viewbox='0 0 34.875 34.664' />*/}
@@ -502,7 +505,7 @@ const AboutUs = () => {
                 {/*        </Slider>*/}
                 {/*    </div>*/}
                 {/*</Container>*/}
-            </section>
+            {/*</section>*/}
         </div>
     )
 };
