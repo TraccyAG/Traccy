@@ -87,17 +87,17 @@ const AboutUs = () => {
                         </div>
                     </div>
                 }
+                {/*{i === 2 &&*/}
+                {/*    <div className='thumb-col'>*/}
+                {/*        <div className='image-circle'>*/}
+                {/*            <img src={TeamThumb2} alt='Farrah Mettler<'/>*/}
+                {/*        </div>*/}
+                {/*        <div className='thumb-bottom'>Farrah Mettler</div>*/}
+                {/*        <div className='thumb-designation'>*/}
+                {/*            <span></span> CMO*/}
+                {/*        </div>*/}
+                {/*    </div>}*/}
                 {i === 2 &&
-                    <div className='thumb-col'>
-                        <div className='image-circle'>
-                            <img src={TeamThumb2} alt='Farrah Mettler<'/>
-                        </div>
-                        <div className='thumb-bottom'>Farrah Mettler</div>
-                        <div className='thumb-designation'>
-                            <span></span> CMO
-                        </div>
-                    </div>}
-                {i === 3 &&
                     <div className='thumb-col'>
                         <div className='image-circle'>
                             <img src={TeamThumb3} alt='Dedry  Misamu'/>
