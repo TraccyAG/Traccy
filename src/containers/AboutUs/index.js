@@ -359,27 +359,27 @@ const AboutUs = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div>
-                                        <div className='slider-card'>
-                                            <div className='slider-left'>
-                                                <h3>Farrah Mettler </h3>
-                                                <div className='designation'><Divider/> CMO</div>
-                                                <p>{t("about_us:farrah")}</p>
-                                                <div className='social-icons'>
-                                                    {/* <SvgIcon name='twitter' viewbox='0 0 36 29.239' />
-                                                    <SvgIcon name='telegram' viewbox='0 0 34.875 34.664' />
-                                                    <SvgIcon name='instagram' viewbox='0 0 32.999 32.999' /> */}
-                                                    <a href="https://www.linkedin.com/in/farrah-mettler-306922187"
-                                                       target="_blank" rel="noreferrer">
-                                                        <SvgIcon name='linkedin' viewbox='0 0 32.001 32.001'/>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div className='slider-right'>
-                                                <img src="/about-us/farrah.png" alt='farrah'/>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {/*<div>*/}
+                                    {/*    <div className='slider-card'>*/}
+                                    {/*        <div className='slider-left'>*/}
+                                    {/*            <h3>Farrah Mettler </h3>*/}
+                                    {/*            <div className='designation'><Divider/> CMO</div>*/}
+                                    {/*            <p>{t("about_us:farrah")}</p>*/}
+                                    {/*            <div className='social-icons'>*/}
+                                    {/*                /!* <SvgIcon name='twitter' viewbox='0 0 36 29.239' />*/}
+                                    {/*                <SvgIcon name='telegram' viewbox='0 0 34.875 34.664' />*/}
+                                    {/*                <SvgIcon name='instagram' viewbox='0 0 32.999 32.999' /> *!/*/}
+                                    {/*                <a href="https://www.linkedin.com/in/farrah-mettler-306922187"*/}
+                                    {/*                   target="_blank" rel="noreferrer">*/}
+                                    {/*                    <SvgIcon name='linkedin' viewbox='0 0 32.001 32.001'/>*/}
+                                    {/*                </a>*/}
+                                    {/*            </div>*/}
+                                    {/*        </div>*/}
+                                    {/*        <div className='slider-right'>*/}
+                                    {/*            <img src="/about-us/farrah.png" alt='farrah'/>*/}
+                                    {/*        </div>*/}
+                                    {/*    </div>*/}
+                                    {/*</div>*/}
                                     <div>
                                         <div className='slider-card'>
                                             <div className='slider-left'>
